@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BitblocksComponent } from './bitblocks.component';
+import { MinimalComponent } from './minimal.component';
 
-describe('BitblocksComponent', () => {
-  let component: BitblocksComponent;
-  let fixture: ComponentFixture<BitblocksComponent>;
+describe('MinimalComponent', () => {
+  let component: MinimalComponent;
+  let fixture: ComponentFixture<MinimalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BitblocksComponent]
+      imports: [MinimalComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(BitblocksComponent);
+    fixture = TestBed.createComponent(MinimalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

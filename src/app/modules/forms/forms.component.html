@@ -1,0 +1,71 @@
+<div class="form-header">
+    <h1>bitForms
+        <code>Module</code>
+    </h1>
+</div>
+
+<div class="container">
+
+    <div class="table-of-content">
+        <p>Table of content</p>
+        <ul>
+            <li>Textbox</li>
+            <li>Email</li>
+            <li>Phone</li>
+        </ul>
+    </div>
+
+    <div class="comp-list">
+        <section id="textbox">
+            <div class="header">
+                <h2 class="title"> Textbox </h2> • <code> bitTextbox</code>
+            </div>
+            <p>
+                A universal input field that keeps design elements organized with user interaction.
+            </p>
+            <form [formGroup]="form">
+                <label for="Name"> Name <span style="color:red">*</span>
+                    @if (form.controls.Name.touched) {
+                    @if (form.controls.Name.errors?.['pattern'] ) {
+                    <code style="color:rgb(173, 0, 0)">
+                            Only Alphabets
+                    </code>
+                    }
+                    }
+                </label>
+                <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
+                    id="Name" autocomplete="name" formControlName="Name" />
+
+                <label for="Email"> Email <span style="color:red">*</span>
+                    @if (form.controls.Email.touched) {
+                    @if (form.controls.Email.errors?.['pattern'] ) {
+                    <code style="color:rgb(173, 0, 0)">
+                            Bad Address 
+                    </code>
+                    }
+                    }
+                </label>
+                <input bitTextbox [regExp]="BitRegExpression.Email" placeholder="ex: alex@gmail.com " type="email"
+                    id="Email" autocomplete="email" formControlName="Email" />
+
+            </form>
+        </section>
+        <section id="email">
+            <div class="header">
+                <h2 class="title"> Email </h2> • <code> bitEmail </code>
+            </div>
+            <p>
+                Independent directive conviniently used for email input field, <br> checks pattern
+                <code> {{ 'name@domain.extention' }} </code>
+            </p>
+        </section>
+        <section id="phone">
+            <div class="header">
+                <h2 class="title"> Phone </h2> • <code> bitPhone </code>
+            </div>
+            <p>
+                Independent directive can be placed for validating the phone number.
+            </p>
+        </section>
+    </div>
+</div>

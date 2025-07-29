@@ -2,5 +2,4 @@
  * Public API Surface of bitblocks
  */
 
-export * from './lib/bitblocks.service';
-export * from './lib/bitblocks.component';
+export * from './lib/bit-forms/modules/bit-forms.module'

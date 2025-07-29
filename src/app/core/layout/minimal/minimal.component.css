@@ -1,0 +1,44 @@
+.minimal-container {
+    min-height: 100dvh;
+    display: grid;
+    grid-template-rows: 5rem 1fr;
+}
+
+header {
+    border-bottom: 1px solid #FFE4E1;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    /* background-color: #FFE4E1; */
+
+}
+
+header .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #c93e3e;
+}
+
+header p {
+    font-size: 1.25rem
+}
+
+header,
+main {
+    padding: 0 clamp(1.50rem, 4vw, 5rem);
+}
+
+li {
+    list-style: none;
+    transition: all 200ms ease;
+}
+
+nav ul {
+    display: flex;
+    column-gap: 1.25rem;
+}
+
+nav ul li:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
