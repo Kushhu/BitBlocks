@@ -1,71 +1,110 @@
-<div class="form-header">
-    <h1>bitForms
-        <code>Module</code>
-    </h1>
-</div>
-
 <div class="container">
 
     <div class="table-of-content">
-        <p>Table of content</p>
+        <h3>Table of content</h3>
         <ul>
-            <li>Textbox</li>
-            <li>Email</li>
-            <li>Phone</li>
+            <li>Textbox
+
+                <ul>
+                    <li>Email</li>
+                    <li>Phone</li>
+                    <li>OTP</li>
+                    <li>File</li>
+                </ul>
+            </li>
+            <li>Directives</li>
+            <li>Components</li>
         </ul>
+
     </div>
 
     <div class="comp-list">
         <section id="textbox">
             <div class="header">
-                <h2 class="title"> Textbox </h2> • <code> bitTextbox</code>
+                <h2 class="title">Textbox </h2> • <code> bitTextbox</code>
             </div>
             <p>
                 A universal input field that keeps design elements organized with user interaction.
             </p>
-            <form [formGroup]="form">
-                <label for="Name"> Name <span style="color:red">*</span>
-                    @if (form.controls.Name.touched) {
-                    @if (form.controls.Name.errors?.['pattern'] ) {
-                    <code style="color:rgb(173, 0, 0)">
-                            Only Alphabets
-                    </code>
-                    }
-                    }
-                </label>
-                <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
-                    id="Name" autocomplete="name" formControlName="Name" />
 
-                <label for="Email"> Email <span style="color:red">*</span>
-                    @if (form.controls.Email.touched) {
-                    @if (form.controls.Email.errors?.['pattern'] ) {
-                    <code style="color:rgb(173, 0, 0)">
-                            Bad Address 
-                    </code>
-                    }
-                    }
-                </label>
-                <input bitTextbox [regExp]="BitRegExpression.Email" placeholder="ex: alex@gmail.com " type="email"
-                    id="Email" autocomplete="email" formControlName="Email" />
+            <app-code-snippet>
+                {{"\<input bitTextbox id=\"Name\" formControlName=\"Name\" />"}}
+            </app-code-snippet>
 
-            </form>
         </section>
         <section id="email">
             <div class="header">
-                <h2 class="title"> Email </h2> • <code> bitEmail </code>
+                <h2 class="title">Email </h2> • <code> bitEmail </code>
             </div>
             <p>
-                Independent directive conviniently used for email input field, <br> checks pattern
-                <code> {{ 'name@domain.extention' }} </code>
+                Independent directive conviniently used for email input field.
             </p>
+            <app-code-snippet>
+                {{"\<input bitEmail id=\"Email\" autocomplete=\"email\" formControlName=\"Email\" />"}}
+            </app-code-snippet>
         </section>
         <section id="phone">
             <div class="header">
-                <h2 class="title"> Phone </h2> • <code> bitPhone </code>
+                <h2 class="title">Phone </h2> • <code> bitPhone </code>
             </div>
             <p>
                 Independent directive can be placed for validating the phone number.
             </p>
+            <app-code-snippet>
+                &lt;input bitPhone /&gt;
+            </app-code-snippet>
+        </section>
+        <section id="otp">
+            <div class="header">
+                <h2 class="title">OTP </h2> • <code> bitOTP </code>
+            </div>
+            <p>
+
+            </p>
+        </section>
+        <section id="file-upload">
+            <div class="header">
+                <h2 class="title">File </h2> • <code> bitFile </code>
+            </div>
+            <p>
+
+            </p>
         </section>
     </div>
+
+
+    <div class="form-wrapper">
+        <h3> Reactive Form </h3>
+        <form [formGroup]="form" [class.form-valid]="form.valid" [class.form-invalid]="form.invalid">
+            <!-- <h2>🤞Let's get to know us</h2> -->
+            <label for="Name"> Name <span style="color:red">*</span>
+                @if (form.controls.Name.touched) {
+                @if (form.controls.Name.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                            Only Alphabets
+                    </code>
+                }
+                }
+            </label>
+            <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
+                id="Name" autocomplete="name" formControlName="Name" />
+
+            <label for="Email"> Email <span style="color:red">*</span>
+                @if (form.controls.Email.touched) {
+                @if (form.controls.Email.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                            Bad Address 
+                    </code>
+                }
+                }
+            </label>
+            <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
+            <label for="Phone"> Phone <span style="color:red">*</span>
+
+            </label>
+            <input bitTextbox placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="phone" formControlName="Phone" />
+
+        </form>
+    </div>
+
 </div>

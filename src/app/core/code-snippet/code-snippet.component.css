@@ -1,0 +1,39 @@
+.code {
+    /* width: min(100%, 90vw); */
+    max-width: 90vw;
+    overflow: scroll;
+    text-overflow: ellipsis;
+    padding: 1rem;
+    background-color: #dddddd50;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.25rem;
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
+
+.code button {
+    position: absolute;
+    top: 0.7rem;
+    right: 1rem;
+    border: unset;
+    background: unset;
+    font-family: inherit;
+    font-size: 1.25rem;
+    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+    opacity: 0;
+}
+
+.code:hover button {
+    opacity: 1;
+}
+
+.code button:active {
+    scale: 0.9;
+    cursor: grab;
+}
+
+.code:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.078);
+    /* translate: 0px -2px; */
+}

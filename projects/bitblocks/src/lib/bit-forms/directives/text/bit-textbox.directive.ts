@@ -1,5 +1,6 @@
 import { Directive, ElementRef, forwardRef, inject, Input, OnInit } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validator } from '@angular/forms';
+import { BaseTextbox } from '../../../core/base.textbox';
 
 @Directive({
   selector: '[bitTextbox]',
@@ -12,11 +13,11 @@ import { AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR
     },
   ]
 })
-export class BitTextboxDirective implements Validator, OnInit {
+export class BitTextboxDirective extends BaseTextbox {
 
   @Input() regExp?: RegExp;
-
-  constructor() { }
+  @Input() max?: number;
+  @Input() min?: number;
 
   validate(control: AbstractControl): ValidationErrors | null {
     if (!control.value || control.value == "") {
@@ -36,17 +37,4 @@ export class BitTextboxDirective implements Validator, OnInit {
     return { pattern: true }
   }
 
-  add(name: string) {
-    this.input.nativeElement.classList.add(name);
-  }
-
-  remove(name: string) {
-    this.input.nativeElement.classList.remove(name);
-  }
-
-  protected input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
-
-  ngOnInit(): void {
-    this.add('bit-textbox');
-  }
 }
