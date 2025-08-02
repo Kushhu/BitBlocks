@@ -1,13 +1,12 @@
 # `bitBlocks` - angular ui 
-
-Universal angular component library with enhanced user experience.
+A universal angular component library with enhanced user experience.
 Composite of directives and compnents that emerges integration with your solution.
+
 
 ## Key Principle
 - User validated components
 - Pure & Light weight implemantation  
 - Extensively Researched 
- 
 
 ### `bitForms` Module
 > - Extensive form library helps to improve effieciency on reddudent code.
@@ -19,4 +18,4 @@ Composite of directives and compnents that emerges integration with your solutio
 
 
 ## Author & License
-Copyright (c) 2024 Kushagra Gangwal, contributors.  
+Copyright © 2024 Kushagra Gangwal, contributors.  
