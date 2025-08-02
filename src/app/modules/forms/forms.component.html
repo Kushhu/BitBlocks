@@ -50,6 +50,10 @@
             <p>
                 Independent directive can be placed for validating the phone number.
             </p>
+            <ul>
+                <li><code>user can only enter numerics.</code></li>
+                <li><code>validates max 10 digits for phone number.</code></li>
+            </ul>
             <app-code-snippet>
                 &lt;input bitPhone /&gt;
             </app-code-snippet>
@@ -102,7 +106,7 @@
             <label for="Phone"> Phone <span style="color:red">*</span>
 
             </label>
-            <input bitTextbox placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="phone" formControlName="Phone" />
+            <input bitPhone placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="phone" formControlName="Phone" />
 
         </form>
     </div>

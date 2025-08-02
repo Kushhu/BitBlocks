@@ -1,12 +1,12 @@
-import { Directive, ElementRef, inject, OnInit } from "@angular/core";
+import { Directive, ElementRef, inject } from "@angular/core";
 import { AbstractControl, ValidationErrors, Validator } from "@angular/forms";
 
 @Directive()
-export abstract class BaseTextbox implements Validator, OnInit {
+export abstract class BaseTextbox implements Validator {
 
     protected input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
 
-    ngOnInit(): void {
+    constructor() {
         this.add('bit-textbox');
     }
 

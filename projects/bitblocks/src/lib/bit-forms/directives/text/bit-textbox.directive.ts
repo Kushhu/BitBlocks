@@ -13,11 +13,15 @@ import { BaseTextbox } from '../../../core/base.textbox';
     },
   ]
 })
-export class BitTextboxDirective extends BaseTextbox {
+export class BitTextboxDirective extends BaseTextbox implements OnInit {
 
   @Input() regExp?: RegExp;
   @Input() max?: number;
   @Input() min?: number;
+
+  ngOnInit(): void {
+    this.input.nativeElement.type = "text";
+  }
 
   validate(control: AbstractControl): ValidationErrors | null {
     if (!control.value || control.value == "") {

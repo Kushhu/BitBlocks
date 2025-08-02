@@ -57,11 +57,6 @@ input {
   font-size: 16px;
 }
 
-input:not(:focus-within){
+form:focus-within input:not(:focus-within){
   opacity: 0.5;
-}
-
-label {
-  /* font-weight: bold; */
-  /* color: #c93e3e; */
 }
