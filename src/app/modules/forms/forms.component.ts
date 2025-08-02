@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
+// import { BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
 import { CommonModule } from '@angular/common';
 import { CodeSnippetComponent } from '../../core/code-snippet/code-snippet.component';
-// import { BitFormsModule } from 'bitblocks';
+import { BitFormsModule } from 'bitblocks';
 
 @Component({
   selector: 'app-forms',
