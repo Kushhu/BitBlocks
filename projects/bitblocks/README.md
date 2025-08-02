@@ -8,9 +8,14 @@ Composite of directives and compnents that emerges integration with your solutio
 - Pure & Light weight implemantation  
 - Extensively Researched 
 
-## `bitForms` Module
-- `bitTextbox` Directive 
-- `bitEmail` Directive 
-- `bitPhone` Directive 
+### `bitForms` Module
+> - Extensive form library helps to improve effieciency on reddudent code.
+> - Inculdes niche input validations with capablities.
+
+
+
+
+
+
 
 Auther: `Kushagra Gangwal` `Software Engineer` `2024`
