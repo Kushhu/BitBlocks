@@ -8,10 +8,10 @@ Composite of directives and compnents that emerges integration with your solutio
 - Pure & Light weight implemantation  
 - Extensively Researched 
 
-## bitModules
-| bitForms      | type | Description     |
-| :---        |    :----:   |          ---: |
-| bitTextbox      | Durective       | universal input   |
-| bitEmail      | Durective       | email input   |
+## `bitForms` Module
+| Name      | Description     |
+| :---         |          ---: |
+| `bitTextbox` Directive       | universal input   |
+| `bitEmail` Directive       | email input   |
 
-Auther: Kushagra Gangwal | Software Engineer | 2024
+Auther: `Kushagra Gangwal` | Software Engineer | 2024
