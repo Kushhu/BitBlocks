@@ -9,9 +9,8 @@ Composite of directives and compnents that emerges integration with your solutio
 - Extensively Researched 
 
 ## `bitForms` Module
-| Name      | Description     |
-| :---         |          ---: |
-| `bitTextbox` Directive       | universal input   |
-| `bitEmail` Directive       | email input   |
+- `bitTextbox` Directive 
+- `bitEmail` Directive 
+- `bitPhone` Directive 
 
-Auther: `Kushagra Gangwal` | Software Engineer | 2024
+Auther: `Kushagra Gangwal` `Software Engineer` `2024`
