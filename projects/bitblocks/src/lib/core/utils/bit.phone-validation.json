@@ -1,0 +1,243 @@
+[
+    {
+        "name": "United States (USA)",
+        "code": "+1",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Canada (CAN)",
+        "code": "+1",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "United Kingdom (UK)",
+        "code": "+44",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Australia (AUS)",
+        "code": "+61",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "India (IND)",
+        "code": "+91",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Germany (GER)",
+        "code": "+49",
+        "length": [
+            10,
+            11
+        ]
+    },
+    {
+        "name": "France (FRA)",
+        "code": "+33",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "Italy (ITA)",
+        "code": "+39",
+        "length": [
+            9,
+            10
+        ]
+    },
+    {
+        "name": "Brazil (BRA)",
+        "code": "+55",
+        "length": [
+            10,
+            11
+        ]
+    },
+    {
+        "name": "Russia (RUS)",
+        "code": "+7",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "China (CHN)",
+        "code": "+86",
+        "length": [
+            11,
+            11
+        ]
+    },
+    {
+        "name": "Japan (JPN)",
+        "code": "+81",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "South Korea (KOR)",
+        "code": "+82",
+        "length": [
+            9,
+            10
+        ]
+    },
+    {
+        "name": "South Africa (ZAF)",
+        "code": "+27",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "Mexico (MEX)",
+        "code": "+52",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Saudi Arabia (SAU)",
+        "code": "+966",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "Nigeria (NGA)",
+        "code": "+234",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Indonesia (IDN)",
+        "code": "+62",
+        "length": [
+            10,
+            11,
+            12
+        ]
+    },
+    {
+        "name": "Pakistan (PAK)",
+        "code": "+92",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Bangladesh (BGD)",
+        "code": "+880",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Egypt (EGY)",
+        "code": "+20",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Turkey (TUR)",
+        "code": "+90",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Argentina (ARG)",
+        "code": "+54",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "UAE (ARE)",
+        "code": "+971",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "Philippines (PHL)",
+        "code": "+63",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Malaysia (MYS)",
+        "code": "+60",
+        "length": [
+            9,
+            10
+        ]
+    },
+    {
+        "name": "Vietnam (VNM)",
+        "code": "+84",
+        "length": [
+            9,
+            10
+        ]
+    },
+    {
+        "name": "Thailand (THA)",
+        "code": "+66",
+        "length": [
+            9,
+            9
+        ]
+    },
+    {
+        "name": "Iran (IRN)",
+        "code": "+98",
+        "length": [
+            10,
+            10
+        ]
+    },
+    {
+        "name": "Ukraine (UKR)",
+        "code": "+380",
+        "length": [
+            9,
+            9
+        ]
+    }
+]

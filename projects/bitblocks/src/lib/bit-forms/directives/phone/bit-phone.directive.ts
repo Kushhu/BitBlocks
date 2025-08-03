@@ -18,7 +18,13 @@ export class BitPhoneDirective extends BitTextboxDirective {
 
   constructor() {
     super();
+    this.setup();
+  }
+
+  setup() {
     this.regExp = BitRegEx.Phone;
+    this.add.attribute('type', 'tel')
+    this.add.attribute('autocomplete', 'mobile');
   }
 
   @HostListener('keypress', ['$event']) onKeyPress(event: KeyboardEvent) {

@@ -1,0 +1,10 @@
+<div class="table-of-content">
+    <h3>Table of content</h3>
+    <ul>
+        @for (section of sections; track $index) {
+        <li (click)="scroll(section.id)">{{section.children[0].children[0].innerText}}</li>
+        }
+        <p></p>
+        <ng-content></ng-content>
+    </ul>
+</div>

@@ -1,23 +1,32 @@
-import { Directive, ElementRef, inject } from "@angular/core";
+import { Directive, ElementRef, inject, Renderer2 } from "@angular/core";
 import { AbstractControl, ValidationErrors, Validator } from "@angular/forms";
 
 @Directive()
 export abstract class BaseTextbox implements Validator {
 
-    protected input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
+    private input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
+    public renderer: Renderer2 = inject(Renderer2);
 
     constructor() {
-        this.add('bit-textbox');
+        this.add.classList('bit-textbox');
     }
 
     abstract validate(control: AbstractControl): ValidationErrors | null;
 
-    add(name: string) {
-        this.input.nativeElement.classList.add(name);
+    get add() {
+        const attribute = (name: string, value: string) => this.renderer.setAttribute(this.input.nativeElement, name, value);
+        const classList = (name: string) => this.renderer.addClass(this.input.nativeElement, name);
+
+        return { attribute, classList };
     }
 
-    remove(name: string) {
-        this.input.nativeElement.classList.remove(name);
+    get remove() {
+        const attribute = (name: string) => this.renderer.removeAttribute(this.input.nativeElement, name);
+        const classList = (name: string) => this.renderer.removeClass(this.input.nativeElement, name);
+
+        return { attribute, classList };
     }
+
+
 
 }

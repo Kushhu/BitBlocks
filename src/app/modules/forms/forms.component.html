@@ -1,22 +1,21 @@
 <div class="container">
 
-    <div class="table-of-content">
+    <!-- <div class="table-of-content">
         <h3>Table of content</h3>
         <ul>
-            <li>Textbox
-
-                <ul>
-                    <li>Email</li>
-                    <li>Phone</li>
-                    <li>OTP</li>
-                    <li>File</li>
-                </ul>
-            </li>
+            @for (section of sections; track $index) {
+            <li (click)="scroll(section.id)">{{section.children[0].children[0].innerText}}</li>
+            }
+            <p></p>
             <li>Directives</li>
             <li>Components</li>
         </ul>
+    </div> -->
 
-    </div>
+    <app-table-of-content>
+        <li>Directives</li>
+        <li>Components</li>
+    </app-table-of-content>
 
     <div class="comp-list">
         <section id="textbox">
@@ -32,6 +31,7 @@
             </app-code-snippet>
 
         </section>
+
         <section id="email">
             <div class="header">
                 <h2 class="title">Email </h2> • <code> bitEmail </code>
@@ -43,6 +43,7 @@
                 {{"\<input bitEmail id=\"Email\" autocomplete=\"email\" formControlName=\"Email\" />"}}
             </app-code-snippet>
         </section>
+
         <section id="phone">
             <div class="header">
                 <h2 class="title">Phone </h2> • <code> bitPhone </code>
@@ -55,9 +56,10 @@
                 <li><code>validates max 10 digits for phone number.</code></li>
             </ul>
             <app-code-snippet>
-                &lt;input bitPhone /&gt;
+                &lt;input bitPhone formControlName="Phone" /&gt;
             </app-code-snippet>
         </section>
+
         <section id="otp">
             <div class="header">
                 <h2 class="title">OTP </h2> • <code> bitOTP </code>
@@ -66,9 +68,19 @@
 
             </p>
         </section>
+
         <section id="file-upload">
             <div class="header">
-                <h2 class="title">File </h2> • <code> bitFile </code>
+                <h2 class="title">File</h2> • <code>bitFile</code>
+            </div>
+            <p>
+
+            </p>
+        </section>
+
+        <section id="calender">
+            <div class="header">
+                <h2 class="title">Calender</h2> • <code>bitCalender</code>
             </div>
             <p>
 
@@ -103,10 +115,13 @@
                 }
             </label>
             <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
-            <label for="Phone"> Phone <span style="color:red">*</span>
 
-            </label>
-            <input bitPhone placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="phone" formControlName="Phone" />
+            <label for="Phone"> Phone </label>
+            <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
+                formControlName="Phone" />
+
+            <label for="date"> Date </label>
+            <input bitTextbox id="date" type="date" />
 
         </form>
     </div>

@@ -18,8 +18,13 @@ export class BitEmailboxDirective extends BitTextboxDirective implements OnChang
 
   constructor() {
     super();
+    this.setup();
+  }
+
+  setup() {
     this.regExp = BitRegEx.Email;
-    this.input.nativeElement.type = "email";
+    this.add.attribute('type', 'email');
+    this.add.attribute('autocomplete', 'email');
   }
 
   ngOnChanges(changes: SimpleChanges): void {

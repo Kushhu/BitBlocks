@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-// import { BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
-import { CommonModule } from '@angular/common';
+import { BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from '../../core/code-snippet/code-snippet.component';
-import { BitFormsModule } from 'bitblocks';
+import { TableOfContentComponent } from '../../core/table-of-content/table-of-content.component';
+// import { BitFormsModule } from 'bitblocks';
 
 @Component({
   selector: 'app-forms',
@@ -12,7 +13,8 @@ import { BitFormsModule } from 'bitblocks';
     CommonModule,
     ReactiveFormsModule,
     BitFormsModule,
-    CodeSnippetComponent
+    CodeSnippetComponent,
+    TableOfContentComponent
   ],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css'

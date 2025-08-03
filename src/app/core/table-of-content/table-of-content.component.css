@@ -1,0 +1,24 @@
+/* === Table of Contents === */
+:host {
+    position: sticky;
+    top: 3rem;
+    z-index: 2;
+}
+
+.table-of-content ul li {
+    padding: 0.3rem;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.table-of-content ul li:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+@media (width < 400px) {
+    .table-of-content {
+        display: none
+    }
+}
