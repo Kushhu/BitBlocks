@@ -1,0 +1,75 @@
+/* === Layout === */
+.minimal-container {
+    min-height: 100dvh;
+    position: relative;
+}
+
+header,
+nav,
+main {
+    padding: 0 clamp(1.5rem, 4vw, 5rem);
+}
+
+header {
+    min-height: 4rem;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    background-color: #ffe4e161;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* === Typography === */
+header .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #c93e3e;
+    margin: 0;
+}
+
+header p {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+/* === Navigation === */
+nav ul {
+    display: flex;
+    column-gap: 1.25rem;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    list-style: none;
+    opacity: 0.6;
+    margin: 1rem 0;
+    transition: opacity 200ms ease;
+}
+
+nav ul li:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+/* === Responsive === */
+@media (width < 400px) {
+    header {
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+        min-height: 5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "bitblocks",
+  "description": "A universal angular component library with enhanced user experience.",
+  "version": "0.0.3",
+  "author": {
+    "name": "Kushagra Gangwal",
+    "url": "https://github.com/Kushhu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Kushhu/BitBlocks.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kushhu/BitBlocks/issues"
+  },
+  "keywords": [
+    "angular",
+    "blocks",
+    "ui",
+    "ux",
+    "component",
+    "forms",
+    "input",
+    "library"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^17.3.0",
+    "@angular/core": "^17.3.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

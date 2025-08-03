@@ -1,0 +1,129 @@
+<div class="container">
+
+    <!-- <div class="table-of-content">
+        <h3>Table of content</h3>
+        <ul>
+            @for (section of sections; track $index) {
+            <li (click)="scroll(section.id)">{{section.children[0].children[0].innerText}}</li>
+            }
+            <p></p>
+            <li>Directives</li>
+            <li>Components</li>
+        </ul>
+    </div> -->
+
+    <app-table-of-content>
+        <li>Directives</li>
+        <li>Components</li>
+    </app-table-of-content>
+
+    <div class="comp-list">
+        <section id="textbox">
+            <div class="header">
+                <h2 class="title">Textbox </h2> • <code> bitTextbox</code>
+            </div>
+            <p>
+                A universal input field that keeps design elements organized with user interaction.
+            </p>
+
+            <app-code-snippet>
+                {{"\<input bitTextbox id=\"Name\" formControlName=\"Name\" />"}}
+            </app-code-snippet>
+
+        </section>
+
+        <section id="email">
+            <div class="header">
+                <h2 class="title">Email </h2> • <code> bitEmail </code>
+            </div>
+            <p>
+                Independent directive conviniently used for email input field.
+            </p>
+            <app-code-snippet>
+                {{"\<input bitEmail id=\"Email\" autocomplete=\"email\" formControlName=\"Email\" />"}}
+            </app-code-snippet>
+        </section>
+
+        <section id="phone">
+            <div class="header">
+                <h2 class="title">Phone </h2> • <code> bitPhone </code>
+            </div>
+            <p>
+                Independent directive can be placed for validating the phone number.
+            </p>
+            <ul>
+                <li><code>user can only enter numerics.</code></li>
+                <li><code>validates max 10 digits for phone number.</code></li>
+            </ul>
+            <app-code-snippet>
+                &lt;input bitPhone formControlName="Phone" /&gt;
+            </app-code-snippet>
+        </section>
+
+        <section id="otp">
+            <div class="header">
+                <h2 class="title">OTP </h2> • <code> bitOTP </code>
+            </div>
+            <p>
+
+            </p>
+        </section>
+
+        <section id="file-upload">
+            <div class="header">
+                <h2 class="title">File</h2> • <code>bitFile</code>
+            </div>
+            <p>
+
+            </p>
+        </section>
+
+        <section id="calender">
+            <div class="header">
+                <h2 class="title">Calender</h2> • <code>bitCalender</code>
+            </div>
+            <p>
+
+            </p>
+        </section>
+    </div>
+
+
+    <div class="form-wrapper">
+        <h3> Reactive Form </h3>
+        <form [formGroup]="form" [class.form-valid]="form.valid" [class.form-invalid]="form.invalid">
+            <!-- <h2>🤞Let's get to know us</h2> -->
+            <label for="Name"> Name <span style="color:red">*</span>
+                @if (form.controls.Name.touched) {
+                @if (form.controls.Name.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                            Only Alphabets
+                    </code>
+                }
+                }
+            </label>
+            <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
+                id="Name" autocomplete="name" formControlName="Name" />
+
+            <label for="Email"> Email <span style="color:red">*</span>
+                @if (form.controls.Email.touched) {
+                @if (form.controls.Email.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                            Bad Address 
+                    </code>
+                }
+                }
+            </label>
+            <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
+
+            <label for="Phone"> Phone </label>
+            <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
+                formControlName="Phone" />
+
+            <label for="date"> Date </label>
+            <input bitTextbox id="date" type="date" />
+
+        </form>
+    </div>
+
+</div>
