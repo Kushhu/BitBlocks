@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
+import { BitFormsModule, BitLayoutModule } from '../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from '../../core/code-snippet/code-snippet.component';
 import { TableOfContentComponent } from '../../core/table-of-content/table-of-content.component';
 // import { BitFormsModule } from 'bitblocks';
@@ -14,7 +14,8 @@ import { TableOfContentComponent } from '../../core/table-of-content/table-of-co
     ReactiveFormsModule,
     BitFormsModule,
     CodeSnippetComponent,
-    TableOfContentComponent
+    TableOfContentComponent,
+    BitLayoutModule
   ],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css'
@@ -25,6 +26,20 @@ export class FormsComponent {
     Email: new FormControl(),
     Phone: new FormControl(),
   })
+
+  moduleCode =
+    `import { BitFormsModule } from 'bitblocks';
+ 
+  @Component({
+    selector: 'app-forms',
+    standalone: true,
+    imports: [
+      BitFormsModule,
+    ],
+    templateUrl: './forms.component.html',
+    styleUrl: './forms.component.css'
+ })`
+
 
   BitRegExpression = {
     AlphabetsOnly: /^[A-Za-z ]+$/,

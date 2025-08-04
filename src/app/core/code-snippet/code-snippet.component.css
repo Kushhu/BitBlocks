@@ -1,7 +1,7 @@
 .code {
     /* width: min(100%, 90vw); */
     max-width: 90vw;
-    overflow: scroll;
+    overflow: auto;
     text-overflow: ellipsis;
     padding: 1rem;
     background-color: #dddddd50;

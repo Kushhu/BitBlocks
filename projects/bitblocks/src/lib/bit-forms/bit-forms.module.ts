@@ -14,12 +14,12 @@ export * from './directives/phone/bit-phone.directive'
     CommonModule,
     BitTextboxDirective,
     BitEmailboxDirective,
-    BitPhoneDirective
+    BitPhoneDirective,
   ],
   exports: [
     BitTextboxDirective,
     BitEmailboxDirective,
-    BitPhoneDirective
+    BitPhoneDirective,
   ]
 })
 export class BitFormsModule { }

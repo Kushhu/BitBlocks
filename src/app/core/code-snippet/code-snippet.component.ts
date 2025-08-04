@@ -7,16 +7,11 @@ import { AfterContentInit, Component, ContentChild, ElementRef, ViewChild } from
   templateUrl: './code-snippet.component.html',
   styleUrl: './code-snippet.component.css'
 })
-export class CodeSnippetComponent implements AfterContentInit {
+export class CodeSnippetComponent {
 
   @ViewChild('content') code!: ElementRef;
 
-  ngAfterContentInit(): void {
-    console.log(this.code);
-
-  }
   copy() {
-
     navigator.clipboard.writeText(this.code.nativeElement.innerText);
   }
 }
