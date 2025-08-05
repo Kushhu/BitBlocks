@@ -10,7 +10,6 @@ section .header {
 }
 
 section p {
-    margin-top: 0;
     color: #303030;
     line-height: 1.5rem;
 }
@@ -61,4 +60,8 @@ ul {
     .table-of-content {
         display: none;
     }
+}
+
+.mb-2{
+    margin-bottom: 4rem;
 }

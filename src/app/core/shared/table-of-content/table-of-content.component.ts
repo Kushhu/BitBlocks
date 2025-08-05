@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { BitSeparatorComponent } from '../../../../projects/bitblocks/src/public-api';
+import { BitSeparatorComponent } from '../../../../../projects/bitblocks/src/public-api';
 
 @Component({
   selector: 'app-table-of-content',

@@ -45,13 +45,16 @@ nav ul {
     column-gap: 1.25rem;
     padding: 0;
     margin: 0;
+    overflow-x: auto;
 }
 
 nav ul li {
     list-style: none;
     opacity: 0.6;
     margin: 1rem 0;
+    padding: 0 0.5rem;
     transition: opacity 200ms ease;
+    position: relative;
 }
 
 nav ul li:hover {
@@ -72,4 +75,17 @@ nav ul li:hover {
     header p {
         font-size: 1rem;
     }
+}
+
+li.active {
+    opacity: 1 !important;
+}
+
+li.active::after {
+    content: "";
+    border-bottom: 3px solid #c93e3e;
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
 }

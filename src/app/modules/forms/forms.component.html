@@ -6,12 +6,12 @@
     </app-table-of-content>
 
     <div class="comp-list">
-        <section id="module">
+        <section id="module" class="mb-2">
             <div class="header">
                 <h2 class="title">Module Installation</h2> • <code> bitForms </code>
             </div>
 
-            <p> The <code>BitFormsModule</code> covers all the component and directives.
+            <p> The <code>BitFormsModule</code> covers dynamic range of form functionalities from bottom to top.
             </p>
             <p>
                 It provides exported members for
@@ -67,7 +67,7 @@
                 <li><code>validates max 10 digits for phone number.</code></li>
             </ul>
             <app-code-snippet>
-                &lt;input bitPhone formControlName="Phone" /&gt;
+                &lt;input bitPhone maxlength="10" formControlName="Phone" /&gt;
             </app-code-snippet>
         </section>
 
