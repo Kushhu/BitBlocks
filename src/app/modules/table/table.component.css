@@ -1,0 +1,30 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 15rem 0.8fr;
+    column-gap: 2rem;
+}
+
+/* === Layout & Structure === */
+section {
+    min-height: 8rem;
+    padding-bottom: 100vh;
+}
+
+section .header {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+section p {
+    color: #303030;
+    line-height: 1.5rem;
+}
+
+
+/* === Responsive === */
+@media (width < 400px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+}

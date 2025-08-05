@@ -31,8 +31,11 @@ export class BitTextboxDirective extends BaseTextbox {
     }
 
     this.makeInvalid();
+    this.postValidate();
     return { pattern: true }
   }
+
+  postValidate() { }
 
   makeValid() {
     this.remove.classList('bit-input-invalid');

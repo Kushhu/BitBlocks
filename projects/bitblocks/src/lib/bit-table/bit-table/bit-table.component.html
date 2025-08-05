@@ -1,0 +1,32 @@
+<table>
+    <thead>
+        <tr>
+            <ng-container *ngTemplateOutlet="headers || defaultHeaders; context: { $implicit: data }"></ng-container>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (row of data; track row) {
+        <tr>
+            <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
+        </tr>
+        }
+    </tbody>
+</table>
+<div class="table-footer">
+    {{ data.length }}
+    Records
+</div>
+
+
+<ng-template #defaultHeaders let-data>
+    @for (header of data[0] | keyvalue; track header;) {
+    <th>{{ header.key }}</th>
+    }
+</ng-template>
+
+<ng-template #defaultRow let-row>
+    @for (item of row | keyvalue; track item;) {
+    <td class="row-item">{{ item.value }}</td>
+    }
+</ng-template>

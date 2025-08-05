@@ -52,7 +52,7 @@ nav ul li {
     list-style: none;
     opacity: 0.6;
     margin: 1rem 0;
-    padding: 0 0.5rem;
+    /* padding: 0 0.5rem; */
     transition: opacity 200ms ease;
     position: relative;
 }
