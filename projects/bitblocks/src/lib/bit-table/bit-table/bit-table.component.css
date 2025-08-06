@@ -4,12 +4,10 @@ table {
     font-family: inherit;
     border: 1px solid rgb(0, 0, 0, 0.1);
     border-bottom: none;
+    border-collapse: collapse;
     position: relative;
-}
-
-:host {
     max-width: 90vw;
-    overflow: auto;
+    overflow-x: scroll;
 }
 
 thead {
@@ -17,9 +15,6 @@ thead {
     top: 3rem;
 }
 
-/* thead tr {
-    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-} */
 
 tbody tr:last-of-type {
     border-bottom: none;
@@ -35,11 +30,14 @@ th {
 td {
     color: rgb(0, 0, 0, 0.8);
     padding: 0.8em 1rem;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+    max-width: 25ch;
+}
+
+.row-item {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 20rem;
-    border-bottom: 1px solid rgb(0, 0, 0, 0.1);
 }
 
 tr {
@@ -68,11 +66,44 @@ th.right {
 .table-footer {
     padding: 0.8rem 1rem;
     opacity: 0.6;
-    /* background-color: #dddddd50; */
     width: 100%;
 }
 
 tr:not(tr:hover) td:is(.onHover)>* {
     /* transition: 0.1s ease-in-out; */
     opacity: 0;
+}
+
+.card-wrapper {
+    margin: 1rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 1rem;
+}
+
+.bit-table-card {
+    display: flex;
+    align-content: start;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bit-table-card p label {
+    display: inline-block;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 0.8rem;
+    opacity: 0.6;
+}
+
+.bit-table-card p {
+    line-height: 1.5rem;
+    max-height: 4.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
 }

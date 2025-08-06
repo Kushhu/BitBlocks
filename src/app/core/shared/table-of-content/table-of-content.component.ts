@@ -14,7 +14,7 @@ export class TableOfContentComponent implements OnInit {
   sections!: any;
 
   ngOnInit(): void {
-    this.sections = document.querySelectorAll('section');
+    this.sections = document.querySelectorAll('section .header h2');
   }
 
   scroll = (id: string) => {

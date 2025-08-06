@@ -1,9 +1,9 @@
 <div class="wrapper">
     <app-table-of-content></app-table-of-content>
 
-    <section id="table" class="mb-2">
+    <section class="mb-2">
         <div class="header">
-            <h2 class="title">Core Table</h2> • <code> &lt;bit-table&gt; </code>
+            <h2 class="title" id="table">Basic Data Table</h2> • <code> &lt;bit-table&gt; </code>
         </div>
 
         <p>Data Table allows list of entities togather for complex data handling.</p>
@@ -11,6 +11,28 @@
         <app-code-snippet>{{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
 
         <bit-table [data]="products"> </bit-table>
+
+        <bit-separator></bit-separator>
+
+        <h3>Customizing Columns</h3>
+        <p>You can specify each columns inside component and create a distinct order or customize view. </p>
+
+
+        <bit-table [data]="products">
+            <ng-template #Headers>
+                <th>Id</th>
+                <th>Product</th>
+            </ng-template>
+            <ng-template #Rows let-row>
+                <td class="fit center">{{row.id}}</td>
+                <td>{{row.title}}</td>
+            </ng-template>
+
+            <!-- <ng-template #Card let-row>
+                <h3>{{row.title}}</h3>
+                <p>{{row.price + row.currency}}</p>
+            </ng-template> -->
+        </bit-table>
 
     </section>
 </div>

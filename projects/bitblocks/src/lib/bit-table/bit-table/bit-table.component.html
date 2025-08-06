@@ -12,11 +12,22 @@
         </tr>
         }
     </tbody>
+
 </table>
+
+<div class="card-wrapper">
+    @for (row of data; track row) {
+    <ng-container *ngTemplateOutlet="cards || defaultCard; context: { $implicit: row }"></ng-container>
+    }
+</div>
+
 <div class="table-footer">
+    @if (showTotalRecords) {
     {{ data.length }}
     Records
+    }
 </div>
+
 
 
 <ng-template #defaultHeaders let-data>
@@ -27,6 +38,19 @@
 
 <ng-template #defaultRow let-row>
     @for (item of row | keyvalue; track item;) {
-    <td class="row-item">{{ item.value }}</td>
+    <td>
+        <div class="row-item">{{ item.value ?? "" }}</div>
+    </td>
     }
+</ng-template>
+
+<ng-template #defaultCard let-row>
+    <div class="bit-table-card">
+        @for (item of row | keyvalue; track item;) {
+        <p>
+            <label>{{item.key}} </label> <br>
+            {{ item.value }}
+        </p>
+        }
+    </div>
 </ng-template>

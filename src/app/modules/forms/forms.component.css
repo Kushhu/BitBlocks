@@ -1,6 +1,7 @@
 /* === Layout & Structure === */
 section {
     min-height: 8rem;
+    margin-bottom: var(--mb-xl);
 }
 
 section .header {
@@ -15,6 +16,7 @@ section p {
 }
 
 .container {
+    margin: 1rem 0;
     display: grid;
     position: relative;
     align-items: start;
@@ -26,23 +28,10 @@ section p {
     padding-bottom: 30vh;
 }
 
-/* === Table of Contents === */
-.table-of-content,
 .form-wrapper {
     position: sticky;
-    top: 3rem;
+    top: 4rem;
     z-index: 2;
-}
-
-.table-of-content ul li {
-    padding: 0.3rem;
-    opacity: 0.5;
-    transition: opacity 0.2s ease;
-}
-
-.table-of-content ul li:hover {
-    opacity: 1;
-    cursor: pointer;
 }
 
 /* === Lists === */
@@ -60,8 +49,4 @@ ul {
     .table-of-content {
         display: none;
     }
-}
-
-.mb-2{
-    margin-bottom: 4rem;
 }

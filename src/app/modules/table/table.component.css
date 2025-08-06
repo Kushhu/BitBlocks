@@ -1,5 +1,7 @@
 .wrapper {
+    margin: 1rem 0;
     display: grid;
+    align-items: start;
     grid-template-columns: 15rem 0.8fr;
     column-gap: 2rem;
 }
@@ -7,7 +9,6 @@
 /* === Layout & Structure === */
 section {
     min-height: 8rem;
-    padding-bottom: 100vh;
 }
 
 section .header {

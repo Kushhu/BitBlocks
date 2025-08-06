@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BitSeparatorComponent, BitTableModule } from '../../../../projects/bitblocks/src/public-api';
-import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
 import { CodeSnippetComponent } from "../../core/shared/code-snippet/code-snippet.component";
+import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
 
 @Component({
   selector: 'app-table',

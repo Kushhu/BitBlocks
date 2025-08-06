@@ -14,6 +14,14 @@
   font-size: clamp(14px, 0.5vw + 0.1rem, 18px);
 
   /* color-scheme: dark light; */
+
+  --mb-xs: 0.3rem;
+  --mb-s: 0.5rem;
+  --mb-m: 1rem;
+  /* --mb-r: 1.5rem; */
+  --mb-l: 1rem;
+  --mb-xl: 2rem;
+  --mb-xxl: 4rem;
 }
 
 body,
@@ -27,14 +35,24 @@ h3,
 h4,
 h5,
 h6 {
-  margin-bottom: 0.5rem;
+  margin: 0;
+  margin-bottom: var(--mb-xs);
+}
+
+p {
+  margin: 0;
+  margin-bottom: var(--mb-xs);
+}
+
+p:last-of-type {
+  margin-bottom: var(--mb-l);
 }
 
 
 input.bit-textbox {
   padding: 0.4rem 0.8rem;
   margin-top: 0.5rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: var(--mb-l);
   font-family: inherit;
   width: 100%;
   outline: unset;

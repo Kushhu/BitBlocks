@@ -2,7 +2,7 @@
     <h4>Table of content</h4>
     <ul>
         @for (section of sections; track $index) {
-            <li (click)="scroll(section.id)">{{section.children[0].children[0].innerText}}</li>
+            <li (click)="scroll(section.id)">{{section.innerText}}</li>
         }
         <ng-content></ng-content>
     </ul>
