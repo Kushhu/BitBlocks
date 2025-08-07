@@ -11,6 +11,11 @@ Composite of directives and compnents that emerges integration with your solutio
 ### `bitForms` Module
 > - Extensive form library helps to improve effieciency on reddudent code.
 > - Inculdes niche input validations with capablities.
+> - Utility services methods for conditions.  
+
+### `bitTable` Module
+> - A versatile composition of templates and native elements for all purposes.
+> - Creativity is key which leads diffrent types of table fusions.
 
 
 
