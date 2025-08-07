@@ -1,6 +1,5 @@
 import { CommonModule, KeyValuePipe } from '@angular/common';
-import { Component, ContentChild, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { BitTableCardComponent } from '../bit-table.module';
+import { AfterContentInit, Component, ContentChild, EventEmitter, HostListener, input, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'bit-table',
@@ -10,14 +9,33 @@ import { BitTableCardComponent } from '../bit-table.module';
   styleUrl: './bit-table.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class BitTableComponent {
-  @Input() data!: any[];
+export class BitTableComponent<TList> implements AfterContentInit {
+
+  /**
+   * A root level data wrapper which includes all records 
+   * 
+   */
+  data = input<TList[]>();
 
   @Input() showTotalRecords?: boolean;
+  @Input() columns!: (keyof TList)[];
 
-  @ContentChild('Headers') headers!: TemplateRef<any>;
-  @ContentChild('Rows') rows!: TemplateRef<any>;
-  @ContentChild("Card") cards!: TemplateRef<any>;
+  @Input() view: 'default' | 'table' | 'cards' | 'both' = 'default';
+  @Output() viewChange = new EventEmitter();
 
-  ngOnInit(): void { }
+  @ContentChild('bitHeader') headers!: TemplateRef<any>;
+  @ContentChild('bitRow') rows!: TemplateRef<any>;
+  @ContentChild("bitCard") cards!: TemplateRef<any>;
+
+  ngAfterContentInit(): void { }
+
+  // Under Testing 
+  // @HostListener('window:resize', [])
+  // onResize() {
+  //   if (window.innerWidth < 600) {
+  //     return this.view = 'cards'
+  //   }
+  //   return this.view = 'table'
+  // }
+
 }

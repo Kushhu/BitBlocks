@@ -1,38 +1,53 @@
 <div class="wrapper">
+    
     <app-table-of-content></app-table-of-content>
 
-    <section class="mb-2">
-        <div class="header">
-            <h2 class="title" id="table">Basic Data Table</h2> • <code> &lt;bit-table&gt; </code>
-        </div>
+    <div class="section-wrapper">
+        <section class="mb-2">
+            <div class="header">
+                <h2 class="title" id="table">Basic Data Table</h2> • <code> &lt;bit-table&gt; </code>
+            </div>
 
-        <p>Data Table allows list of entities togather for complex data handling.</p>
+            <p>Data Table allows list of entities togather for complex data handling.</p>
 
-        <app-code-snippet>{{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
+            <app-code-snippet>{{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
 
-        <bit-table [data]="products"> </bit-table>
+            <bit-table [data]="products" [columns]="['id','title']"> </bit-table>
+
+        </section>
 
         <bit-separator></bit-separator>
 
-        <h3>Customizing Columns</h3>
-        <p>You can specify each columns inside component and create a distinct order or customize view. </p>
+        <section class="mb-2">
+            <div class="header">
+                <h2 class="title" id="custom-columns">Customizing Columns</h2> •
+                <code> bitHeader </code> •
+                <code> bitRow </code>
+            </div>
+            <p>You can specify each columns inside component and create a distinct order or customize view. </p>
 
+            <app-code-snippet>{{snippet.customTable}}</app-code-snippet>
 
-        <bit-table [data]="products">
-            <ng-template #Headers>
-                <th>Id</th>
-                <th>Product</th>
-            </ng-template>
-            <ng-template #Rows let-row>
-                <td class="fit center">{{row.id}}</td>
-                <td>{{row.title}}</td>
-            </ng-template>
+            <bit-table [data]="products">
 
-            <!-- <ng-template #Card let-row>
+                <ng-template #bitHeader>
+                    <th>Id</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                </ng-template>
+
+                <ng-template #bitRow let-row>
+                    <td> {{row.id}} </td>
+                    <td>{{row.title}}</td>
+                    <td> {{row.price}} </td>
+                </ng-template>
+
+                <!-- <ng-template #Card let-row>
                 <h3>{{row.title}}</h3>
                 <p>{{row.price + row.currency}}</p>
             </ng-template> -->
-        </bit-table>
+            </bit-table>
+        </section>
+    </div>
 
-    </section>
 </div>

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { BitTextboxDirective } from './directives/text/bit-textbox.directive';
 import { BitEmailboxDirective } from './directives/email/bit-emailbox.directive';
 import { BitPhoneDirective } from './directives/phone/bit-phone.directive';
+import { BitFormService } from './helpers/bit.form.service';
 
 export * from './directives/text/bit-textbox.directive'
 export * from './directives/email/bit-emailbox.directive'
@@ -20,6 +21,7 @@ export * from './directives/phone/bit-phone.directive'
     BitTextboxDirective,
     BitEmailboxDirective,
     BitPhoneDirective,
-  ]
+  ],
+  providers: [BitFormService]
 })
 export class BitFormsModule { }

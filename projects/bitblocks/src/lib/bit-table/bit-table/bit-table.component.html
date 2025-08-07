@@ -1,29 +1,35 @@
-<table>
-    <thead>
-        <tr>
-            <ng-container *ngTemplateOutlet="headers || defaultHeaders; context: { $implicit: data }"></ng-container>
-        </tr>
-    </thead>
+@if (view == 'table' || view == 'both' || view=='default' ) {
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <ng-container
+                    *ngTemplateOutlet="headers || defaultHeaders; context: { $implicit: data }"></ng-container>
+            </tr>
+        </thead>
 
-    <tbody>
-        @for (row of data; track row) {
-        <tr>
-            <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
-        </tr>
-        }
-    </tbody>
+        <tbody>
+            @for (row of data(); track row) {
+            <tr>
+                <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
 
-</table>
-
+@if (view == 'cards' || view == 'both' ) {
 <div class="card-wrapper">
-    @for (row of data; track row) {
+    @for (row of data(); track row) {
     <ng-container *ngTemplateOutlet="cards || defaultCard; context: { $implicit: row }"></ng-container>
     }
 </div>
+}
 
 <div class="table-footer">
     @if (showTotalRecords) {
-    {{ data.length }}
+    {{ data()?.length }}
     Records
     }
 </div>
@@ -31,7 +37,7 @@
 
 
 <ng-template #defaultHeaders let-data>
-    @for (header of data[0] | keyvalue; track header;) {
+    @for (header of data()[0] | keyvalue; track header;) {
     <th>{{ header.key }}</th>
     }
 </ng-template>
@@ -39,7 +45,7 @@
 <ng-template #defaultRow let-row>
     @for (item of row | keyvalue; track item;) {
     <td>
-        <div class="row-item">{{ item.value ?? "" }}</div>
+        <div class="bit-table-cell">{{ item.value ?? "" }}</div>
     </td>
     }
 </ng-template>

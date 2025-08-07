@@ -6,6 +6,7 @@ section {
 
 section .header {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     gap: 0.5rem;
 }
@@ -15,7 +16,7 @@ section p {
     line-height: 1.5rem;
 }
 
-.container {
+.wrapper {
     margin: 1rem 0;
     display: grid;
     position: relative;
@@ -24,7 +25,7 @@ section p {
     grid-template-columns: 15rem 1fr 20rem;
 }
 
-.comp-list {
+.section-wrapper {
     padding-bottom: 30vh;
 }
 
@@ -42,7 +43,7 @@ ul {
 
 /* === Responsive === */
 @media (width < 400px) {
-    .container {
+    .wrapper {
         grid-template-columns: 1fr;
     }
 

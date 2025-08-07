@@ -25,6 +25,8 @@ export class BitTextboxDirective extends BaseTextbox {
       return null;
     }
 
+    if (!this.regExp) return null;
+
     if (this.regExp?.test(control.value)) {
       this.makeValid();
       return null;

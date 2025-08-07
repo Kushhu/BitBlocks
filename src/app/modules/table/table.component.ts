@@ -21,7 +21,7 @@ export class TableComponent {
       description:
         'Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday',
       category: "men's clothing",
-      // image: 'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+      // image: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
       rating: 3.9,
     },
     {
@@ -32,7 +32,7 @@ export class TableComponent {
       description:
         'Slim-fitting style, contrast raglan long sleeve, three-button henley placket, light weight & soft fabric for breathable and comfortable wearing. And Solid stitched shirts with round neck made for durability and a great fit for casual fashion wear and diehard baseball fans. The Henley style round neckline includes a three-button placket.',
       category: "men's clothing",
-      // image:'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg',
+      // image: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
       rating: 4.1,
     },
     {
@@ -77,7 +77,7 @@ export class TableComponent {
       description:
         'Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.',
       category: 'jewelery',
-      // image: 'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg',
+      // image: 'https://www.gravatar.com/avatar/2c7d99fe281ecd3bcd65ab915bac6dd5?s=250',
       rating: 3.9,
     },
     {
@@ -92,5 +92,23 @@ export class TableComponent {
       rating: 3,
     },
   ];
+
+  snippet = {
+    customTable: `<bit-table [data]="products">
+
+  <ng-template #bitHeader>
+      <th>Id</th>
+      <th>Product</th>
+      <th>Price</th>
+  </ng-template>
+
+  <ng-template #bitRow let-row>
+      <td> {{row.id}} </td>
+      <td>{{row.title}}</td>
+      <td> {{row.price}} </td>
+  </ng-template>
+  
+</bit-table>`
+  }
 
 }

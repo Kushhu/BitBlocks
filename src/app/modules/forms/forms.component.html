@@ -1,11 +1,11 @@
-<div class="container">
+<div class="wrapper">
 
     <app-table-of-content>
         <li>Directives</li>
         <li>Components</li>
     </app-table-of-content>
 
-    <div class="comp-list">
+    <div class="section-wrapper">
         <section>
             <div class="header">
                 <h2 class="title" id="module">Module Installation</h2> • <code> bitForms </code>
@@ -126,19 +126,25 @@
                 @if (form.controls.Email.touched) {
                 @if (form.controls.Email.errors?.['pattern'] ) {
                 <code style="color:rgb(173, 0, 0)">
-                            Bad Address 
-                    </code>
+                                Bad Address 
+                        </code>
                 }
                 }
             </label>
             <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
 
-            <label for="Phone"> Phone </label>
+            <label for="Phone">
+                Phone
+                @if (!_bitHelper.isRequired(form,'Phone')) { <span style="color:rgba(0, 0, 0, 0.6)">(optional)</span> }
+            </label>
             <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
                 formControlName="Phone" />
 
-            <label for="date"> Date </label>
-            <input bitTextbox id="date" type="date" />
+            <label for="date">
+                Date
+                @if(_bitHelper.isRequired(form,'Date')) { <span style="color:red">*</span> }
+            </label>
+            <input bitTextbox id="date" type="date" formControlName="Date" />
 
             <bit-separator></bit-separator>
         </form>

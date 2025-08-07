@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BitFormsModule, BitLayoutModule } from '../../../../projects/bitblocks/src/public-api';
+import { BitFormService, BitFormsModule, BitLayoutModule } from '../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from '../../core/shared/code-snippet/code-snippet.component';
 import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
 // import { BitFormsModule } from 'bitblocks';
@@ -21,10 +21,14 @@ import { TableOfContentComponent } from '../../core/shared/table-of-content/tabl
   styleUrl: './forms.component.css'
 })
 export class FormsComponent {
+
+  _bitHelper = inject(BitFormService);
+
   form = new FormGroup({
     Name: new FormControl('', [Validators.required]),
     Email: new FormControl(),
     Phone: new FormControl(),
+    Date: new FormControl('', [Validators.required])
   })
 
   moduleCode =
@@ -39,7 +43,6 @@ export class FormsComponent {
     templateUrl: './forms.component.html',
     styleUrl: './forms.component.css'
  })`
-
 
   BitRegExpression = {
     AlphabetsOnly: /^[A-Za-z ]+$/,
