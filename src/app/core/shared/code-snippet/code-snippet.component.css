@@ -3,7 +3,6 @@
     max-width: 90vw;
     overflow: auto;
     text-overflow: ellipsis;
-    padding: 1rem;
     background-color: #dddddd50;
     border-radius: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -51,4 +50,18 @@
 .code:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.078);
     /* translate: 0px -2px; */
+}
+
+.code p {
+    background-color: rgba(0, 0, 0, 0.2);
+    margin: 0;
+    padding: 1rem;
+}
+
+.code:has(p) {
+    padding: 0;
+}
+
+.code pre {
+    padding: 1rem;
 }

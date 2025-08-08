@@ -1,5 +1,7 @@
 <div class="code">
+    @if (title) {
+    <p>{{title}}</p>
+    }
     <pre><code #content><ng-content></ng-content></code></pre>
     <button (click)="copy()"> 📋 </button>
 </div>
-

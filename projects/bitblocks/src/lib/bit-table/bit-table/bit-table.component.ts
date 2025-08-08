@@ -1,10 +1,11 @@
-import { CommonModule, KeyValuePipe } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, EventEmitter, HostListener, input, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
+import { AfterContentInit, Component, ContentChild, ContentChildren, EventEmitter, input, Input, Output, QueryList, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { BitTableRowComponent } from '../bit-table.module';
 
 @Component({
   selector: 'bit-table',
   standalone: true,
-  imports: [KeyValuePipe, CommonModule],
+  imports: [KeyValuePipe, CommonModule,],
   templateUrl: './bit-table.component.html',
   styleUrl: './bit-table.component.css',
   encapsulation: ViewEncapsulation.None
@@ -16,9 +17,10 @@ export class BitTableComponent<TList> implements AfterContentInit {
    * 
    */
   data = input<TList[]>();
+  contentRows: any[] = [];
 
   @Input() showTotalRecords?: boolean;
-  @Input() columns!: (keyof TList)[];
+  @Input() columns?: (keyof TList)[];
 
   @Input() view: 'default' | 'table' | 'cards' | 'both' = 'default';
   @Output() viewChange = new EventEmitter();
@@ -27,15 +29,43 @@ export class BitTableComponent<TList> implements AfterContentInit {
   @ContentChild('bitRow') rows!: TemplateRef<any>;
   @ContentChild("bitCard") cards!: TemplateRef<any>;
 
-  ngAfterContentInit(): void { }
+  @ContentChildren(BitTableRowComponent)
+  contentRowsRef!: QueryList<BitTableRowComponent>;
 
-  // Under Testing 
-  // @HostListener('window:resize', [])
-  // onResize() {
-  //   if (window.innerWidth < 600) {
-  //     return this.view = 'cards'
-  //   }
-  //   return this.view = 'table'
-  // }
+  ngAfterContentInit(): void {
+    this.catchContext();
+    setTimeout(() => {
+      this.initRowContent(this.contentRowsRef);
+    });
+    this.trackRowContent();
+  }
+
+  private catchContext() {
+    if (this.rows && !this.headers) {
+      console.error("Template for Headers not provided! : bit-table > bitHeader");
+    }
+  }
+
+  private trackRowContent = () => {
+    this.contentRowsRef.changes.subscribe(this.initRowContent)
+  }
+
+  public initRowContent = (content: QueryList<BitTableRowComponent>) => {
+
+    if (!content.length) return;
+
+    content.forEach((row) => {
+      const cells = new Map();
+      row.cells.forEach((cell, index) => {
+        if (!this.columns) return;
+        cells.set(this.columns[index], cell.value?.nativeElement.innerText);
+      })
+      this.contentRows.push(cells);
+    });
+  }
+
+  public originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
+    return 0;
+  }
 
 }

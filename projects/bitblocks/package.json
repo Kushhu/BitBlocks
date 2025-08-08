@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Kushhu/BitBlocks.git"
+    "url": "git+https://github.com/Kushhu/BitBlocks.git"
   },
   "bugs": {
     "url": "https://github.com/Kushhu/BitBlocks/issues"

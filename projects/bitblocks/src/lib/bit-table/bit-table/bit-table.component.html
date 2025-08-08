@@ -14,6 +14,14 @@
                 <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
             </tr>
             }
+
+            @for (row of contentRows; track $index) {
+            <tr>
+                @for (cell of row | keyvalue : originalOrder; track $index) {
+                <td> {{cell.value}} </td>
+                }
+            </tr>
+            }
         </tbody>
     </table>
 </div>
@@ -37,16 +45,32 @@
 
 
 <ng-template #defaultHeaders let-data>
-    @for (header of data()[0] | keyvalue; track header;) {
+    @if (columns?.length) {
+    @for (column of columns; track columns) {
+    <th>{{column}}</th>
+    }
+    }
+    @else {
+    @for (header of data()[0] | keyvalue : originalOrder; track header;) {
     <th>{{ header.key }}</th>
+    }
     }
 </ng-template>
 
 <ng-template #defaultRow let-row>
-    @for (item of row | keyvalue; track item;) {
+    @if (columns?.length) {
+    @for (column of columns; track columns) {
     <td>
-        <div class="bit-table-cell">{{ item.value ?? "" }}</div>
+        <div class="bit-table-cell">{{ row[column] ?? "" }}</div>
     </td>
+    }
+    }
+    @else {
+    @for (item of row | keyvalue : originalOrder; track item;) {
+    <td>
+        <div class="bit-table-cell">{{ item.value }}</div>
+    </td>
+    }
     }
 </ng-template>
 
@@ -54,8 +78,7 @@
     <div class="bit-table-card">
         @for (item of row | keyvalue; track item;) {
         <p>
-            <label>{{item.key}} </label> <br>
-            {{ item.value }}
+            <label>{{item.key}} </label> <br> {{ item.value }}
         </p>
         }
     </div>

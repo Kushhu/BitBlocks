@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, ElementRef, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ElementRef, Input, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-code-snippet',
@@ -9,6 +9,7 @@ import { AfterContentInit, Component, ContentChild, ElementRef, ViewChild } from
 })
 export class CodeSnippetComponent {
 
+  @Input() title!: string;
   @ViewChild('content') code!: ElementRef;
 
   copy() {

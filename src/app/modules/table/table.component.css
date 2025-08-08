@@ -9,11 +9,13 @@
 /* === Layout & Structure === */
 section {
     min-height: 8rem;
+    margin-bottom: var(--mb-xl);
 }
 
 section .header {
     display: flex;
     align-items: baseline;
+    flex-wrap: wrap;
     gap: 0.5rem;
 }
 
@@ -22,10 +24,31 @@ section p {
     line-height: 1.5rem;
 }
 
+.col-2 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 1rem;
+}
+
+.bit-card {
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 1em;
+    transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.bit-card:hover {
+    translate: 0px -5px;
+}
 
 /* === Responsive === */
 @media (width < 400px) {
     .wrapper {
         grid-template-columns: 1fr;
+    }
+
+    .col-2 {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
     }
 }

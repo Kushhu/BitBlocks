@@ -74,6 +74,8 @@ tr:not(tr:hover) td:is(.onHover)>* {
 .card-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    grid-template-rows: repeat(auto-fit, 1fr);
+    /* align-items: start; */
     gap: 1rem;
 }
 
