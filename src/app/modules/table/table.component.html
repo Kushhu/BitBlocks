@@ -6,12 +6,14 @@
 
         <section class="mb-2">
             <div class="header">
-                <h2 class="title" id="basic-table">Table</h2> • <span> <code class="highlight"> &lt;bit-table&gt; </code>
+                <h2 class="title" id="basic-table">Table</h2> • <span> <code
+                        class="highlight"> &lt;bit-table&gt; </code>
                 </span>
             </div>
             <p>
                 Allows you to define table content directly in your
-                template using <code class="highlight">&lt;bit-table-row&gt;</code> and <code class="highlight">&lt;bit-table-cell&gt;</code> elements. This
+                template using <code class="highlight">&lt;bit-table-row&gt;</code> and <code
+                    class="highlight">&lt;bit-table-cell&gt;</code> elements. This
                 approach is useful for simple tables with static data.
             </p>
 
@@ -37,9 +39,10 @@
 
         </section>
 
-        <section class="mb-2">
+        <section>
             <div class="header">
-                <h2 class="title" id="table">Basic Data Table</h2> • <span> <code class="highlight"> &lt;bit-table&gt; </code> </span>
+                <h2 class="title" id="table">Basic Data Table</h2> • <span> <code
+                        class="highlight"> &lt;bit-table&gt; </code> </span>
             </div>
             <p>Data Table allows list of entities togather for complex data handling.</p>
             <ul>
@@ -91,42 +94,39 @@
             </div>
 
             <p>
-                The <code class="highlight">bitCard</code> template allows you to display each row of your data as a card instead of a
+                The <code class="highlight">bitCard</code> template allows you to display each row of your data as a
+                card instead of a
                 traditional table row.
-                Use the <code class="highlight">let-row</code> variable to access each data item within the card template.
+                Use the <code class="highlight">let-row</code> variable to access each data item within the card
+                template.
                 This is useful for responsive layouts or when you want a more visual presentation of your data.
             </p>
             <ul>
-                <li>Define a <code class="highlight">ng-template</code> with the <code class="highlight">#bitCard</code> reference inside your
+                <li>Define a <code class="highlight">ng-template</code> with the <code class="highlight">#bitCard</code>
+                    reference inside your
                     <code class="highlight">&lt;bit-table&gt;</code> component.
                 </li>
                 <li>Use <code class="highlight">let-row</code> to access the current row's data.</li>
                 <li>Customize the card layout as needed using HTML and Angular bindings.</li>
             </ul>
 
-            <div class="col-2">
+            <app-code-snippet title="table.component.html">{{snippet.customCard}}</app-code-snippet>
 
-                <app-code-snippet title="table.component.html">{{snippet.customCard}}</app-code-snippet>
+            <bit-table [data]="products" view="cards">
 
-                <bit-table [data]="products" view="cards">
-
-                    <ng-template #bitCard let-row>
-                        <div class="bit-card">
-                            <div class="flex space-between">
-                                <h3 class="bit-table-cell">{{row.title}}</h3>
-                                <p>{{row.price | currency:row.currency}}</p>
-                            </div>
-                            <bit-separator></bit-separator>
-                            <p class="bit-table-cell">{{row.description}}</p>
+                <ng-template #bitCard let-row>
+                    <div class="bit-card">
+                        <div class="flex space-between">
+                            <h3 class="bit-table-cell">{{row.title}}</h3>
+                            <p>{{row.price | currency:row.currency}}</p>
                         </div>
-                    </ng-template>
+                        <bit-separator></bit-separator>
+                        <p class="bit-table-cell">{{row.description}}</p>
+                    </div>
+                </ng-template>
 
-                </bit-table>
-
-
-            </div>
-
-
+            </bit-table>
+            
         </section>
     </div>
 
