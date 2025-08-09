@@ -65,3 +65,8 @@
 .code pre {
     padding: 1rem;
 }
+
+code {
+    background: unset;
+    border-radius: unset;
+}

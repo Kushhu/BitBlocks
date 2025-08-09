@@ -29,6 +29,17 @@ pre {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
+code.highlight {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
 h1,
 h2,
 h3,

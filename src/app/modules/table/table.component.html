@@ -6,27 +6,31 @@
 
         <section class="mb-2">
             <div class="header">
-                <h2 class="title" id="basic-table">Table</h2> • <span> <code> &lt;bit-table&gt; </code>
+                <h2 class="title" id="basic-table">Table</h2> • <span> <code class="highlight"> &lt;bit-table&gt; </code>
                 </span>
             </div>
-            <p>A basic code defined approch to declare table content.</p>
             <p>
-                The <code>&lt;bit-table&gt;</code> component allows you to define table content directly in your template using <code>&lt;bit-table-row&gt;</code> and <code>&lt;bit-table-cell&gt;</code> elements. This approach is useful for simple tables with static data.
+                Allows you to define table content directly in your
+                template using <code class="highlight">&lt;bit-table-row&gt;</code> and <code class="highlight">&lt;bit-table-cell&gt;</code> elements. This
+                approach is useful for simple tables with static data.
             </p>
+
+
+
             <app-code-snippet title="table.component.html">{{snippet.basic}}</app-code-snippet>
 
             <bit-table [columns]="['id','title','price']">
 
                 <bit-table-row>
-                    <bit-table-cell>9</bit-table-cell>
-                    <bit-table-cell>Kushagra</bit-table-cell>
-                    <bit-table-cell>30</bit-table-cell>
+                    <bit-table-cell> AX902 </bit-table-cell>
+                    <bit-table-cell> Electric Bike </bit-table-cell>
+                    <bit-table-cell> 30,000 </bit-table-cell>
                 </bit-table-row>
 
                 <bit-table-row>
-                    <bit-table-cell>8</bit-table-cell>
-                    <bit-table-cell>Ramni</bit-table-cell>
-                    <bit-table-cell>22</bit-table-cell>
+                    <bit-table-cell> AX903 </bit-table-cell>
+                    <bit-table-cell> Electric Car </bit-table-cell>
+                    <bit-table-cell> 2,25,000 </bit-table-cell>
                 </bit-table-row>
 
             </bit-table>
@@ -35,11 +39,11 @@
 
         <section class="mb-2">
             <div class="header">
-                <h2 class="title" id="table">Basic Data Table</h2> • <span> <code> &lt;bit-table&gt; </code> </span>
+                <h2 class="title" id="table">Basic Data Table</h2> • <span> <code class="highlight"> &lt;bit-table&gt; </code> </span>
             </div>
             <p>Data Table allows list of entities togather for complex data handling.</p>
             <ul>
-                <li>Supports dynamic data binding using the <code>[data]</code> input.</li>
+                <li>Supports dynamic data binding using the <code class="highlight">[data]</code> input.</li>
                 <li>Automatically generates columns based on object keys if columns are not specified.</li>
                 <li>Ideal for displaying lists of entities such as products, users, or orders.</li>
                 <li>Enables sorting, filtering, and pagination (if implemented in your component).</li>
@@ -51,17 +55,13 @@
 
         </section>
 
-        <!-- <bit-separator></bit-separator> -->
-
-        <section class="mb-2">
+        <section>
             <div class="header">
-                <h2 class="title" id="custom-columns">Customizing Columns</h2> •
-                <code> bitHeader </code> •
-                <code> bitRow </code>
+                <h2 class="title" id="custom-columns">Customize Columns & Row with Template</h2> •
+                <code class="highlight"> bitHeader </code> •
+                <code class="highlight"> bitRow </code>
             </div>
             <p>You can specify each columns inside component and create a distinct order or customize view. </p>
-
-            <!-- <div class="col-2"> -->
 
             <app-code-snippet title="table.component.html">{{snippet.customTable}}</app-code-snippet>
 
@@ -70,16 +70,47 @@
                 <ng-template #bitHeader>
                     <th>Id</th>
                     <th>Product</th>
-                    <th>Price</th>
+                    <th class="right">Price</th>
                 </ng-template>
 
                 <ng-template #bitRow let-row>
                     <td> {{row.id}} </td>
                     <td> {{row.title}} </td>
-                    <td> {{row.price | currency : row.currency}} </td>
+                    <td class="right"> {{row.price | currency : row.currency}} </td>
                 </ng-template>
 
-                <!-- <ng-template #bitCard let-row>
+            </bit-table>
+
+        </section>
+
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="custom-cards">Table Into Card View</h2> •
+                <code class="highlight"> bitCard </code>
+            </div>
+
+            <p>
+                The <code class="highlight">bitCard</code> template allows you to display each row of your data as a card instead of a
+                traditional table row.
+                Use the <code class="highlight">let-row</code> variable to access each data item within the card template.
+                This is useful for responsive layouts or when you want a more visual presentation of your data.
+            </p>
+            <ul>
+                <li>Define a <code class="highlight">ng-template</code> with the <code class="highlight">#bitCard</code> reference inside your
+                    <code class="highlight">&lt;bit-table&gt;</code> component.
+                </li>
+                <li>Use <code class="highlight">let-row</code> to access the current row's data.</li>
+                <li>Customize the card layout as needed using HTML and Angular bindings.</li>
+            </ul>
+
+            <div class="col-2">
+
+                <app-code-snippet title="table.component.html">{{snippet.customCard}}</app-code-snippet>
+
+                <bit-table [data]="products" view="cards">
+
+                    <ng-template #bitCard let-row>
                         <div class="bit-card">
                             <div class="flex space-between">
                                 <h3 class="bit-table-cell">{{row.title}}</h3>
@@ -88,12 +119,12 @@
                             <bit-separator></bit-separator>
                             <p class="bit-table-cell">{{row.description}}</p>
                         </div>
-                    </ng-template> -->
+                    </ng-template>
 
-            </bit-table>
+                </bit-table>
 
 
-            <!-- </div> -->
+            </div>
 
 
         </section>

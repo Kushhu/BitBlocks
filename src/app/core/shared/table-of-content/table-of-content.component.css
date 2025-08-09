@@ -6,13 +6,19 @@
 }
 
 .table-of-content ul li {
+    /* opacity: 0.5; */
     padding: 0.3rem;
-    opacity: 0.5;
+    list-style: none;
+    border-left: 1px solid #00000030;
     transition: opacity 0.2s ease;
+    padding-left: 1rem;
+    margin-left: 4px;
 }
 
-.table-of-content ul li:hover {
+.table-of-content ul li:hover,
+li:hover a {
     opacity: 1;
+    /* border-color: black; */
     cursor: pointer;
 }
 
@@ -23,7 +29,20 @@
 
 ul {
     margin-top: 0;
-    padding-left: 1.5rem;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    opacity: 0.5;
+    width: 100%;
+    color: black;
+}
+
+li:has(a.active),
+a.active {
+    opacity: 1;
+    border-color: black !important;
 }
 
 @media (width < 400px) {

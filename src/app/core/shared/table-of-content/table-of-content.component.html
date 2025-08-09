@@ -2,9 +2,12 @@
     <h4>Table of content</h4>
     <ul>
         @for (section of sections; track $index) {
-            <li (click)="scroll(section.id)">{{section.innerText}}</li>
+        <!-- <li (click)="scroll(section.id)">{{section.innerText}}</li> -->
+        <li>
+            <a routerLink="." [class.active]="activeFragment == section.id"
+                [fragment]="section.id">{{section.innerText}}</a>
+        </li>
         }
-        <ng-content></ng-content>
     </ul>
-    <bit-separator></bit-separator>
+    <!-- <bit-separator></bit-separator> -->
 </div>

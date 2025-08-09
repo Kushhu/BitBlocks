@@ -2,7 +2,7 @@
     margin: 1rem 0;
     display: grid;
     align-items: start;
-    grid-template-columns: 15rem 1fr;
+    grid-template-columns: 15rem 0.8fr;
     column-gap: 2rem;
 }
 
@@ -40,6 +40,23 @@ section p {
 .bit-card:hover {
     translate: 0px -5px;
 }
+
+section:has(ul) p:last-of-type {
+    margin-bottom: var(--mb-xs);
+}
+
+section ul {
+    margin-top: 0;
+    padding-left: 2rem;
+}
+
+section ul li {
+    line-height: 1.5rem;
+    color: #303030;
+    font-weight: normal;
+}
+
+
 
 /* === Responsive === */
 @media (width < 400px) {

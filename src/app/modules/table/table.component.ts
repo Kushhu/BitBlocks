@@ -211,20 +211,35 @@ export class TableComponent {
 </bit-table>`,
     basic:
       `<bit-table [columns]="['Id','Product','Price']">
-
+      
   <bit-table-row>
-      <bit-table-cell> 9 </bit-table-cell>
-      <bit-table-cell> Kushagra </bit-table-cell>
-      <bit-table-cell> 30 </bit-table-cell>
+      <bit-table-cell> AX902 </bit-table-cell>
+      <bit-table-cell> Electric Bike </bit-table-cell>
+      <bit-table-cell> 30,000 </bit-table-cell>
   </bit-table-row>
 
   <bit-table-row>
-      <bit-table-cell> 8 </bit-table-cell>
-      <bit-table-cell> Ramni </bit-table-cell>
-      <bit-table-cell> 22 </bit-table-cell>
+      <bit-table-cell> AX903 </bit-table-cell>
+      <bit-table-cell> Electric Car </bit-table-cell>
+      <bit-table-cell> 2,25,000 </bit-table-cell>
   </bit-table-row>
 
-</bit-table>`
+</bit-table>`,
+    customCard: `<bit-table [data]="products" view="cards">
+
+    <ng-template #bitCard let-row>
+        <div class="bit-card">
+            <div class="flex space-between">
+                <h3 class="bit-table-cell">{{row.title}}</h3>
+                <p>{{row.price | currency:row.currency}}</p>
+            </div>
+            <bit-separator></bit-separator>
+            <p class="bit-table-cell">{{row.description}}</p>
+        </div>
+    </ng-template>
+
+</bit-table>
+`
   }
 
 }

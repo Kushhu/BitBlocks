@@ -45,6 +45,16 @@ tbody tr:hover {
     background-color: rgba(197, 197, 197, 0.1);
 }
 
+th:first-child,
+td:first-child {
+    padding-left: 2rem;
+}
+
+th:last-child,
+td:last-child {
+    padding-right: 2rem;
+}
+
 td.center,
 th.center {
     text-align: center;
