@@ -1,7 +1,7 @@
 /* === Layout & Structure === */
 section {
     min-height: 8rem;
-    margin-bottom: var(--mb-xl);
+    margin-bottom: 5rem;
 }
 
 section .header {
@@ -12,7 +12,6 @@ section .header {
 }
 
 section p {
-    color: #303030;
     line-height: 1.5rem;
 }
 
@@ -31,8 +30,13 @@ section p {
 
 .form-wrapper {
     position: sticky;
-    top: 4rem;
+    top: 5rem;
     z-index: 2;
+}
+
+.form-wrapper h4 {
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.4);
 }
 
 /* === Lists === */

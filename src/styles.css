@@ -1,8 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 * {
   box-sizing: border-box;
-  /* padding: 0;
-    margin: 0; */
   scroll-behavior: smooth;
 }
 
@@ -47,12 +45,12 @@ h4,
 h5,
 h6 {
   margin: 0;
-  margin-bottom: var(--mb-xs);
+  margin-bottom: var(--mb-m);
 }
 
 p {
   margin: 0;
-  margin-bottom: var(--mb-xs);
+  margin-bottom: var(--mb-s);
 }
 
 p:last-of-type {
@@ -99,6 +97,10 @@ input.bit-input-invalid {
 
 input.bit-input-valid {
   border-color: rgb(45, 192, 0);
+}
+
+code {
+  line-height: 1.4rem;
 }
 
 input {

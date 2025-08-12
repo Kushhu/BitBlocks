@@ -20,6 +20,8 @@ export class BitTableComponent<TList> implements AfterContentInit {
   contentRows: any[] = [];
 
   @Input() showTotalRecords?: boolean;
+  @Input() resizableColumns?: boolean;
+
   @Input() columns?: (keyof TList)[];
 
   @Input() view: 'default' | 'table' | 'cards' | 'both' = 'default';

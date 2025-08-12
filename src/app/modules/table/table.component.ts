@@ -228,6 +228,7 @@ export class TableComponent {
     customCard: `<bit-table [data]="products" view="cards">
 
     <ng-template #bitCard let-row>
+
         <div class="bit-card">
             <div class="flex space-between">
                 <h3 class="bit-table-cell">{{row.title}}</h3>
@@ -236,6 +237,7 @@ export class TableComponent {
             <bit-separator></bit-separator>
             <p class="bit-table-cell">{{row.description}}</p>
         </div>
+        
     </ng-template>
 
 </bit-table>

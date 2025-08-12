@@ -1,7 +1,8 @@
 .code {
     /* width: min(100%, 90vw); */
+    margin: 1.5rem 0;
     max-width: 90vw;
-    overflow: auto;
+    overflow: hidden;
     text-overflow: ellipsis;
     background-color: #dddddd50;
     border-radius: 1rem;
@@ -64,9 +65,5 @@
 
 .code pre {
     padding: 1rem;
-}
-
-code {
-    background: unset;
-    border-radius: unset;
+    overflow: auto;
 }
