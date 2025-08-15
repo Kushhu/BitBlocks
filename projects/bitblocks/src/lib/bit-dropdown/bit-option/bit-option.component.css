@@ -1,0 +1,13 @@
+.bit-dropdown-option {
+    padding: 0.5rem 0.8rem;
+    opacity: 0.7;
+    transition: all 100ms;
+}
+
+.bit-dropdown-option:hover,
+.bit-dropdown-option-focus,
+.tab-active {
+    background-color: rgba(146, 146, 146, 0.1);
+    opacity: 1;
+    cursor: pointer;
+}

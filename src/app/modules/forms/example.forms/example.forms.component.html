@@ -1,0 +1,67 @@
+<div class="form-wrapper">
+    <h4> Reactive Form </h4>
+    <form [formGroup]="formModel.form" [class.form-valid]="formModel.form.valid"
+        [class.form-invalid]="formModel.form.invalid">
+
+        <div class="field">
+            <label for="Name"> Name
+                <span style="color:red">*</span>
+                @if (formModel.form.controls.Name.touched) {
+                @if (formModel.form.controls.Name.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                            Only Alphabets
+                        </code>
+                }
+                }
+            </label>
+            <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
+                id="Name" autocomplete="name" formControlName="Name" />
+        </div>
+
+        <div class="field">
+            <label for="Email"> Email <span style="color:red">*</span>
+                @if (formModel.form.controls.Email.touched) {
+                @if (formModel.form.controls.Email.errors?.['pattern'] ) {
+                <code style="color:rgb(173, 0, 0)">
+                                Bad Address 
+                        </code>
+                }
+                }
+            </label>
+            <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
+        </div>
+
+        <div class="field">
+            <label for="Phone">
+                Phone
+                <!-- @if (!_bitHelper.isRequired(form,'Phone')) { <span style="color:rgba(0, 0, 0, 0.6)">(optional)</span> } -->
+            </label>
+            <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
+                formControlName="Phone" />
+        </div>
+
+        <div class="field">
+            <label for="person">
+                Choose person
+            </label>
+            <bit-dropdown id="person" formControlName="Person" [multiple]="true">
+                <bit-option [value]="1"> Kushagra </bit-option>
+                <bit-option [value]="2"> Ramni </bit-option>
+                <bit-option [value]="3"> Yash </bit-option>
+                <bit-option [value]="4"> Vinit </bit-option>
+            </bit-dropdown>
+        </div>
+
+        <div class="field">
+            <label for="date">
+                Date
+                @if(_bitHelper.isRequired(formModel.form,'Date')) { <span style="color:red">*</span> }
+            </label>
+            <input bitTextbox id="date" type="date" formControlName="Date" />
+        </div>
+    </form>
+
+    <bit-separator></bit-separator>
+
+    <app-code-snippet title="Binding">{{formModel.form.value | json}}</app-code-snippet>
+</div>

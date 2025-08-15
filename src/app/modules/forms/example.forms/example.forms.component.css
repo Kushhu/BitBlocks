@@ -1,0 +1,15 @@
+.form-wrapper {
+    width: 20rem;
+    view-transition-name: reactive-form;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+}
+
+.form-wrapper h4 {
+    font-weight: normal;
+    color: rgba(0, 0, 0, 0.4);
+}

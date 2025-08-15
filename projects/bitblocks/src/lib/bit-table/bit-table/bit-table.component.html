@@ -14,11 +14,10 @@
                 <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
             </tr>
             }
-
             @for (row of contentRows; track $index) {
             <tr>
                 @for (cell of row | keyvalue : originalOrder; track $index) {
-                    <td> {{cell.value}} </td>
+                    <td> {{ cell.value }} </td>
                 }
             </tr>
             }
@@ -30,15 +29,14 @@
 @if (view == 'cards' || view == 'both' ) {
 <div class="card-wrapper">
     @for (row of data(); track row) {
-    <ng-container *ngTemplateOutlet="cards || defaultCard; context: { $implicit: row }"></ng-container>
+        <ng-container *ngTemplateOutlet="cards || defaultCard; context: { $implicit: row }"></ng-container>
     }
 </div>
 }
 
 @if (showTotalRecords) {
 <div class="table-footer">
-    {{ data()?.length }}
-    Records
+    {{ data()?.length }} Records
 </div>
 }
 

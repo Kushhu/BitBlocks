@@ -1,0 +1,6 @@
+.grid-center {
+    height: 60dvh;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}

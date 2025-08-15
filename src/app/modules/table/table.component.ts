@@ -1,8 +1,9 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { BitSeparatorComponent, BitTableModule } from '../../../../projects/bitblocks/src/public-api';
+// import { BitSeparatorComponent, BitTableModule } from '../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from "../../core/shared/code-snippet/code-snippet.component";
 import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
+import { BitSeparatorComponent, BitTableModule } from 'bitblocks';
 
 @Component({
   selector: 'app-table',

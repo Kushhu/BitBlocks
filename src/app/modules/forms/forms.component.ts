@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BitFormService, BitFormsModule, BitLayoutModule } from '../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from '../../core/shared/code-snippet/code-snippet.component';
 import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
+import { ExampleFormsComponent } from './example.forms/example.forms.component';
 // import { BitFormsModule } from 'bitblocks';
 
 @Component({
@@ -12,25 +12,14 @@ import { TableOfContentComponent } from '../../core/shared/table-of-content/tabl
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    BitFormsModule,
+    ExampleFormsComponent,
     CodeSnippetComponent,
     TableOfContentComponent,
-    BitLayoutModule
   ],
   templateUrl: './forms.component.html',
   styleUrl: './forms.component.css'
 })
 export class FormsComponent {
-
-  _bitHelper = inject(BitFormService);
-
-  form = new FormGroup({
-    Name: new FormControl('', [Validators.required]),
-    Email: new FormControl(),
-    Phone: new FormControl(),
-    Date: new FormControl('', [Validators.required])
-  })
-
   moduleCode =
     `import { BitFormsModule } from 'bitblocks';
  
@@ -44,8 +33,10 @@ export class FormsComponent {
     styleUrl: './forms.component.css'
  })`
 
-  BitRegExpression = {
-    AlphabetsOnly: /^[A-Za-z ]+$/,
-    Email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  }
+  dropdownCode = `<bit-dropdown id="person">
+    <bit-option [value]="1"> Kushagra </bit-option>
+    <bit-option [value]="2"> Ramni </bit-option>
+    <bit-option [value]="3"> Yash </bit-option>
+    <bit-option [value]="4"> Vinit </bit-option>
+</bit-dropdown>`
 }

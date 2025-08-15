@@ -1,6 +1,7 @@
 import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
 import { AfterContentInit, Component, ContentChild, ContentChildren, EventEmitter, input, Input, Output, QueryList, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { BitTableRowComponent } from '../bit-table.module';
+import { BitTableRowComponent } from '../bit-table-row/bit-table-row.component';
+import { BitTableCellComponent } from '../bit-table-cell/bit-table-cell.component';
 
 @Component({
   selector: 'bit-table',
@@ -53,17 +54,17 @@ export class BitTableComponent<TList> implements AfterContentInit {
   }
 
   public initRowContent = (content: QueryList<BitTableRowComponent>) => {
-
     if (!content.length) return;
 
     content.forEach((row) => {
       const cells = new Map();
-      row.cells.forEach((cell, index) => {
+      row.cells.forEach((cell: BitTableCellComponent, index: number) => {
         if (!this.columns) return;
         cells.set(this.columns[index], cell.value?.nativeElement.innerText);
       })
       this.contentRows.push(cells);
     });
+
   }
 
   public originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
