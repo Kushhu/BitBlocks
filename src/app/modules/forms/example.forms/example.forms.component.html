@@ -42,13 +42,20 @@
 
         <div class="field">
             <label for="person">
-                Choose person
+                Assignee
             </label>
-            <bit-dropdown id="person" formControlName="Person" [multiple]="true">
-                <bit-option [value]="1"> Kushagra </bit-option>
-                <bit-option [value]="2"> Ramni </bit-option>
-                <bit-option [value]="3"> Yash </bit-option>
-                <bit-option [value]="4"> Vinit </bit-option>
+            <bit-dropdown id="person" formControlName="Person" placeholder="Select person" [loading]="loading" [multiple]="true">
+                @for (user of users$ | async; track user.id) {
+                <bit-option [value]="user.id">
+                    <b> {{user.name}} &nbsp; </b>
+                    <br>
+                    <small>
+                        <span> {{user.age}}Y </span> -
+                        <span> {{user.country}} </span>
+                    </small>
+
+                </bit-option>
+                }
             </bit-dropdown>
         </div>
 

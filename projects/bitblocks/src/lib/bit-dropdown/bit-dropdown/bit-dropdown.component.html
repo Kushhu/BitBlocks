@@ -1,11 +1,13 @@
 <div class="bit-dropdown-wrapper">
-    <input #searchEle type="text" class="bit-textbox" autocomplete="off" [class.bit-input-valid]="valid === true"
-        [class.bit-input-invalid]="valid === false" [(ngModel)]="search" (input)="onInput(searchEle)"
-        (blur)="onTouched()" (focus)="openDrop()">
+    <input #searchEle type="text" [placeholder]="loading() ? '⌛ Loading...' : placeholder()" class="bit-textbox"
+        autocomplete="off" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
+        [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
+        (keydown.tab)="closeDrop()">
 
     @if (isOpen) {
     <div class="bit-option-list">
         @if (noSearchAvailable) { <p class="bit-empty-option"> 😒 No Matches </p> }
+        @if (loading()) { <p class="bit-empty-option"> 🐢 Loading</p> }
         <ng-content select="bit-option"></ng-content>
     </div>
     }

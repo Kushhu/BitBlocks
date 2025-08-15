@@ -7,7 +7,12 @@
 .bit-dropdown-option:hover,
 .bit-dropdown-option-focus,
 .tab-active {
-    background-color: rgba(146, 146, 146, 0.1);
+    background-color: rgba(200, 193, 193, 0.2);
     opacity: 1;
     cursor: pointer;
+}
+
+.bit-option-selected {
+    opacity: 1;
+    background-color: rgba(57, 255, 50, 0.1);
 }

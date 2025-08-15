@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, ElementRef, HostListener, inject, input, model, QueryList, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, effect, ElementRef, HostListener, inject, input, model, QueryList, ViewChild } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { BaseControl } from '../../core/base.control';
 import { BitOptionComponent } from '../bit-option/bit-option.component';
@@ -42,10 +42,15 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
 
   //#endregion
 
-  //#region Input Provider
+  //#region Input 
 
   /** allows multi select for option */
+
   multiple = input<boolean>();
+
+  placeholder = input();
+
+  loading = input<boolean>(false);
 
   //#endregion
 
@@ -85,8 +90,9 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
       return;
     }
 
-    let unMatched = this.filter(element.value);
-    this.modify(unMatched, false);
+    this.options.map(option => {
+      option.active = option.content.nativeElement.innerText.toLowerCase().includes(element.value.toLowerCase()) ? true : false
+    })
 
     this.noSearchAvailable = this.options.toArray().every(o => !o.active)
 
@@ -112,18 +118,20 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   focusOption() {
     this.activeOptions.map(o => o.tabFocus = false)
     const option = this.activeOptions.at(this.optionFocusIndex);
-    if (option) option.tabFocus = true;
+    if (!option) return;
+    option.tabFocus = true;
+    option.content.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' })
   }
 
   /** initializes flat options values into set */
   initOptionsSet() {
-    this.setOfOptions.clear();
-    this.options.map(option => this.setOfOptions.add(option.value()))
+    // this.setOfOptions.clear();
+    this.options?.map(option => this.setOfOptions.add(option.value()))
   }
 
   //#endregion
 
-  //#region State : Open
+  //#region Open State : Options
 
   /**
    * Public State
@@ -132,7 +140,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   public isOpen: boolean = false;
 
   /**
-   * Public Method
+   * Public Method -
    * opens option list
    * 
    * @use isOpen to check state
@@ -140,10 +148,11 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   public openDrop = () => {
     this.isOpen = true;
     this.focusOption();
+    this.disableScroll();
   };
 
   /**
-   * Public Method
+   * Public Method -
    * closes option list
    * 
    * @use isOpen to check state
@@ -151,6 +160,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   public closeDrop = () => {
     this.isOpen = false;
     this.optionFocusIndex = 0;
+    this.enableScroll();
   };
 
   //#endregion
@@ -164,6 +174,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   public select(option: BitOptionComponent | null) {
     this.selectedOption = option?.content ?? null;
     this.search.set(this.selectedOption?.nativeElement.innerText);
+    this.value = option?.value() ?? null;
     this._onChange(option?.value() ?? null);
     this.modify(this.options, true);
     this.closeDrop();
@@ -189,11 +200,11 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   protected override postWriteValue = () => {
     const hasOption = this.options.find(o => o.value() == this.value);
     if (hasOption) this.select(hasOption);
-    if (!hasOption && this.value != null) this.search.set("Invalid Option : " + this.value);
+    if (!hasOption && !this.loading() && this.value != null) this.search.set("Invalid Option : " + this.value);
   };
 
   ngAfterContentInit(): void {
-    this.options.changes.subscribe(this.initOptionsSet)
+    this.options.changes.subscribe(this.postWriteValue)
   }
 
   //#region Host Listners
@@ -245,5 +256,15 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
     this.select(option);
   }
 
+  //#endregion
+
+  //#region Scroll Listner
+  enableScroll = () => {
+    document.body.style.overflow = '';
+  }
+
+  disableScroll = () => {
+    document.body.style.overflow = 'hidden';
+  }
   //#endregion
 }

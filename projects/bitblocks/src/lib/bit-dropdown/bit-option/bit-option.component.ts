@@ -15,9 +15,10 @@ export class BitOptionComponent {
    *  required! to handle unique logics
    */
   value = input.required<string | number | boolean | null>();
+  selected = input<boolean>(false);
   bindValue: any;
   meta!: any[];
-  
+
   @Input() active = true;
   @Input() tabFocus = false;
 
