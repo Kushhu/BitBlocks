@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BitFormService, BitFormsModule } from 'bitblocks';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ExampleFormsComponent } from '../forms/example.forms/example.forms.component';
+import { BitFormService, BitFormsModule } from '../../../../projects/bitblocks/src/public-api';
 
 @Component({
   selector: 'app-home',
