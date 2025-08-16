@@ -10,6 +10,6 @@ export class Form {
         Email: new FormControl(),
         Phone: new FormControl(),
         Date: new FormControl('', [Validators.required]),
-        Person: new FormControl(null, [Validators.required])
+        Person: new FormControl(3, [Validators.required])
     })
 }

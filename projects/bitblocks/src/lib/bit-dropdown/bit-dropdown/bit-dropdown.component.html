@@ -1,13 +1,31 @@
 <div class="bit-dropdown-wrapper">
-    <input #searchEle type="text" [placeholder]="loading() ? '⌛ Loading...' : placeholder()" class="bit-textbox"
-        autocomplete="off" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
-        [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
-        (keydown.tab)="closeDrop()">
+
+    <div class="bit-textbox" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
+        (click)="openDrop()">
+
+        @if (isLoading()) { Loading... }
+
+        @else if (valid === false && value !== null) { Invalid Option : {{ value }} }
+
+        @else if (placeholder() && !selectedOption) { {{placeholder()}} }
+
+        @else {
+           <div [innerHTML]="selectedOption?.nativeElement?.innerHTML | safe: 'html'"> </div>
+        }
+
+    </div>
 
     @if (isOpen) {
     <div class="bit-option-list">
+        <input #searchEle type="text" [placeholder]="searchPlaceholder()" class="bit-textbox" autocomplete="off"
+            [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
+            (keydown.tab)="closeDrop()" inputmode="none" (click)="searchEle.inputMode = ''"
+            [hidden]="!isSearchable() || !isOpen">
+
         @if (noSearchAvailable) { <p class="bit-empty-option"> 😒 No Matches </p> }
-        @if (loading()) { <p class="bit-empty-option"> 🐢 Loading</p> }
+
+        @if (isLoading()) { <p class="bit-empty-option"> Loading... </p> }
+
         <ng-content select="bit-option"></ng-content>
     </div>
     }

@@ -1,32 +1,45 @@
 .bit-dropdown-wrapper {
-    width: 20rem;
+    width: 100%;
     position: relative;
     transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
-    z-index: 2;
+    font-size: 16px;
 }
 
 .bit-dropdown-wrapper input {
-    width: 100%;
     accent-color: red;
-    margin-bottom: 0;
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: white;
+    margin: 0;
+    padding: 0.5rem 0.8rem;
 }
 
 .bit-dropdown-wrapper .bit-option-list {
     position: absolute;
     z-index: 4;
     width: 100%;
-    max-height: 15rem;
+    max-height: 20rem;
     overflow-y: auto;
     animation: fadein 200ms forwards;
     margin-top: 4px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 6px 4px;
+    padding: 4px;
 }
 
 .bit-dropdown-wrapper .bit-empty-option {
     padding: 0.5rem 0.8rem;
+}
+
+.bit-dropdown-box {
+    height: 100%;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadein {

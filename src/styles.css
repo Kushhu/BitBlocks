@@ -2,6 +2,7 @@
 * {
   box-sizing: border-box;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 :root {
@@ -80,17 +81,18 @@ p:last-of-type {
   font-family: inherit;
   width: 100%;
   outline: unset;
-  border-style: solid;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  /* border-style: solid; */
   transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
   text-overflow: ellipsis;
 }
 
-input.bit-input-invalid {
-  border-color: rgb(192, 0, 0);
+.bit-input-invalid {
+  border-color: rgb(192, 0, 0) !important;
 }
 
-input.bit-input-valid {
-  border-color: rgb(45, 192, 0);
+.bit-input-valid {
+  border-color: rgb(45, 192, 0) !important;
 }
 
 code {

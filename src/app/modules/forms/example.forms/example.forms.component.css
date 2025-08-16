@@ -1,6 +1,10 @@
 .form-wrapper {
-    width: 20rem;
+    width: 100%;
     view-transition-name: reactive-form;
+}
+
+:host {
+    width: 100%;
 }
 
 form {

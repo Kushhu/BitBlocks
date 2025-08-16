@@ -42,7 +42,7 @@ export class ExampleFormsComponent {
         { "id": 9, "name": "Lucas Martinez", "email": "lucas.martinez@example.com", "age": 30, "country": "Mexico" },
         { "id": 10, "name": "Olivia Rossi", "email": "olivia.rossi@example.com", "age": 33, "country": "Italy" }
       ])
-    }, 1000);
+    });
   }
 
 }

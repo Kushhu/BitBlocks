@@ -1,12 +1,13 @@
-import { AfterContentInit, Component, ContentChildren, effect, ElementRef, HostListener, inject, input, model, QueryList, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, ElementRef, HostListener, inject, input, model, QueryList, Renderer2, signal, ViewChild } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { BaseControl } from '../../core/base.control';
 import { BitOptionComponent } from '../bit-option/bit-option.component';
+import { SafePipe } from '../../core/utils/safe.pipe';
 
 @Component({
   selector: 'bit-dropdown',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, SafePipe],
   templateUrl: './bit-dropdown.component.html',
   styleUrl: './bit-dropdown.component.css',
   providers: [
@@ -26,31 +27,34 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
 
   //#region State Handlers
 
-  /** search textbox string */
+  /** search string */
   public search = model<string>();
 
-  /** a selected option */
+  /** current selected DOM option */
   public selectedOption!: ElementRef<HTMLDivElement> | null;
 
-  private optionFocusIndex = 0;
+  private optionFocusIndex = -1;
 
   public valid!: boolean;
 
   public setOfOptions = new Set();
 
-  public noSearchAvailable = false;
+  protected noSearchAvailable = false;
 
   //#endregion
 
   //#region Input 
 
   /** allows multi select for option */
+  public multiple = input<boolean>(false);
 
-  multiple = input<boolean>();
+  public isSearchable = input<boolean>(false, { alias: 'searchable' });
 
-  placeholder = input();
+  public placeholder = input();
 
-  loading = input<boolean>(false);
+  public searchPlaceholder = input("🔍 Search");
+
+  public isLoading = input<boolean>(false, { alias: 'loading' });
 
   //#endregion
 
@@ -60,7 +64,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
    * current HTML DOM element refrence,
    * used for outside click listner
    */
-  _elementRef = inject(ElementRef);
+  private _elementRef = inject(ElementRef);
 
   //#endregion
 
@@ -83,13 +87,6 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
    */
   protected override onInput(element: HTMLInputElement) {
 
-    if (!element.value) {
-      this.select(null);
-      this.noSearchAvailable = false;
-      this.openDrop();
-      return;
-    }
-
     this.options.map(option => {
       option.active = option.content.nativeElement.innerText.toLowerCase().includes(element.value.toLowerCase()) ? true : false
     })
@@ -103,20 +100,21 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
 
   //#region Extentions
 
-  filter(value: string) {
-    return this.options.filter(option => !option.content.nativeElement.innerText.toLowerCase().includes(value.toLowerCase()))
-  }
-
-  modify(options: BitOptionComponent[] | QueryList<BitOptionComponent>, status: boolean) {
+  private modify(options: BitOptionComponent[] | QueryList<BitOptionComponent>, status: boolean) {
     options.map(o => o.active = status);
   }
 
-  get activeOptions() {
+  public get activeOptions() {
     return this.options.filter(o => o.active)
   }
 
-  focusOption() {
-    this.activeOptions.map(o => o.tabFocus = false)
+  private selectFlag(option: BitOptionComponent) {
+    this.options.map(o => o.selected = false)
+    option.selected = true;
+  }
+
+  private focusOption() {
+    this.options.map(o => o.tabFocus = false)
     const option = this.activeOptions.at(this.optionFocusIndex);
     if (!option) return;
     option.tabFocus = true;
@@ -147,7 +145,6 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   */
   public openDrop = () => {
     this.isOpen = true;
-    this.focusOption();
     this.disableScroll();
   };
 
@@ -159,7 +156,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   */
   public closeDrop = () => {
     this.isOpen = false;
-    this.optionFocusIndex = 0;
+    this.optionFocusIndex = -1;
     this.enableScroll();
   };
 
@@ -172,11 +169,20 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
    * @param option 
    */
   public select(option: BitOptionComponent | null) {
+
+    if (option)
+      this.selectFlag(option);
+
     this.selectedOption = option?.content ?? null;
-    this.search.set(this.selectedOption?.nativeElement.innerText);
+
     this.value = option?.value() ?? null;
-    this._onChange(option?.value() ?? null);
+
+    this.search.set('');
+
+    this._onChange(this.value);
+
     this.modify(this.options, true);
+
     this.closeDrop();
   }
 
@@ -198,9 +204,16 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   }
 
   protected override postWriteValue = () => {
+
     const hasOption = this.options.find(o => o.value() == this.value);
-    if (hasOption) this.select(hasOption);
-    if (!hasOption && !this.loading() && this.value != null) this.search.set("Invalid Option : " + this.value);
+
+    if (hasOption) {
+      setTimeout(() => this.select(hasOption));
+      // this.select(hasOption)
+      this.valid = true;
+    }
+
+    if (!hasOption && !this.isLoading() && this.value != null) this.valid = false;
   };
 
   ngAfterContentInit(): void {
@@ -233,7 +246,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   }
 
   public onArrowUp() {
-    if (this.optionFocusIndex == 0) return;
+    if (this.optionFocusIndex <= 0) return;
     this.searchEle.nativeElement.blur();
     --this.optionFocusIndex;
     this.focusOption()
@@ -251,7 +264,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
 
     if (!option) return;
 
-    this.optionFocusIndex = 0;
+    this.optionFocusIndex = -1;
     this.searchEle.nativeElement.blur();
     this.select(option);
   }
@@ -259,11 +272,11 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   //#endregion
 
   //#region Scroll Listner
-  enableScroll = () => {
+  private enableScroll = () => {
     document.body.style.overflow = '';
   }
 
-  disableScroll = () => {
+  private disableScroll = () => {
     document.body.style.overflow = 'hidden';
   }
   //#endregion
