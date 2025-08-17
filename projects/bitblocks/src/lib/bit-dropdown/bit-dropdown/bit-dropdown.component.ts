@@ -1,8 +1,8 @@
-import { AfterContentInit, Component, ContentChildren, ElementRef, HostListener, inject, input, model, QueryList, Renderer2, signal, ViewChild } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, ElementRef, HostListener, inject, input, model, QueryList, ViewChild } from '@angular/core';
 import { AbstractControl, FormsModule, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors, Validators } from '@angular/forms';
 import { BaseControl } from '../../core/base.control';
-import { BitOptionComponent } from '../bit-option/bit-option.component';
 import { SafePipe } from '../../core/utils/safe.pipe';
+import { BitOptionComponent } from '../bit-option/bit-option.component';
 
 @Component({
   selector: 'bit-dropdown',
@@ -166,7 +166,7 @@ export class BitDropdownComponent extends BaseControl implements AfterContentIni
   /**
    * implements a **single selection** of dropdown.
    * 
-   * @param option 
+   * @param option BitOption | Null
    */
   public select(option: BitOptionComponent | null) {
 

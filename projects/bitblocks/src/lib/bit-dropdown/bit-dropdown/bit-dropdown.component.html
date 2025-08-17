@@ -1,6 +1,6 @@
 <div class="bit-dropdown-wrapper">
 
-    <div class="bit-textbox" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
+    <div class="bit-textbox bit-selected" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
         (click)="openDrop()">
 
         @if (isLoading()) { Loading... }

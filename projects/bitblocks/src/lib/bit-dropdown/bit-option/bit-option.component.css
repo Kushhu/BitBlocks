@@ -1,9 +1,9 @@
 .bit-dropdown-option {
     padding: 0.5rem 0.8rem;
-    opacity: 0.7;
     margin: 0.3rem 0;
     transition: all 100ms;
     border: 1px solid transparent;
+    cursor: pointer;
 }
 
 .bit-dropdown-option:hover,
@@ -11,8 +11,6 @@
 .tab-active {
     background-color: rgba(200, 193, 193, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    opacity: 1;
-    cursor: pointer;
 }
 
 .bit-option-selected {

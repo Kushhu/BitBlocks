@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { BitDropdownModule, BitFormService, BitFormsModule, BitSeparatorComponent } from 'bitblocks';
@@ -10,7 +10,7 @@ import { Form } from './form.model';
 @Component({
   selector: 'app-example-forms',
   standalone: true,
-  imports: [ReactiveFormsModule, BitFormsModule, CommonModule, CodeSnippetComponent, BitDropdownModule, BitSeparatorComponent],
+  imports: [ReactiveFormsModule, NgOptimizedImage, BitFormsModule, CommonModule, CodeSnippetComponent, BitDropdownModule, BitSeparatorComponent],
   templateUrl: './example.forms.component.html',
   styleUrl: './example.forms.component.css'
 })
