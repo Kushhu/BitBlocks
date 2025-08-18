@@ -1,0 +1,53 @@
+<div class="bit-dropdown-wrapper" #wrapper>
+
+    <div class="bit-textbox bit-multi-dropdown" tabindex="0" 
+        [style.minHeight]="'calc( 13px + 1.5rem * '+ minHeight() + ')' "
+        [class.bit-input-valid]="valid === true"
+        [class.bit-input-invalid]="valid === false" 
+        
+        (click)="openDrop()" (focus)="openDrop()">
+
+        @if (isLoading()) { Loading... }
+
+        @else if (valid === false && value != null) {
+            Invalid Option : 
+            @for (item of setOfValues.values(); track $index) { 
+                {{ item }} 
+            } 
+        }
+
+        @else if (placeholder() && !selectedOption?.length) { {{placeholder()}} }
+
+        @else {
+            <div class="visible-list">
+
+                @for (option of selectedOption; track $index;let last = $last) {
+                <span class="item" (dblclick)="removeOption(option.nativeElement.innerText)">
+                    {{option.nativeElement.children.item(0)?.innerHTML?.trim() ?? option.nativeElement.innerText}}</span>@if(!last) {, }
+                }
+
+                @if(!value?.length) { {{ placeholder()}} }
+
+            </div>
+        }
+
+        <span class="selected-records-count">{{selectedOption?.length}}</span>
+    </div>
+
+    @if (isOpen) {
+    <div class="bit-option-list">
+        <input #searchEle type="text" [placeholder]="searchPlaceholder()" class="bit-textbox" autocomplete="off"
+        [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
+        (keydown.tab)="closeDrop()" inputmode="none" (click)="searchEle.inputMode = ''"
+        [hidden]="!isSearchable() || !isOpen">
+
+        @if (noSearchAvailable) { <p class="bit-empty-option"> 😒 No Matches </p> }
+
+        @if (isLoading()) { <p class="bit-empty-option"> Loading... </p> }
+
+        <ng-content select="bit-option bit-checked-option"></ng-content>
+
+    </div>
+    }
+
+</div>

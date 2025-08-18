@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BitDropdownComponent } from './bit-dropdown.component';
+import { BitSingleDropdownComponent } from './bit-single-dropdown.component';
 
 describe('BitDropdownComponent', () => {
-  let component: BitDropdownComponent;
-  let fixture: ComponentFixture<BitDropdownComponent>;
+  let component: BitSingleDropdownComponent;
+  let fixture: ComponentFixture<BitSingleDropdownComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BitDropdownComponent]
+      imports: [BitSingleDropdownComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(BitDropdownComponent);
+    fixture = TestBed.createComponent(BitSingleDropdownComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

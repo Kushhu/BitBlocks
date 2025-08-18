@@ -3,4 +3,15 @@
     display: grid;
     align-items: center;
     justify-items: center;
+    margin-bottom: 100dvh;
+}
+
+.form-item{
+    max-width: 20rem;
+}
+
+@media (width<400px){
+    .form-item{
+        max-width: 100%;
+    }
 }

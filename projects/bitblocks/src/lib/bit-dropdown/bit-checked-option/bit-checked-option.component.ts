@@ -1,26 +1,16 @@
-import {
-  Component,
-  ElementRef,
-  Host,
-  Input,
-  input,
-  Optional,
-  ViewChild,
-} from '@angular/core';
+import { Component, ElementRef, Host, Input, input, Optional, ViewChild } from '@angular/core';
 import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
-import {
-  BitMultiDropdownComponent,
-  BitSingleDropdownComponent,
-} from '../bit-dropdown.module';
+import { BitOptionComponent } from '../bit-dropdown.module';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'bit-option',
+  selector: 'bit-checked-option',
   standalone: true,
-  imports: [],
-  templateUrl: './bit-option.component.html',
-  styleUrl: './bit-option.component.css',
+  imports: [FormsModule],
+  templateUrl: './bit-checked-option.component.html',
+  styleUrl: './bit-checked-option.component.css'
 })
-export class BitOptionComponent implements BitBaseOption {
+export class BitCheckedOptionComponent implements BitBaseOption {
   /**
    *  emits option key value, when selected
    *  required! to handle unique logics
@@ -37,7 +27,7 @@ export class BitOptionComponent implements BitBaseOption {
   @ViewChild('optionEle') content!: ElementRef<HTMLDivElement>;
 
   constructor(
-    @Host() @Optional() protected _dropper: BitBaseDropdown<BitOptionComponent>
+    @Host() @Optional() protected _dropper: BitBaseDropdown<BitCheckedOptionComponent>
   ) {
     if (!_dropper)
       console.error(

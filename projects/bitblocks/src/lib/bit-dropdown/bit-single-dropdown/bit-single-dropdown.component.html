@@ -1,7 +1,8 @@
-<div class="bit-dropdown-wrapper">
+<div class="bit-dropdown-wrapper" #wrapper>
 
-    <div class="bit-textbox bit-selected" [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false"
-        (click)="openDrop()">
+    <div class="bit-textbox bit-selected" tabindex="0" [style.minHeight]="'calc( 13px + 1.5rem * '+ minHeight() + ')' "
+        [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false" (click)="openDrop()"
+        (focus)="openDrop()">
 
         @if (isLoading()) { Loading... }
 
@@ -10,7 +11,7 @@
         @else if (placeholder() && !selectedOption) { {{placeholder()}} }
 
         @else {
-           <div [innerHTML]="selectedOption?.nativeElement?.innerHTML | safe: 'html'"> </div>
+        <div [innerHTML]="selectedOption?.nativeElement?.innerHTML | safe: 'html'"> </div>
         }
 
     </div>

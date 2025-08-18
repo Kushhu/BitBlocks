@@ -1,0 +1,7 @@
+<div class="bit-dropdown-option" [ariaSelected]="selected" [class.bit-option-selected]="selected"
+    [class.bit-dropdown-option-focus]="tabFocus" [hidden]="!active" (click)="_dropper.select(this)">
+    <input type="checkbox" [(ngModel)]="selected">
+    <div #optionEle>
+        <ng-content></ng-content>
+    </div>
+</div>

@@ -2,12 +2,12 @@ import {
   AbstractControl,
   ControlValueAccessor,
   ValidationErrors,
-  Validator
+  Validator,
 } from '@angular/forms';
 
 /**
- * implements core function for 
- * @class ControlValueAccessor & Validator
+ * implements core function for
+ * @class `ControlValueAccessor` & `Validator`
  */
 export abstract class BaseControl implements ControlValueAccessor, Validator {
   //#region Services
@@ -18,17 +18,17 @@ export abstract class BaseControl implements ControlValueAccessor, Validator {
   protected onTouched!: () => void;
   protected abstract onInput(element: any): void;
 
-  /** 
+  /**
    * post control value change.
    * override method when need to implement custom logic
    */
-  protected postWriteValue = () => { };
+  protected postWriteValue = () => {};
   //#endregion
 
   //#region State Declaration
   public control!: AbstractControl;
   public isDisable: boolean;
-  public value: string | number | boolean | null;
+  public value: string | number | boolean | any[] | null;
   //#endregion
 
   constructor() {
@@ -57,10 +57,9 @@ export abstract class BaseControl implements ControlValueAccessor, Validator {
 
   //#endregion
 
-
   //#region Validators implemantation
 
-  abstract validate(control: AbstractControl): ValidationErrors | null
+  abstract validate(control: AbstractControl): ValidationErrors | null;
 
   //#endregion
 }
