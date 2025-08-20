@@ -95,7 +95,7 @@ p:last-of-type {
   border-color: rgb(45, 192, 0) !important;
 }
 
-code {
+pre code {
   line-height: 1.4rem;
 }
 

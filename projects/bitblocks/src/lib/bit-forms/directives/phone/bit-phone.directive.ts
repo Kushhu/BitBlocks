@@ -1,7 +1,7 @@
 import { Directive, HostListener } from '@angular/core';
 import { BitTextboxDirective } from '../text/bit-textbox.directive';
 import { NG_VALIDATORS } from '@angular/forms';
-import { BitRegEx } from '../../../core/utils/bit.regex';
+import { BitRegEx } from '../../../core/utility/bit.regex';
 
 @Directive({
   selector: '[bitPhone]',

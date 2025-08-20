@@ -1,6 +1,6 @@
 import { Directive, Input } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
-import { BaseTextbox } from '../../../core/base.textbox';
+import { BaseTextbox } from '../../base.textbox';
 
 @Directive({
   selector: '[bitTextbox]',

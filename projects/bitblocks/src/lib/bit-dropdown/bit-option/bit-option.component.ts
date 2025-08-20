@@ -1,17 +1,8 @@
 import {
   Component,
-  ElementRef,
-  Host,
-  Input,
-  input,
-  Optional,
-  ViewChild,
+  forwardRef
 } from '@angular/core';
-import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
-import {
-  BitMultiDropdownComponent,
-  BitSingleDropdownComponent,
-} from '../bit-dropdown.module';
+import { BitBaseOption } from '../base.dropdown';
 
 @Component({
   selector: 'bit-option',
@@ -19,29 +10,13 @@ import {
   imports: [],
   templateUrl: './bit-option.component.html',
   styleUrl: './bit-option.component.css',
+  providers: [
+    {
+      provide: BitBaseOption,
+      useExisting: forwardRef(() => BitOptionComponent),
+    },
+  ]
 })
-export class BitOptionComponent implements BitBaseOption {
-  /**
-   *  emits option key value, when selected
-   *  required! to handle unique logics
-   */
-  value = input.required<string | number | boolean | null>();
-  bindValue: any;
-  meta!: any[];
+export class BitOptionComponent extends BitBaseOption {
 
-  @Input() disable = false;
-  @Input() selected = false;
-  @Input() active = true;
-  @Input() tabFocus = false;
-
-  @ViewChild('optionEle') content!: ElementRef<HTMLDivElement>;
-
-  constructor(
-    @Host() @Optional() protected _dropper: BitBaseDropdown<BitOptionComponent>
-  ) {
-    if (!_dropper)
-      console.error(
-        'No parent dropdown found! : Use bit-option component inside bit-dropdown'
-      );
-  }
 }

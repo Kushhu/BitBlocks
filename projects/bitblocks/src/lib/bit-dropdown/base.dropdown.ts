@@ -2,28 +2,47 @@ import {
   AfterContentInit,
   Component,
   ElementRef,
+  Host,
   HostListener,
   inject,
+  Input,
   input,
-  InputSignal,
   model,
+  Optional,
   QueryList,
   Renderer2,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { BaseControl } from '../core/base.control';
 
-export type BitBaseOption = {
-  value: InputSignal<any>;
+
+@Component({
+  template: '',
+})
+export abstract class BitBaseOption {
+  /**
+   *  emits option key value, when selected
+   *  required! to handle unique logics
+   */
+  value = input.required<string | number | boolean | null>();
   bindValue: any;
-  meta: any[];
+  meta!: any[];
 
-  disable: boolean;
-  selected: boolean;
-  active: boolean;
-  tabFocus: boolean;
+  @Input() disable = false;
+  @Input() selected = false;
+  @Input() active = true;
+  @Input() tabFocus = false;
 
-  content: ElementRef<HTMLDivElement>;
+  @ViewChild('optionEle') content!: ElementRef<HTMLDivElement>;
+
+  constructor(
+    @Host() @Optional() protected _dropper: BitBaseDropdown<BitBaseOption>
+  ) {
+    if (!_dropper)
+      console.error(
+        'No parent dropdown found! : Use option component inside dropdown'
+      );
+  }
 };
 
 @Component({
@@ -52,6 +71,9 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
   public isSearchable = input<boolean>(false, { alias: 'searchable' });
 
   public placeholder = input();
+
+  /** minimum line box consist */
+  public minHeight = input<number>(1);
 
   public searchPlaceholder = input('🔍 Search');
 
@@ -86,8 +108,6 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
   @ViewChild('searchEle')
   private searchEle!: ElementRef<HTMLInputElement>;
 
-  @ViewChild('wrapper') wrapper!: ElementRef<HTMLDivElement>
-
   /** The `BitOptions` refrence container */
   protected abstract options: QueryList<TOption>;
 
@@ -114,7 +134,6 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
   public openDrop = () => {
     this.isOpen = true;
     this.disableBodyScroll();
-    // this.wrapper.nativeElement.scrollIntoView({ block: 'start' });
   };
 
   /**
@@ -170,7 +189,7 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
    *
    * @param element Input Textbox
    */
-  protected override onInput(element: HTMLInputElement) {
+  protected onInput(element: HTMLInputElement) {
     this.options.map((option) => {
       option.active = option.content.nativeElement.innerText
         .toLowerCase()

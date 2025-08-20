@@ -1,12 +1,10 @@
 import {
-  AfterContentInit,
   Component,
   ContentChildren,
   ElementRef,
   forwardRef,
   inject,
-  input,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import {
   AbstractControl,
@@ -16,9 +14,8 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { SafePipe } from '../../core/utils/safe.pipe';
-import { BitBaseDropdown } from '../base.dropdown';
-import { BitOptionComponent } from '../bit-option/bit-option.component';
+import { SafePipe } from '../../core/utility/safe.pipe';
+import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
 
 @Component({
   selector: 'bit-dropdown',
@@ -44,10 +41,7 @@ import { BitOptionComponent } from '../bit-option/bit-option.component';
   ],
 })
 export class BitSingleDropdownComponent
-  extends BitBaseDropdown<BitOptionComponent>
-  implements AfterContentInit {
-
-  minHeight = input();
+  extends BitBaseDropdown<BitBaseOption> {
 
   //#region DOM pickers
 
@@ -56,8 +50,8 @@ export class BitSingleDropdownComponent
   public override selectedOption!: ElementRef<HTMLDivElement> | null;
 
   /** The `BitOptions` refrence container */
-  @ContentChildren(BitOptionComponent)
-  protected options!: QueryList<BitOptionComponent>;
+  @ContentChildren(BitBaseOption)
+  protected options!: QueryList<BitBaseOption>;
 
   //#endregion
 
@@ -66,7 +60,7 @@ export class BitSingleDropdownComponent
    *
    * @param option BitOption | Null
    */
-  public select(option: BitOptionComponent | null) {
+  public select(option: BitBaseOption | null) {
     if (option?.selected) return;
 
     if (option) this.selectFlag(option);

@@ -22,12 +22,18 @@ export abstract class BaseControl implements ControlValueAccessor, Validator {
    * post control value change.
    * override method when need to implement custom logic
    */
-  protected postWriteValue = () => {};
+  protected postWriteValue = () => { };
   //#endregion
 
   //#region State Declaration
   public control!: AbstractControl;
   public isDisable: boolean;
+
+  /** ### Control Value
+   *  
+   * keep this value updated as view & functionality changes,
+   * makes a getter to retrive component's current value
+   */
   public value: string | number | boolean | any[] | null;
   //#endregion
 

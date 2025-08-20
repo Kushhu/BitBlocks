@@ -1,6 +1,6 @@
 import { Directive, OnChanges, SimpleChanges } from '@angular/core';
 import { BitTextboxDirective } from '../text/bit-textbox.directive';
-import { BitRegEx } from '../../../core/utils/bit.regex';
+import { BitRegEx } from '../../../core/utility/bit.regex';
 import { NG_VALIDATORS } from '@angular/forms';
 
 @Directive({

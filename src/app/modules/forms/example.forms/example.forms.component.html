@@ -1,89 +1,130 @@
 <div class="form-wrapper">
-  <h4>Reactive Form</h4>
-  <form [formGroup]="formModel.form" [class.form-valid]="formModel.form.valid"
-    [class.form-invalid]="formModel.form.invalid">
-    <div class="field">
-      <label for="Name">
-        Name
-        <span style="color: red">*</span>
-        @if (formModel.form.controls.Name.touched) { @if
-        (formModel.form.controls.Name.errors?.['pattern'] ) {
-        <code style="color: rgb(173, 0, 0)"> Only Alphabets </code>
-        } }
-      </label>
-      <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text" id="Name"
-        autocomplete="name" formControlName="Name" />
-    </div>
+    <h4>Reactive Form</h4>
+    <form
+        [formGroup]="formModel.form"
+        [class.form-valid]="formModel.form.valid"
+        [class.form-invalid]="formModel.form.invalid"
+    >
+        <div class="field">
+            <label for="Name">
+                Name
+                <span style="color: red">*</span>
+                @if (formModel.form.controls.Name.touched) { @if
+                (formModel.form.controls.Name.errors?.['pattern'] ) {
+                <code style="color: rgb(173, 0, 0)"> Only Alphabets </code>
+                } }
+            </label>
+            <input
+                bitTextbox
+                [regExp]="BitRegExpression.AlphabetsOnly"
+                placeholder="ex: Alex Bezoz"
+                type="text"
+                id="Name"
+                autocomplete="name"
+                formControlName="Name"
+            />
+        </div>
 
-    <div class="field">
-      <label for="Email">
-        Email <span style="color: red">*</span>
-        @if (formModel.form.controls.Email.touched) { @if
-        (formModel.form.controls.Email.errors?.['pattern'] ) {
-        <code style="color: rgb(173, 0, 0)"> Bad Address </code>
-        } }
-      </label>
-      <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
-    </div>
+        <div class="field">
+            <label for="Email">
+                Email <span style="color: red">*</span>
+                @if (formModel.form.controls.Email.touched) { @if
+                (formModel.form.controls.Email.errors?.['pattern'] ) {
+                <code style="color: rgb(173, 0, 0)"> Bad Address </code>
+                } }
+            </label>
+            <input
+                bitEmail
+                placeholder="ex: alex@gmail.com "
+                id="Email"
+                autocomplete="email"
+                formControlName="Email"
+            />
+        </div>
 
-    <div class="field">
-      <label for="Phone">
-        Phone @if (!_bitHelper.control(formModel.form,'Phone').required) {
-        <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> }
-        <!-- @if (!_bitHelper.isRequired(form,'Phone')) { <span style="color:rgba(0, 0, 0, 0.6)">(optional)</span> } -->
-      </label>
-      <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
-        formControlName="Phone" />
-    </div>
+        <div class="field">
+            <label for="Phone">
+                Phone @if (!_bitHelper.control(formModel.form,'Phone').required) {
+                <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> }
+            </label>
+            <input
+                bitPhone
+                maxlength="10"
+                placeholder="ex: 89XXXXX90 "
+                id="Phone"
+                autocomplete="mobile"
+                formControlName="Phone"
+            />
+        </div>
 
-    <div class="field">
-      <label for="person"> Assignee </label>
-      <bit-dropdown id="person" [minHeight]="2" [searchable]="true" formControlName="Person" placeholder="Select person"
-        [loading]="loading" [multiple]="true">
-        @for (user of users$ | async; track user.id;let i = $index) {
-        <bit-option [value]="user.name">
-          <div class="flex middle">
-            <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
-            <div>
-              {{ user.name }}
-              <br />
-              <small style="opacity: 0.5">
-                {{ user.email }}
-              </small>
-            </div>
-          </div>
-        </bit-option>
-        }
-      </bit-dropdown>
-    </div>
+        <div class="field">
+            <label for="person"> Assignee </label>
+            <bit-dropdown
+                id="person"
+                [minHeight]="2"
+                [searchable]="true"
+                formControlName="Person"
+                placeholder="Select person"
+                [multiple]="true"
+            >
+                @for (user of users$ | async; track user.id;let i = $index) {
+                <bit-option [value]="user.name">
+                    <div class="flex middle">
+                        <img
+                            [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id"
+                            height="36"
+                            width="36"
+                        />
+                        <div>
+                            {{ user.name }}
+                            <br />
+                            <small style="opacity: 0.5">
+                                {{ user.email }}
+                            </small>
+                        </div>
+                    </div>
+                </bit-option>
+                }
+            </bit-dropdown>
+        </div>
 
-    <div class="field">
-      <label for="person"> Team members </label>
-      <bit-multi-dropdown [minHeight]="2" [loading]="loading" [searchable]="true" placeholder="ex: Food, Box .."
-        formControlName="Categories">
-        @for (user of users$ | async; track user.id;let i = $index) {
-        <bit-checked-option [value]="user.id">
-          <span>
-            {{ user.name }}
-          </span>
-          <span style="opacity: 0.5"> {{ user.age }} </span>
-        </bit-checked-option>
-        }
-      </bit-multi-dropdown>
-    </div>
+        <div class="field">
+            <label for="person"> Team members </label>
 
-    <div class="field">
-      <label for="date">
-        Date @if(!_bitHelper.control(formModel.form,'Date').required) {
-        <span style="color: red">*</span> }
-      </label>
-      <input bitTextbox id="date" type="date" formControlName="Date" />
-    </div>
-  </form>
+            <bit-multi-dropdown
+                [minHeight]="2"
+                [searchable]="true"
+                placeholder="ex: Food, Box .."
+                formControlName="Categories"
+            >
+                @for (user of users$ | async; track user.id;let i = $index) {
+                <bit-checked-option [value]="user.id">
+                    <div class="flex middle" [attr.aria-label]="user.name">
+                        <img
+                            [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id"
+                            height="36"
+                            width="36"
+                        />
+                        <div>
+                            {{ user.name }} <br />
+                            <small style="opacity: 0.5"> {{ user.email }} </small>
+                        </div>
+                    </div>
+                </bit-checked-option>
+                }
+            </bit-multi-dropdown>
+        </div>
 
-  <!-- <bit-separator></bit-separator>
+        <div class="field">
+            <label for="date">
+                Date @if(!_bitHelper.control(formModel.form,'Date').required) {
+                <span style="color: red">*</span> }
+            </label>
+            <input bitTextbox id="date" type="date" formControlName="Date" />
+        </div>
+    </form>
 
-  <app-code-snippet title="Binding">{{
-    formModel.form.value | json
-    }}</app-code-snippet> -->
+    <bit-separator></bit-separator>
+
+    <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet>
 </div>

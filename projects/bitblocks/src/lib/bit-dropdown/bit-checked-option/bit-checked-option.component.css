@@ -1,26 +1,39 @@
 .bit-dropdown-option {
-  padding: 0.5rem 0.8rem;
-  margin: 0.3rem 0;
-  transition: all 100ms;
-  border: 1px solid transparent;
-  cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    margin: 0.3rem 0;
+    transition: all 100ms;
+    border: 1px solid transparent;
+    cursor: pointer;
 }
 
-.bit-dropdown-option > * {
-  display: inline;
+.bit-dropdown-option {
+    max-width: 100%;
+}
+
+.bit-option-overflow{
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 1rem;
+}
+
+.bit-option-overflow div {
+    flex-grow: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .bit-dropdown-option:hover,
 .bit-dropdown-option-focus {
-  background-color: rgba(200, 193, 193, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(200, 193, 193, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .bit-option-selected {
-  opacity: 1;
-  background-color: rgba(57, 255, 50, 0.1);
+    opacity: 1;
+    background-color: rgba(57, 255, 50, 0.1);
 }
 
-input[type="checkbox"] {
-  accent-color: rgb(0, 101, 7);
+input[type='checkbox'] {
+    accent-color: rgb(0, 101, 7);
 }

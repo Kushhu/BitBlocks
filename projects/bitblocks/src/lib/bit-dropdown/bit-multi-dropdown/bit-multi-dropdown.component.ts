@@ -5,8 +5,7 @@ import {
   forwardRef,
   inject,
   input,
-  QueryList,
-  ViewChild
+  QueryList
 } from '@angular/core';
 import {
   AbstractControl,
@@ -16,15 +15,12 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { BitBaseDropdown } from '../base.dropdown';
-import { BitCheckedOptionComponent } from '../bit-checked-option/bit-checked-option.component';
-import { BitOptionComponent } from '../bit-dropdown.module';
-import { SafePipe } from '../../core/utils/safe.pipe';
+import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
 
 @Component({
   selector: 'bit-multi-dropdown',
   standalone: true,
-  imports: [FormsModule, SafePipe],
+  imports: [FormsModule],
   templateUrl: './bit-multi-dropdown.component.html',
   styleUrl: '../style.dropdown.css',
   providers: [
@@ -44,54 +40,58 @@ import { SafePipe } from '../../core/utils/safe.pipe';
     },
   ],
 })
-export class BitMultiDropdownComponent extends BitBaseDropdown<BitOptionComponent | BitCheckedOptionComponent> {
+export class BitMultiDropdownComponent extends BitBaseDropdown<BitBaseOption> {
 
+  protected _elementRef = inject(ElementRef);
 
-  minHeight = input();
-
-  protected override _elementRef = inject(ElementRef);
-  public override selectedOption: ElementRef<HTMLDivElement>[] | null = []
+  public selectedOption: ElementRef<HTMLDivElement>[] | null = []
   public override value!: any[] | null;
+  protected setOfValues = new Set();
 
-  @ContentChildren(BitCheckedOptionComponent)
-  protected options!: QueryList<BitCheckedOptionComponent>;
+  @ContentChildren(BitBaseOption)
+  protected options!: QueryList<BitBaseOption>;
 
-  select(option: BitCheckedOptionComponent | null): void {
+  public select(option: BitBaseOption | null): void {
 
     if (!option) return;
-    if (!this.value) return;
+    if (!this.value) this.value = []
 
-    if (option?.selected) {
+    if (option.selected) {
       const index = this.value.findIndex(o => o == option.value())
       this.value.splice(index, 1)
     }
 
-    if (!option?.selected) {
+    if (!option.selected) {
       this.selectedOption?.push(option.content)
-      this.value?.push(option?.value())
+      this.value.push(option?.value())
     }
 
-    this.selectedOption = [];
-
-    this.options.map((option) => {
-      if (this.value?.length && this.value.includes(option.value())) {
-        this.selectedOption?.push(option.content);
-      }
-      option.tabFocus = false;
-    })
-
+    this.setTemplateOptionList();
 
     option.selected = !option.selected;
 
     this._onChange(this.value);
   }
 
-  removeOption(text: string) {
+  private setTemplateOptionList() {
+    // to reset prev state
+    this.selectedOption = [];
+    this.options.map((option) => {
+      // if option key subsets the control
+      if (this.value?.length && this.value.includes(option.value())) {
+        this.selectedOption?.push(option.content);
+      }
+      // remove's keyboard focus
+      option.tabFocus = false;
+    })
+  }
+
+  protected remove(text: string) {
     const optionToBeRemoved = this.options.find(o => o.content.nativeElement.innerText.toLowerCase() == text.toLowerCase())
     if (optionToBeRemoved) this.select(optionToBeRemoved);
   }
 
-  validate(control: AbstractControl): ValidationErrors | null {
+  public validate(control: AbstractControl): ValidationErrors | null {
     if (control.hasValidator(Validators.required) && !this.selectedOption) {
       if (control.dirty) this.valid = false;
       return { required: true };
@@ -101,11 +101,19 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitOptionComponen
     return null;
   }
 
-  setOfValues = new Set();
-
   protected override postWriteValue = () => {
 
     this.value?.map(v => this.setOfValues.add(v));
+
+    this.checkValuesExistInOptions();
+
+    if (this.setOfValues.size) this.valid = false;
+
+    if (!this.setOfValues.size && this.value != null) this.valid = true;
+  };
+
+  private checkValuesExistInOptions() {
+    this.selectedOption = []
 
     this.options.map((option) => {
 
@@ -119,9 +127,5 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitOptionComponen
         option.selected = false;
       }
     })
-
-    if (this.setOfValues.size) this.valid = false;
-
-    if (!this.setOfValues.size) this.valid = true;
-  };
+  }
 }

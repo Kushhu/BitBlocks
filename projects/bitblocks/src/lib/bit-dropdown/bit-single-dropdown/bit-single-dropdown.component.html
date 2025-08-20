@@ -1,17 +1,21 @@
-<div class="bit-dropdown-wrapper" #wrapper>
+<div class="bit-dropdown-wrapper">
 
     <div class="bit-textbox bit-selected" tabindex="0" [style.minHeight]="'calc( 13px + 1.5rem * '+ minHeight() + ')' "
         [class.bit-input-valid]="valid === true" [class.bit-input-invalid]="valid === false" (click)="openDrop()"
         (focus)="openDrop()">
 
-        @if (isLoading()) { Loading... }
+        @if (isLoading()) { <span class="bit-dropdown-placeholder"> Loading... </span> }
 
-        @else if (valid === false && value !== null) { Invalid Option : {{ value }} }
-
-        @else if (placeholder() && !selectedOption) { {{placeholder()}} }
-
+        @else if (valid === false && value !== null) {   
+            <span class="bit-dropdown-placeholder"> Invalid Option : {{ value }} </span> 
+        }
+       
+        @else if (placeholder() && !selectedOption) {  
+            <span class="bit-dropdown-placeholder"> {{ placeholder() }} </span> 
+        }
+       
         @else {
-        <div [innerHTML]="selectedOption?.nativeElement?.innerHTML | safe: 'html'"> </div>
+            <div [innerHTML]="selectedOption?.nativeElement?.innerHTML | safe: 'html'"> </div>
         }
 
     </div>
@@ -19,15 +23,16 @@
     @if (isOpen) {
     <div class="bit-option-list">
         <input #searchEle type="text" [placeholder]="searchPlaceholder()" class="bit-textbox" autocomplete="off"
-            [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
-            (keydown.tab)="closeDrop()" inputmode="none" (click)="searchEle.inputMode = ''"
+            [(ngModel)]="search" (input)="onInput(searchEle)" 
+            (keydown.tab)="closeDrop()" 
             [hidden]="!isSearchable() || !isOpen">
 
         @if (noSearchAvailable) { <p class="bit-empty-option"> 😒 No Matches </p> }
 
         @if (isLoading()) { <p class="bit-empty-option"> Loading... </p> }
 
-        <ng-content select="bit-option"></ng-content>
+        <ng-content select="bit-option, bit-checked-option"></ng-content>
+
     </div>
     }
 </div>

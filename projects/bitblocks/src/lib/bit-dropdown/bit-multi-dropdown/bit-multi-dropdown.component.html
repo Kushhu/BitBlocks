@@ -1,32 +1,34 @@
-<div class="bit-dropdown-wrapper" #wrapper>
+<div class="bit-dropdown-wrapper">
 
     <div class="bit-textbox bit-multi-dropdown" tabindex="0" 
         [style.minHeight]="'calc( 13px + 1.5rem * '+ minHeight() + ')' "
         [class.bit-input-valid]="valid === true"
         [class.bit-input-invalid]="valid === false" 
-        
         (click)="openDrop()" (focus)="openDrop()">
 
-        @if (isLoading()) { Loading... }
+        @if (isLoading()) { <span class="bit-dropdown-placeholder"> Loading...  </span> }
 
         @else if (valid === false && value != null) {
-            Invalid Option : 
-            @for (item of setOfValues.values(); track $index) { 
-                {{ item }} 
-            } 
+            <span class="bit-dropdown-placeholder">
+                Invalid Option : 
+                @for (item of setOfValues.values(); track $index) { 
+                    {{ item }} 
+                } 
+            </span>
         }
 
-        @else if (placeholder() && !selectedOption?.length) { {{placeholder()}} }
-
+        @else if (placeholder() && !selectedOption?.length) {  
+            <span class="bit-dropdown-placeholder"> {{ placeholder() }} </span> 
+        }
+       
         @else {
             <div class="visible-list">
 
                 @for (option of selectedOption; track $index;let last = $last) {
-                <span class="item" (dblclick)="removeOption(option.nativeElement.innerText)">
-                    {{option.nativeElement.children.item(0)?.innerHTML?.trim() ?? option.nativeElement.innerText}}</span>@if(!last) {, }
+                    <span class="visible-item" (dblclick)="remove(option.nativeElement.innerText)">
+                        {{option.nativeElement.children.item(0)?.ariaLabel ?? option.nativeElement.innerText}} 
+                    </span>@if(!last) {, }
                 }
-
-                @if(!value?.length) { {{ placeholder()}} }
 
             </div>
         }
@@ -36,16 +38,17 @@
 
     @if (isOpen) {
     <div class="bit-option-list">
+
         <input #searchEle type="text" [placeholder]="searchPlaceholder()" class="bit-textbox" autocomplete="off"
-        [(ngModel)]="search" (input)="onInput(searchEle)" (blur)="onTouched()" (focus)="openDrop()"
-        (keydown.tab)="closeDrop()" inputmode="none" (click)="searchEle.inputMode = ''"
-        [hidden]="!isSearchable() || !isOpen">
+            [(ngModel)]="search" (input)="onInput(searchEle)" 
+            (keydown.tab)="closeDrop()" 
+            [hidden]="!isSearchable() || !isOpen">
 
-        @if (noSearchAvailable) { <p class="bit-empty-option"> 😒 No Matches </p> }
+        @if (noSearchAvailable) { <div class="bit-empty-option"> 😒 No Matches </div> }
 
-        @if (isLoading()) { <p class="bit-empty-option"> Loading... </p> }
+        @if (isLoading()) { <div class="bit-empty-option"> Loading... </div> }
 
-        <ng-content select="bit-option bit-checked-option"></ng-content>
+        <ng-content select="bit-option, bit-checked-option"></ng-content>
 
     </div>
     }
