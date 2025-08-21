@@ -1,0 +1,46 @@
+.bit-tab-group {
+  margin: 1rem 0;
+}
+
+.bit-tab-nav {
+  display: flex;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.bit-tab-nav button {
+  font-family: inherit;
+  opacity: 0.5;
+  border: unset;
+  background: unset;
+  padding: 0.8rem 0;
+  margin: 0 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.bit-tab-nav button:first-child {
+  margin-left: 0;
+}
+
+.bit-tab-nav button:hover {
+  opacity: 1;
+}
+
+.bit-active-nav::after {
+  content: "";
+  border-bottom: 1px solid #c93e3e;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.bit-active-nav {
+  opacity: 1 !important;
+}
+
+.bit-tab-content {
+  padding: 1rem 0;
+}

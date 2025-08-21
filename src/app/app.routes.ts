@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { FormsComponent } from './modules/forms/forms.component';
 import { TableComponent } from './modules/table/table.component';
 import { HomeComponent } from './modules/home/home.component';
+import { TabsComponent } from './modules/tabs/tabs.component';
 
 export const routes: Routes = [
     {
@@ -10,7 +11,8 @@ export const routes: Routes = [
         children: [
             { path: '', component: HomeComponent, pathMatch: 'full' },
             { path: 'forms', component: FormsComponent },
-            { path: 'table', component: TableComponent }
+            { path: 'table', component: TableComponent },
+            { path: 'tabs', component: TabsComponent }
         ]
     }
 ];

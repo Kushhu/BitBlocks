@@ -1,0 +1,12 @@
+<div class="bit-tab-group" #tabGroup>
+
+    <div class="bit-tab-nav">
+        @for (tab of tabs; track tab.title(); let i = $index) {
+            <button [class.bit-active-nav]="i == active()" (click)="activate(tab, i)"> {{ tab.title() }} </button>
+        }
+    </div>
+
+    <div class="bit-tab-content">
+        <ng-content select="bit-tab"></ng-content>
+    </div>
+</div>
