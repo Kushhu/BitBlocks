@@ -9,5 +9,5 @@ import { BitTabsModule } from '../../../../projects/bitblocks/src/lib/bit-tab/bi
   styleUrl: './tabs.component.css'
 })
 export class TabsComponent {
-  val = 4
+  val = 1
 }

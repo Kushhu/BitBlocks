@@ -9,7 +9,7 @@
 
 section {
     min-height: 8rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
 }
 
 section .header {
@@ -50,6 +50,10 @@ section ul li {
 .bit-card:hover {
     transform: translateX(-5px);
     /* Fixed non-standard 'translate' usage */
+}
+
+.m-2{
+    margin: 1.25rem 0;
 }
 
 /* === Responsive === */

@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChildren, model, OnInit, QueryList, signal } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, effect, model, QueryList } from '@angular/core';
 import { BitTabComponent } from '../bit-tab/bit-tab.component';
 
 @Component({
@@ -16,30 +16,44 @@ export class BitTabGroupComponent implements AfterContentInit {
   /** active index tab */
   public active = model<number>(0);
 
-  private activeTab = signal<BitTabComponent | null>(null);
+  protected activeTab!: BitTabComponent;
+
+  constructor() {
+    effect(() => {
+      if (!this.tabs.length) return;
+
+      if (this.activeTab) this.activeTab.active = false;
+      this.activeTab = this.tabs.get(this.active()) ?? this.tabs.get(0)!;
+      if (this.activeTab) this.activeTab.active = true;
+    })
+  }
 
   public ngAfterContentInit() {
     this.activeDefaultTab();
   }
 
-  protected activate(tab: BitTabComponent, index: number) {
+  /**
+   * abstract method to make tab active
+   * @param index of tab
+   */
+  protected activate(index: number) {
     this.active.set(index);
-    tab.active = true;
-    this.activeTab.update((tab) => { if (tab) tab.active = false; return tab; });
-    this.activeTab.set(tab);
   }
 
+  /**
+   * activate default tab from content list
+   * 
+   */
   public activeDefaultTab() {
     const defaultTab = this.tabs.get(this.active());
 
-    if (!defaultTab) {
+    if (!defaultTab || !this.tabs.length) {
       console.warn("bitTabs : No tab exist at index " + this.active())
-      setTimeout(() => this.active.set(0));
+      setTimeout(() => { this.active.set(0); });
       return
     };
 
-    this.activeTab.set(defaultTab);
-    defaultTab.active = true
+    defaultTab.active = true;
   }
 
 }

@@ -2,7 +2,7 @@
 
     <div class="bit-tab-nav">
         @for (tab of tabs; track tab.title(); let i = $index) {
-            <button [class.bit-active-nav]="i == active()" (click)="activate(tab, i)"> {{ tab.title() }} </button>
+            <button [class.bit-active-nav]="i == active()" (click)="activate(i)"> {{ tab.title() }} </button>
         }
     </div>
 

@@ -11,6 +11,5 @@ export class BitTabComponent {
 
   title = input.required<string>();
 
-  @Input() active!: boolean;
-
+  @Input() active!: boolean;  
 }

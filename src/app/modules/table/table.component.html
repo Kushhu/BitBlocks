@@ -17,23 +17,32 @@
                 approach is useful for simple tables with static data.
             </p>
 
-            <app-code-snippet title="table.component.html">{{snippet.basic}}</app-code-snippet>
+            <bit-tab-group>
 
-            <bit-table [columns]="['id','title','price']">
+                <bit-tab title="Preview">
+                    <bit-table [columns]="['id','title','price']">
 
-                <bit-table-row>
-                    <bit-table-cell> AX902 </bit-table-cell>
-                    <bit-table-cell> Electric Bike </bit-table-cell>
-                    <bit-table-cell> 30,000 </bit-table-cell>
-                </bit-table-row>
+                        <bit-table-row>
+                            <bit-table-cell> AX902 </bit-table-cell>
+                            <bit-table-cell> Electric Bike </bit-table-cell>
+                            <bit-table-cell> 30,000 </bit-table-cell>
+                        </bit-table-row>
 
-                <bit-table-row>
-                    <bit-table-cell> AX903 </bit-table-cell>
-                    <bit-table-cell> Electric Car </bit-table-cell>
-                    <bit-table-cell> 2,25,000 </bit-table-cell>
-                </bit-table-row>
+                        <bit-table-row>
+                            <bit-table-cell> AX903 </bit-table-cell>
+                            <bit-table-cell> Electric Car </bit-table-cell>
+                            <bit-table-cell> 2,25,000 </bit-table-cell>
+                        </bit-table-row>
 
-            </bit-table>
+                    </bit-table>
+                </bit-tab>
+
+                <bit-tab title="Code">
+                    <app-code-snippet title="table.component.html">{{snippet.basic}}</app-code-snippet>
+                </bit-tab>
+
+            </bit-tab-group>
+
 
         </section>
 
@@ -50,8 +59,9 @@
                 <li>Enables sorting, filtering, and pagination (if implemented in your component).</li>
             </ul>
 
-            <app-code-snippet> {{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
-
+            <div class="m-2">
+                <app-code-snippet> {{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
+            </div>
             <bit-table [data]="products"> </bit-table>
 
         </section>
@@ -64,23 +74,32 @@
             </div>
             <p>You can specify each columns inside component and create a distinct order or customize view. </p>
 
-            <app-code-snippet title="table.component.html">{{snippet.customTable}}</app-code-snippet>
+            <bit-tab-group>
 
-            <bit-table [data]="products">
+                <bit-tab title="Preview">
+                    <bit-table [data]="products">
 
-                <ng-template #bitHeader>
-                    <th>Id</th>
-                    <th class="resizable">Product</th>
-                    <th class="text-right">Price</th>
-                </ng-template>
+                        <ng-template #bitHeader>
+                            <th>Id</th>
+                            <th class="resizable">Product</th>
+                            <th class="text-right">Price</th>
+                        </ng-template>
 
-                <ng-template #bitRow let-row>
-                    <td> {{row.id}} </td>
-                    <td> {{row.title}} </td>
-                    <td class="text-right"> {{row.price | currency : row.currency}} </td>
-                </ng-template>
+                        <ng-template #bitRow let-row>
+                            <td> {{row.id}} </td>
+                            <td> {{row.title}} </td>
+                            <td class="text-right"> {{row.price | currency : row.currency}} </td>
+                        </ng-template>
 
-            </bit-table>
+                    </bit-table>
+                </bit-tab>
+
+                <bit-tab title="Code">
+                    <app-code-snippet>{{snippet.customTable}}</app-code-snippet>
+                </bit-tab>
+
+            </bit-tab-group>
+
 
         </section>
 
@@ -96,7 +115,7 @@
                 traditional table row.
                 Use the <code class="highlight">let-row</code> variable to access each data item within the card
                 template.
-                This is useful for responsive layouts or when you want a more visual presentation of your data.     
+                This is useful for responsive layouts or when you want a more visual presentation of your data.
             </p>
             <!-- <ul>
                 <li>Define a <code class="highlight">ng-template</code> with the <code class="highlight">#bitCard</code>
@@ -107,22 +126,32 @@
                 <li>Customize the card layout as needed using HTML and Angular bindings.</li>
             </ul> -->
 
-            <app-code-snippet title="table.component.html">{{snippet.customCard}}</app-code-snippet>
+            <bit-tab-group>
 
-            <bit-table [data]="products" view="cards">
+                <bit-tab title="Preview">
+                    <bit-table [data]="products" view="cards">
 
-                <ng-template #bitCard let-row>
-                    <div class="bit-card">
-                        <div class="flex space-between">
-                            <h3 class="bit-table-cell-overflow-3">{{row.title}}</h3>
-                            <p>{{row.price | currency:row.currency}}</p>
-                        </div>
-                        <bit-separator></bit-separator>
-                        <p class="bit-table-cell-overflow-3">{{row.description}}</p>
-                    </div>
-                </ng-template>
+                        <ng-template #bitCard let-row>
+                            <div class="bit-card">
+                                <div class="flex space-between">
+                                    <h3 class="bit-table-cell-overflow-3">{{row.title}}</h3>
+                                    <p>{{row.price | currency:row.currency}}</p>
+                                </div>
+                                <bit-separator></bit-separator>
+                                <p class="bit-table-cell-overflow-3">{{row.description}}</p>
+                            </div>
+                        </ng-template>
 
-            </bit-table>
+                    </bit-table>
+                </bit-tab>
+
+                <bit-tab title="Code">
+                    <app-code-snippet title="table.component.html">{{snippet.customCard}}</app-code-snippet>
+                </bit-tab>
+
+            </bit-tab-group>
+
+
 
         </section>
     </div>
