@@ -65,9 +65,6 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
 
   //#region Input
 
-  /** allows multi select for option */
-  public multiple = input<boolean>(false);
-
   public isSearchable = input<boolean>(false, { alias: 'searchable' });
 
   public placeholder = input();
