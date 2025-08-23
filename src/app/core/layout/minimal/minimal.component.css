@@ -6,7 +6,8 @@
 
 header,
 nav,
-main {
+main,
+footer {
     padding: 0 clamp(1.5rem, 4vw, 5rem);
 }
 
@@ -24,6 +25,12 @@ nav {
     z-index: 2;
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+footer{
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: #ffe4e161;
 }
 
 /* === Typography === */

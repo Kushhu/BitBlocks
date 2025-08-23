@@ -163,9 +163,9 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
    * **Override this method**
    *    to implement custom business logic
    */
-  protected selectFlag(option: TOption) {
+  protected selectFlag(option: TOption | null) {
     this.options.map((o) => (o.selected = false));
-    option.selected = true;
+    if (option) option.selected = true;
   }
 
   protected focusOption() {

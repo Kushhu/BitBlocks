@@ -1,0 +1,40 @@
+<div class="wrapper">
+
+    <app-table-of-content>
+        <li>Directives</li>
+        <li>Components</li>
+    </app-table-of-content>
+
+    <div class="section-wrapper">
+        <section>
+            <div class="header">
+                <h2 class="title" id="button">Basic Button</h2> • <code class="highlight"> bitButton </code>
+            </div>
+
+            <button bitFillButton width="100%" (click)="submit()" [isLoading]="loading" [isDisable]="disable"
+                loadingText="Submitting..">
+                Add
+            </button>
+        </section>
+    </div>
+
+    <div>
+
+        <h4>Varients</h4>
+
+        <div class="button-list">
+
+            <button bitFillButton>
+                Fill Button
+            </button>
+
+            <button bitTextButton>
+                Clear Text Button
+            </button>
+
+            <button bitOutlinedButton>
+                Outlined Button
+            </button>
+        </div>
+    </div>
+</div>

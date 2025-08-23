@@ -1,15 +1,21 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { CodeSnippetComponent } from "../../core/shared/code-snippet/code-snippet.component";
-import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
-import { BitSeparatorComponent, BitTableModule } from '../../../../projects/bitblocks/src/public-api';
-import { BitTabComponent, BitTabsModule } from "../../../../projects/bitblocks/src/lib/bit-tab/bit-tab.module";
+import { CodeSnippetComponent } from '@shared/code-snippet/code-snippet.component';
+import { TableOfContentComponent } from '@shared/table-of-content/table-of-content.component';
+import { BitSeparatorComponent, BitTableModule, BitTabsModule } from '../../../../projects/bitblocks/src/public-api';
 // import { BitSeparatorComponent, BitTableModule } from 'bitblocks';
 
 @Component({
   selector: 'app-table',
   standalone: true,
-  imports: [BitTableModule, BitTabsModule, TableOfContentComponent, CurrencyPipe, BitSeparatorComponent, CodeSnippetComponent, BitTabComponent],
+  imports: [
+    BitTableModule,
+    BitTabsModule,
+    TableOfContentComponent,
+    CurrencyPipe,
+    BitSeparatorComponent,
+    CodeSnippetComponent
+  ],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })

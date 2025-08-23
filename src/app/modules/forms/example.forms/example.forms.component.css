@@ -17,3 +17,9 @@ form {
     font-weight: normal;
     color: rgba(0, 0, 0, 0.4);
 }
+
+.action-btn{
+    /* margin-top: 0.5rem; */
+    display: flex;
+    justify-content: end;
+}

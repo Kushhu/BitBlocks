@@ -3,8 +3,8 @@
     max-width: 90vw;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: #dddddd50;
-    border-radius: 1rem;
+    background-color: #ffffff50;
+    border-radius: 0.3rem;
     border: 1px solid rgba(0, 0, 0, 0.2);
     transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
@@ -52,7 +52,7 @@
 }
 
 .code p {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(255, 200, 200, 0.2);
     margin: 0;
     padding: 1rem;
 }

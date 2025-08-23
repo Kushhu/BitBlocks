@@ -63,7 +63,7 @@ export class BitSingleDropdownComponent
   public select(option: BitBaseOption | null) {
     if (option?.selected) return;
 
-    if (option) this.selectFlag(option);
+    this.selectFlag(option);
 
     this.selectedOption = option?.content ?? null;
 

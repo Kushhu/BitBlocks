@@ -1,3 +1,8 @@
+
+@import url('../projects/bitblocks/src/lib/bit-button/style.button.css');
+@import url('../projects/bitblocks/src/lib/bit-forms/style.textbox.css');
+
+
 /* You can add global styles to this file, and also import other style files */
 * {
   box-sizing: border-box;
@@ -74,40 +79,3 @@ p:last-of-type {
 .middle {
   align-items: center;
 }
-
-.bit-textbox {
-  padding: 0.4rem 0.8rem;
-  margin-top: 0.5rem;
-  font-family: inherit;
-  width: 100%;
-  outline: unset;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  /* border-style: solid; */
-  transition: all 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
-  text-overflow: ellipsis;
-}
-
-.bit-input-invalid {
-  border-color: rgb(192, 0, 0) !important;
-}
-
-.bit-input-valid {
-  border-color: rgb(45, 192, 0) !important;
-}
-
-pre code {
-  line-height: 1.4rem;
-}
-
-input {
-  font-size: 1.1rem;
-}
-@media (width<400px) {
-  input {
-    font-size: 16px;
-  }
-}
-
-/* form:focus-within input:not(:focus-within) {
-  opacity: 0.5;
-} */

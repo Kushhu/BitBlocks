@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CodeSnippetComponent } from '../../core/shared/code-snippet/code-snippet.component';
-import { TableOfContentComponent } from '../../core/shared/table-of-content/table-of-content.component';
+import { Component } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ExampleFormsComponent } from './example.forms/example.forms.component';
+import { CodeSnippetComponent } from '@shared/code-snippet/code-snippet.component';
+import { TableOfContentComponent } from '@shared/table-of-content/table-of-content.component';
 // import { BitFormsModule } from 'bitblocks';
 
 @Component({

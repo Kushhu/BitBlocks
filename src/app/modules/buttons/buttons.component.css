@@ -1,0 +1,39 @@
+/* === Layout & Structure === */
+section {
+  min-height: 8rem;
+  margin-bottom: 5rem;
+}
+
+section .header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+section p {
+  line-height: 1.5rem;
+}
+
+section .header h2::target-text {
+  color: red;
+}
+
+.wrapper {
+  margin: 1rem 0;
+  display: grid;
+  position: relative;
+  align-items: start;
+  gap: 2rem;
+  grid-template-columns: 15rem 1fr 20rem;
+}
+
+.section-wrapper {
+  padding-bottom: 30vh;
+}
+
+.button-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}

@@ -11,6 +11,6 @@ export class Form {
         Phone: new FormControl(),
         Date: new FormControl('', [Validators.required]),
         Person: new FormControl(),
-        Categories: new FormControl()
+        Categories: new FormControl(null, [Validators.required])
     })
 }

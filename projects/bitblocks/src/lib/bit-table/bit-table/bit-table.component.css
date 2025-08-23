@@ -19,8 +19,9 @@ tbody tr:last-of-type {
 th {
     text-align: left;
     text-transform: capitalize;
-    padding: 0.8rem 1rem;
-    background-color: light-dark(#f2f2f2, hsl(0, 0%, 11%))
+    padding: 1rem;
+    border-bottom: 1px solid light-dark(rgb(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    background-color: #ffe4e161;
 }
 
 th.resizable {

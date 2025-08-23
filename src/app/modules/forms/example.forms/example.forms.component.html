@@ -1,10 +1,7 @@
 <div class="form-wrapper">
     <h4>Reactive Form</h4>
-    <form
-        [formGroup]="formModel.form"
-        [class.form-valid]="formModel.form.valid"
-        [class.form-invalid]="formModel.form.invalid"
-    >
+    <form [formGroup]="formModel.form" [class.form-valid]="formModel.form.valid"
+        [class.form-invalid]="formModel.form.invalid">
         <div class="field">
             <label for="Name">
                 Name
@@ -14,67 +11,45 @@
                 <code style="color: rgb(173, 0, 0)"> Only Alphabets </code>
                 } }
             </label>
-            <input
-                bitTextbox
-                [regExp]="BitRegExpression.AlphabetsOnly"
-                placeholder="ex: Alex Bezoz"
-                type="text"
-                id="Name"
-                autocomplete="name"
-                formControlName="Name"
-            />
+            <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
+                id="Name" autocomplete="name" formControlName="Name" />
         </div>
 
         <div class="field">
             <label for="Email">
-                Email <span style="color: red">*</span>
+                Email 
                 @if (formModel.form.controls.Email.touched) { @if
                 (formModel.form.controls.Email.errors?.['pattern'] ) {
                 <code style="color: rgb(173, 0, 0)"> Bad Address </code>
                 } }
             </label>
-            <input
-                bitEmail
-                placeholder="ex: alex@gmail.com "
-                id="Email"
-                autocomplete="email"
-                formControlName="Email"
-            />
+            <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
         </div>
 
         <div class="field">
             <label for="Phone">
-                Phone @if (!_bitHelper.control(formModel.form,'Phone').required) {
-                <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> }
+                Phone 
+                @if (!_bitHelper.control(formModel.form,'Phone').required) {
+                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
+                }
             </label>
-            <input
-                bitPhone
-                maxlength="10"
-                placeholder="ex: 89XXXXX90 "
-                id="Phone"
-                autocomplete="mobile"
-                formControlName="Phone"
-            />
+            <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
+                formControlName="Phone" />
         </div>
 
         <div class="field">
-            <label for="person"> Assignee </label>
-            <bit-dropdown
-                id="person"
-                [minHeight]="2"
-                [searchable]="true"
-                formControlName="Person"
-                placeholder="Select person"
-                [multiple]="true"
-            >
+            <label for="person"> 
+                Assignee 
+                @if (!_bitHelper.control(formModel.form,'Person').required) {
+                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
+                }
+            </label>
+            <bit-dropdown id="person" [minHeight]="2" [searchable]="true" formControlName="Person"
+                placeholder="Select person">
                 @for (user of users$ | async; track user.id;let i = $index) {
                 <bit-option [value]="user.name">
                     <div class="flex middle">
-                        <img
-                            [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id"
-                            height="36"
-                            width="36"
-                        />
+                        <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
                         <div>
                             {{ user.name }}
                             <br />
@@ -89,22 +64,19 @@
         </div>
 
         <div class="field">
-            <label for="person"> Team members </label>
+            <label for="person"> 
+                Team members
+                @if (!_bitHelper.control(formModel.form,'Categories').required) {
+                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
+                }    
+            </label>
 
-            <bit-multi-dropdown
-                [minHeight]="2"
-                [searchable]="true"
-                placeholder="ex: Food, Box .."
-                formControlName="Categories"
-            >
+            <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="ex: Food, Box .."
+                formControlName="Categories">
                 @for (user of users$ | async; track user.id;let i = $index) {
                 <bit-checked-option [value]="user.id">
                     <div class="flex middle" [attr.aria-label]="user.name">
-                        <img
-                            [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id"
-                            height="36"
-                            width="36"
-                        />
+                        <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
                         <div>
                             {{ user.name }} <br />
                             <small style="opacity: 0.5"> {{ user.email }} </small>
@@ -122,9 +94,15 @@
             </label>
             <input bitTextbox id="date" type="date" formControlName="Date" />
         </div>
+        
     </form>
-
     <bit-separator></bit-separator>
 
-    <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet>
+    <div class="action-btn">
+        <button bitTextButton>close</button>
+        <button tabindex="0" type="submit" bitFillButton [isLoading]="loading" (click)="submit()"
+        [isDisable]="!formModel.form.valid">Submit</button>
+    </div>
+
+    <!-- <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet> -->
 </div>

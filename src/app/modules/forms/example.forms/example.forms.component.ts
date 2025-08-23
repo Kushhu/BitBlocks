@@ -11,6 +11,7 @@ import {
 } from '../../../../../projects/bitblocks/src/public-api';
 import { CodeSnippetComponent } from '../../../core/shared/code-snippet/code-snippet.component';
 import { Form } from './form.model';
+import { BitButtonModule } from '../../../../../projects/bitblocks/src/lib/bit-button/bit-button.module';
 
 @Component({
     selector: 'app-example-forms',
@@ -22,6 +23,7 @@ import { Form } from './form.model';
         CommonModule,
         CodeSnippetComponent,
         BitDropdownModule,
+        BitButtonModule,
         BitSeparatorComponent,
     ],
     templateUrl: './example.forms.component.html',
@@ -36,6 +38,18 @@ export class ExampleFormsComponent {
         AlphabetsOnly: /^[A-Za-z ]+$/,
         Email: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     };
+
+    loading = false;
+    disable = true;
+
+    submit() {
+        this.loading = true;
+        this.disable = true;
+        setTimeout(() => {
+            this.disable = false;
+            this.loading = false;
+        }, 1500);
+    }
 
     categories = ['Fruits', 'Vegetables', 'Grains', 'Dairy', 'Meat', 'Seafood', 'Beverages'];
 

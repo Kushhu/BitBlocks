@@ -17,6 +17,28 @@
   padding: 0.5rem 0.8rem;
 }
 
+.bit-dropdown-wrapper .bit-dropdown-icon {
+  position: absolute;
+  top: 0;
+  right: 0.7rem;
+  display: inline-block;
+  height: 100%;
+  width: 1.5rem;
+}
+
+img{
+  transition: all 250ms ease-in;
+}
+
+.bit-dropdown-wrapper:has(.bit-option-list) .bit-dropdown-icon img {
+  rotate: 180deg;
+}
+
+.bit-dropdown-wrapper .bit-dropdown-icon img {
+  height: 100%;
+  width: 100%;
+}
+
 .bit-dropdown-wrapper .bit-option-list {
   position: absolute;
   z-index: 4;
@@ -68,7 +90,7 @@
   color: rgb(156, 0, 0);
 }
 
-.bit-dropdown-placeholder{
+.bit-dropdown-placeholder {
   opacity: 0.6;
 }
 

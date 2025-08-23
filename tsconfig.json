@@ -2,7 +2,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "src",
     "paths": {
+      "@module/*": ["./app/modules/*"],
+      "@shared/*": ["./app/core/shared/*"],
       "bitblocks": [
         "./dist/bitblocks"
       ]

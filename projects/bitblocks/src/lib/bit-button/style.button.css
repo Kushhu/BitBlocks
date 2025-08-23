@@ -1,0 +1,65 @@
+button.bit-btn {
+  /* min-width: 8rem; */
+  text-align: center;
+  padding: 0.5rem 1rem;
+  background: unset;
+  border: unset;
+  color: rgb(161, 0, 0);
+  font-family: inherit;
+  /* border-radius: 0.6rem; */
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+button.bit-btn:active {
+  scale: 0.9;
+  opacity: 0.9;
+}
+
+button.bit-btn-disable {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed !important;
+}
+
+button.bit-btn-loading span {
+  display: inline-block;
+  transition: all 200ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(197, 0, 0, 0.7);
+  border-radius: 0.5rem;
+  border-bottom-color: transparent;
+  animation: 800ms cubic-bezier(0.32, 0.58, 0.61, 0.38) infinite rotate-loader;
+}
+
+/* Fill Button */
+
+button.bit-fill-btn {
+  color: rgb(161, 0, 0) !important;
+  background-color: rgb(255, 233, 233) !important;
+}
+
+/* Text Button */
+
+button.bit-text-btn:active {
+  background-color: rgba(255, 233, 233, 0.7) !important;
+}
+
+/* Outlined Button */
+
+button.bit-outlined-btn {
+  color: rgb(161, 0, 0) !important;
+  border: 1px solid rgb(255, 188, 188) !important;
+}
+
+@keyframes rotate-loader {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
