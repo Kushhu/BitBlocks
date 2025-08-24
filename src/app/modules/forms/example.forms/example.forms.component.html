@@ -71,7 +71,7 @@
                 }    
             </label>
 
-            <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="ex: Food, Box .."
+            <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="Select multiple memebers"
                 formControlName="Categories">
                 @for (user of users$ | async; track user.id;let i = $index) {
                 <bit-checked-option [value]="user.id">
@@ -100,8 +100,8 @@
 
     <div class="action-btn">
         <button bitTextButton>close</button>
-        <button tabindex="0" type="submit" bitFillButton [isLoading]="loading" (click)="submit()"
-        [isDisable]="!formModel.form.valid">Submit</button>
+        <button tabindex="0" type="submit" bitFillButton [loading]="loading" (click)="submit()"
+        [disabled]="!formModel.form.valid">Submit</button>
     </div>
 
     <!-- <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet> -->

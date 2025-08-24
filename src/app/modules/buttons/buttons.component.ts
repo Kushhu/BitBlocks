@@ -15,9 +15,7 @@ export class ButtonsComponent {
 
   submit() {
     this.loading = true;
-    this.disable = true;
     setTimeout(() => {
-      this.disable = false;
       this.loading = false;
     }, 1500);
   }

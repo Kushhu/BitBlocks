@@ -1,16 +1,43 @@
-import { AfterViewInit, Directive, effect, ElementRef, inject, input, Renderer2 } from '@angular/core';
+import { Directive, effect, ElementRef, HostBinding, inject, Input, input, Renderer2 } from '@angular/core';
 
 const BTN_CORE_CLASS = "bit-btn"
 const BTN_DISABLE_CLASS = "bit-btn-disable"
 const BTN_LOADING_CLASS = "bit-btn-loading"
 
 @Directive()
-export abstract class BitBaseButton implements AfterViewInit {
+export abstract class BitBaseButton {
 
-  isDisable = input<boolean>();
-  isLoading = input<boolean>();
-  loadingText = input<string>();
-  width = input<string>();
+  @HostBinding(`class.${BTN_LOADING_CLASS}`)
+  private isLoading!: boolean;
+
+  @Input() public set loading(state: boolean) {
+    if (state) {
+      this.disable()
+      this.isLoading = true;
+      this.disabled = true;
+    }
+    if (!state) {
+      this.enable()
+      this.isLoading = false;
+      this.disabled = false;
+    }
+  }
+
+  @HostBinding('ariaDisabled')
+  @HostBinding(`class.${BTN_DISABLE_CLASS}`)
+  @Input() public disabled!: boolean;
+
+  @HostBinding('style.minWidth')
+  @Input()
+  width!: string;
+
+  @HostBinding('style.color')
+  @Input()
+  textColor!: string
+
+  @HostBinding('ariaLabel')
+  @Input()
+  label!: string;
 
   private button: ElementRef<HTMLButtonElement> = inject(ElementRef<HTMLButtonElement>);
   private renderer = inject(Renderer2);
@@ -20,40 +47,11 @@ export abstract class BitBaseButton implements AfterViewInit {
     this.add.classList(className);
 
     this.renderSpanElement();
-
-    this.trackLoader();
-    this.trackDisabled();
-  }
-
-  trackLoader() {
-    effect(() => {
-      if (this.isLoading()) {
-        this.add.classList(BTN_LOADING_CLASS);
-        this.disable();
-      }
-
-      if (!this.isLoading()) {
-        this.remove.classList(BTN_LOADING_CLASS);
-        this.enable();
-      }
-    })
-  }
-
-  trackDisabled() {
-    effect(() => {
-      if (this.isDisable()) this.disable();
-      else this.enable();
-    })
   }
 
   renderSpanElement() {
     const span = this.renderer.createElement('span');
     this.renderer.appendChild(this.button.nativeElement, span)
-  }
-
-  ngAfterViewInit(): void {
-    const width = this.width();
-    if (width) this.add.style('width', width)
   }
 
   enable() {

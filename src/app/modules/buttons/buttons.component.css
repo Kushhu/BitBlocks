@@ -37,3 +37,14 @@ section .header h2::target-text {
   flex-wrap: wrap;
   gap: 1rem;
 }
+
+/* === Responsive === */
+@media (width < 400px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .table-of-content {
+        display: none;
+    }
+}

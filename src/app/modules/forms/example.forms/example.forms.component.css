@@ -1,25 +1,26 @@
 .form-wrapper {
-    width: 100%;
-    view-transition-name: reactive-form;
+  width: 100%;
+  view-transition-name: reactive-form;
 }
 
 :host {
-    width: 100%;
+  width: 100%;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    row-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
 }
 
 .form-wrapper h4 {
-    font-weight: normal;
-    color: rgba(0, 0, 0, 0.4);
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.4);
 }
 
-.action-btn{
-    /* margin-top: 0.5rem; */
-    display: flex;
-    justify-content: end;
+.action-btn {
+  /* margin-top: 0.5rem; */
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
 }

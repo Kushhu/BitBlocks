@@ -11,10 +11,6 @@
                 <h2 class="title" id="button">Basic Button</h2> • <code class="highlight"> bitButton </code>
             </div>
 
-            <button bitFillButton width="100%" (click)="submit()" [isLoading]="loading" [isDisable]="disable"
-                loadingText="Submitting..">
-                Add
-            </button>
         </section>
     </div>
 
@@ -24,15 +20,51 @@
 
         <div class="button-list">
 
+            <button bitOutlinedButton>
+                Add
+            </button>
+
+            <button bitFillButton width="70%">
+                Dynamic width
+            </button>
+
             <button bitFillButton>
                 Fill Button
             </button>
 
-            <button bitTextButton>
-                Clear Text Button
+            <button bitTextButton textColor="green">
+                Text Button
             </button>
 
             <button bitOutlinedButton>
+                Outlined Button
+            </button>
+
+        </div>
+
+        <br>
+        <h4>Loading Animation</h4>
+
+        <div class="button-list">
+            <button bitFillButton width="100%" (click)="submit()" [loading]="loading">
+                Submit Application 🏹
+            </button>
+
+        </div>
+
+        <br>
+        <h4>Disabled Button</h4>
+
+        <div class="button-list">
+            <button bitFillButton [disabled]="true">
+                Fill Button
+            </button>
+
+            <button bitTextButton textColor="gray" [disabled]="true">
+                Text Button
+            </button>
+
+            <button bitOutlinedButton [disabled]="true">
                 Outlined Button
             </button>
         </div>
