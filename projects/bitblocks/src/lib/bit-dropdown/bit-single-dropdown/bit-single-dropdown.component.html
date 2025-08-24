@@ -21,11 +21,10 @@
     </div>
 
     <div class="bit-dropdown-icon">
-        @if (selectedOption && isOpen) {
-            <img class="bit-option-deselect" title="Remove Selection" src="assets/cross-svgrepo-com.svg" 
-                        (click)="select(null);" alt="remove-selection-icon">
-        } 
-        <img src="assets/arrow-down-svgrepo-com.svg" (click)="openDrop()" [hidden]="selectedOption && isOpen" alt="arrow-icon">
+        <img class="bit-option-deselect" title="Remove Selection" [hidden]="!selectedOption"
+        src="assets/cross-svgrepo-com.svg" 
+        (click)="select(null);" alt="remove-selection-icon">
+        <img src="assets/arrow-down-svgrepo-com.svg" (click)="openDrop()" [hidden]="selectedOption" alt="arrow-icon">
     </div>
 
     @if (isOpen) {

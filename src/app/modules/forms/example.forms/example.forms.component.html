@@ -5,25 +5,30 @@
         <div class="field">
             <label for="Name">
                 Name
-                <span style="color: red">*</span>
-                @if (formModel.form.controls.Name.touched) { @if
-                (formModel.form.controls.Name.errors?.['pattern'] ) {
-                <code style="color: rgb(173, 0, 0)"> Only Alphabets </code>
-                } }
+                @if (_bitHelper.control(formModel.form,'Name').required) {
+                    <span style="color: red">*</span>
+                }
             </label>
             <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
-                id="Name" autocomplete="name" formControlName="Name" />
+                id="Name" autocomplete="given-name" formControlName="Name" />
+
+            <div class="error"
+                [hidden]="_bitHelper.control(formModel.form,'Name').anyError">
+                please enter valid name
+            </div>
+
         </div>
 
         <div class="field">
             <label for="Email">
-                Email 
-                @if (formModel.form.controls.Email.touched) { @if
-                (formModel.form.controls.Email.errors?.['pattern'] ) {
-                <code style="color: rgb(173, 0, 0)"> Bad Address </code>
-                } }
+                Email
             </label>
             <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
+
+            <div class="error"
+                [hidden]="_bitHelper.control(formModel.form,'Email').anyError">
+                please enter valid adddress
+            </div>
         </div>
 
         <div class="field">
@@ -33,15 +38,20 @@
                     <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
                 }
             </label>
-            <input bitPhone maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
+            <input bitPhone minlength="10" maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
                 formControlName="Phone" />
+
+            <p class="error"
+                [hidden]="_bitHelper.control(formModel.form,'Phone').anyError">
+                please ensure your mobile is 10 digits
+            </p>
         </div>
 
         <div class="field">
-            <label for="person"> 
-                Assignee 
+            <label for="person">
+                Assignee
                 @if (!_bitHelper.control(formModel.form,'Person').required) {
-                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
+                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span>
                 }
             </label>
             <bit-dropdown id="person" [minHeight]="2" [searchable]="true" formControlName="Person"
@@ -61,14 +71,19 @@
                 </bit-option>
                 }
             </bit-dropdown>
+
+            <div class="error"
+                [hidden]="_bitHelper.control(formModel.form,'Person').anyError">
+                please select one team memeber
+            </div>
         </div>
 
         <div class="field">
-            <label for="person"> 
+            <label for="person">
                 Team members
                 @if (!_bitHelper.control(formModel.form,'Categories').required) {
-                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span> 
-                }    
+                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span>
+                }
             </label>
 
             <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="Select multiple memebers"
@@ -85,24 +100,32 @@
                 </bit-checked-option>
                 }
             </bit-multi-dropdown>
+            
+            <div class="error"
+                [hidden]="_bitHelper.control(formModel.form,'Person').anyError">
+                please select team memebers
+            </div>
         </div>
 
         <div class="field">
             <label for="date">
-                Date @if(!_bitHelper.control(formModel.form,'Date').required) {
-                <span style="color: red">*</span> }
+                Date 
+                @if(!_bitHelper.control(formModel.form,'Date').required) {
+                    <span style="color: red">*</span> 
+                }
             </label>
             <input bitTextbox id="date" type="date" formControlName="Date" />
         </div>
-        
-    </form>
-    <bit-separator></bit-separator>
 
-    <div class="action-btn">
-        <button bitTextButton>close</button>
-        <button tabindex="0" type="submit" bitFillButton [loading]="loading" (click)="submit()"
-        [disabled]="!formModel.form.valid">Submit</button>
-    </div>
+        <div class="action-btn">
+            <button bitTextButton>close</button>
+            <button tabindex="0" type="submit" bitFillButton [loading]="loading" (click)="submit()"
+                [disabled]="!formModel.form.valid">Submit</button>
+        </div>
+    </form>
+
+    <!-- <bit-separator></bit-separator> -->
+
 
     <!-- <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet> -->
 </div>

@@ -1,5 +1,5 @@
 import { Directive, Input } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validators } from '@angular/forms';
 import { BaseTextbox } from '../../base.textbox';
 
 @Directive({
@@ -20,21 +20,23 @@ export class BitTextboxDirective extends BaseTextbox {
   @Input() min?: number;
 
   validate(control: AbstractControl): ValidationErrors | null {
-    if (!control.value || control.value == "") {
-      this.default();
+
+    if (control.hasValidator(Validators.required) && !control.value && control.dirty) {
+      this.makeInvalid();
       return null;
     }
 
-    if (!this.regExp) return null;
+    if (this.regExp)
 
-    if (this.regExp?.test(control.value)) {
-      this.makeValid();
-      return null;
-    }
+      if (!this.regExp?.test(control.value) && control.value) {
+        this.makeInvalid();
+        return { email: true };
+      }
 
-    this.makeInvalid();
+    if (control.dirty) this.makeValid();
+
     this.postValidate();
-    return { pattern: true }
+    return null;
   }
 
   postValidate() { }

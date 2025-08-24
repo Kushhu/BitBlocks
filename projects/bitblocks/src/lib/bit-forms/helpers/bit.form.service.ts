@@ -1,31 +1,24 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+type BitFormGroup<T> = FormGroup<{ [K in keyof T]: FormControl<T[K]> }>;
+
 @Injectable({
   providedIn: 'root',
 })
 export class BitFormService {
-  private isRequired<T>(
-    form: FormGroup<{ [K in keyof T]: FormControl<T[K]> }>,
-    key: keyof T
-  ): boolean {
-    return form.controls[key].hasValidator(Validators.required);
-  }
 
-  private isDirty<T>(
-    form: FormGroup<{ [K in keyof T]: FormControl<T[K]> }>,
-    key: keyof T
-  ): boolean {
-    return form.controls[key].dirty;
-  }
-
-  public control<T>(
-    form: FormGroup<{ [K in keyof T]: FormControl<T[K]> }>,
-    key: keyof T
-  ) {
+  public control<T, K extends keyof T>(form: BitFormGroup<T>, key: K) {
     return {
-      required: this.isRequired(form, key),
-      dirty: this.isDirty(form, key),
+      valid: form.controls[key].valid,
+      dirty: form.controls[key].dirty,
+      touched: form.controls[key].touched,
+      required: form.controls[key].hasValidator(Validators.required),
+      anyError: form.controls[key].valid || !form.controls[key].touched
     };
+  }
+
+  error<T, K extends keyof T>(form: BitFormGroup<T>, key: K) {
+    return form.controls[key].errors
   }
 }

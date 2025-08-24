@@ -1,6 +1,8 @@
 /* === Layout === */
 .minimal-container {
     min-height: 100dvh;
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
     position: relative;
 }
 
@@ -29,8 +31,8 @@ nav {
 
 footer{
     padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    background-color: #ffe4e161;
+    padding-bottom: 1rem;
+    /* background-color: #ffe4e161; */
 }
 
 /* === Typography === */

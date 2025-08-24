@@ -4,7 +4,7 @@ import { AbstractControl, ValidationErrors, Validator } from "@angular/forms";
 @Directive()
 export abstract class BaseTextbox implements Validator {
 
-    private input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
+    public input: ElementRef<HTMLInputElement> = inject(ElementRef<HTMLInputElement>);
     public renderer: Renderer2 = inject(Renderer2);
 
     constructor() {
