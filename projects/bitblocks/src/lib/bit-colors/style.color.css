@@ -1,0 +1,109 @@
+:root {
+  --primary-color: hsl(117.9, 65%, 37%);
+
+  --primary-font: var(--scheme-500);
+  --primary-background: var(--scheme-100);
+
+  color: hsl(0, 0, 80%);
+
+  /* GREEN */
+  --green-100: hsl(123, 100%, 96%);
+  --green-200: hsl(123, 80%, 80.75%);
+  --green-300: hsl(123, 80%, 69.5%);
+  --green-400: hsl(123, 70%, 58.25%);
+  --green-500: hsl(117.9, 65%, 37%);
+  --green-600: hsl(123, 70%, 37.25%);
+  --green-700: hsl(123, 80%, 27.5%);
+  --green-800: hsl(123, 90%, 15%);
+  --green-900: hsl(123, 100%, 8%);
+
+  /* Purple */
+  --purple-100: hsl(281, 100%, 96%);
+  --purple-200: hsl(281, 80%, 80.75%);
+  --purple-300: hsl(281, 65%, 69.5%);
+  --purple-400: hsl(281, 65%, 58.25%);
+  --purple-500: hsl(281, 65%, 47%);
+  --purple-600: hsl(281, 65%, 37.25%);
+  --purple-700: hsl(281, 65%, 27.5%);
+  --purple-800: hsl(281, 65%, 17.75%);
+  --purple-900: hsl(281, 100%, 8%);
+
+  /* Blue */
+  --blue-100: hsl(224, 100%, 96%);
+  --blue-200: hsl(224, 80%, 80.75%);
+  --blue-300: hsl(224, 75%, 69.5%);
+  --blue-400: hsl(224, 70%, 58.25%);
+  --blue-500: hsl(224, 68%, 49%);
+  --blue-600: hsl(224, 70%, 37.25%);
+  --blue-700: hsl(224, 75%, 27.5%);
+  --blue-800: hsl(224, 80%, 15%);
+  --blue-900: hsl(224, 100%, 8%);
+
+  /* Orange */
+  --orange-100: hsl(23, 100%, 96%);
+  --orange-200: hsl(23, 80%, 80.75%);
+  --orange-300: hsl(23, 75%, 69.5%);
+  --orange-400: hsl(23, 70%, 58.25%);
+  --orange-500: hsl(23, 68%, 49%);
+  --orange-600: hsl(23, 70%, 37.25%);
+  --orange-700: hsl(23, 75%, 27.5%);
+  --orange-800: hsl(23, 80%, 15%);
+  --orange-900: hsl(23, 100%, 8%);
+
+  /* Red */
+  --red-100: hsl(0, 100%, 96%);
+  --red-200: hsl(0, 80%, 80.75%);
+  --red-300: hsl(0, 75%, 69.5%);
+  --red-400: hsl(0, 70%, 58.25%);
+  --red-500: hsl(0, 82%, 46%);
+  --red-600: hsl(0, 70%, 37.25%);
+  --red-700: hsl(0, 75%, 27.5%);
+  --red-800: hsl(0, 80%, 15%);
+  --red-900: hsl(0, 100%, 8%);
+}
+
+:root[data-theme="bit-dark"] {
+  color-scheme: dark;
+  --scheme-100: hsl(from var(--primary-color) h 98% 5%);
+  --scheme-200: hsl(from var(--primary-color) h 80% 16%);
+  --scheme-300: hsl(from var(--primary-color) h 70% 27%);
+  --scheme-400: hsl(from var(--primary-color) h 60% 32%);
+  --scheme-500: var(--primary-color);
+  --scheme-600: hsl(from var(--primary-color) h 40% 37.25%);
+  --scheme-700: hsl(from var(--primary-color) h 53% 60%);
+  --scheme-800: hsl(from var(--primary-color) h 69% 70%);
+  --scheme-900: hsl(from var(--primary-color) h 98% 80%);
+}
+
+:root[data-theme="bit-light"] {
+  color-scheme: light;
+  --scheme-100: hsl(from var(--primary-color) h 100% 96%);
+  --scheme-200: hsl(from var(--primary-color) h 80% 80.75%);
+  --scheme-300: hsl(from var(--primary-color) h 65% 69.5%);
+  --scheme-400: hsl(from var(--primary-color) h 65% 58.25%);
+  --scheme-500: var(--primary-color);
+  --scheme-600: hsl(from var(--primary-color) h 65% 37.25%);
+  --scheme-700: hsl(from var(--primary-color) h 65% 27.5%);
+  --scheme-800: hsl(from var(--primary-color) h 65% 17.75%);
+  --scheme-900: hsl(from var(--primary-color) h 100% 8%);
+}
+
+:root[data-color="bit-purple"] {
+  --primary-color: hsl(281, 65%, 47%);
+}
+
+:root[data-color="bit-green"] {
+  --primary-color: hsl(117.9, 65%, 37%);
+}
+
+:root[data-color="bit-blue"] {
+  --primary-color: hsl(224, 68%, 49%);
+}
+
+:root[data-color="bit-orange"] {
+  --primary-color: hsl(23, 65%, 47%);
+}
+
+:root[data-color="bit-red"] {
+  --primary-color: hsl(0, 68%, 46%);
+}
