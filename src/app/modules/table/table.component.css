@@ -1,65 +1,67 @@
 /* === Layout & Structure === */
 .wrapper {
-    display: grid;
-    align-items: start;
-    grid-template-columns: 15rem 0.8fr;
-    column-gap: 2rem;
-    margin: 1rem 0;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 15rem 0.8fr;
+  column-gap: 2rem;
+  margin: 1rem 0;
 }
 
 section {
-    min-height: 8rem;
-    margin-bottom: 3rem;
+  min-height: 8rem;
+  margin-bottom: 3rem;
 }
 
 section .header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: light-dark(hsl(0 0 5%), hsl(0 0 90%));
 }
 
 section p {
-    line-height: 1.5;
-    margin-top: 0;
-    /* Consistent text flow */
+  line-height: 1.5;
+  margin-top: 0;
+  color: light-dark(hsl(0 0 15%), hsl(0 0 80%));
+  /* Consistent text flow */
 }
 
 section:has(ul) p:last-of-type {
-    margin-bottom: var(--mb-xs);
+  margin-bottom: var(--mb-xs);
 }
 
 section ul {
-    margin: 0;
-    padding-left: 2rem;
+  margin: 0;
+  padding-left: 2rem;
 }
 
 section ul li {
-    line-height: 1.5;
-    font-weight: normal;
+  line-height: 1.5;
+  font-weight: normal;
 }
 
 /* === Card Styles === */
 .bit-card {
-    padding: 1rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 1em;
-    transition: transform 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  padding: 1rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+  transition: transform 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
 .bit-card:hover {
-    transform: translateX(-5px);
-    /* Fixed non-standard 'translate' usage */
+  transform: translateX(-5px);
+  /* Fixed non-standard 'translate' usage */
 }
 
-.m-2{
-    margin: 1.25rem 0;
+.m-2 {
+  margin: 1.25rem 0;
 }
 
 /* === Responsive === */
 @media (max-width: 400px) {
-    .wrapper {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto;
-    }
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
 }

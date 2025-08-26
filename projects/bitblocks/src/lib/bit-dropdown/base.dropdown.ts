@@ -210,6 +210,8 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
    */
   @HostListener('document:click', ['$event.target'])
   private closeDropdown(target: HTMLElement) {
+    console.log(target);
+
     const clickedInside = this._elementRef.nativeElement.contains(target);
     if (!clickedInside) this.closeDrop();
   }
@@ -242,6 +244,7 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
   }
 
   public onEnter() {
+    if (this.optionFocusIndex == -1) return;
     const option = this.activeOptions.at(this.optionFocusIndex);
 
     if (!option) return;

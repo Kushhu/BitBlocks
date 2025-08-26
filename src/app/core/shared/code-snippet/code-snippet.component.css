@@ -1,67 +1,59 @@
 .code {
-    /* width: min(100%, 90vw); */
-    max-width: 90vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    background-color: #ffffff50;
-    border-radius: 0.3rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    position: relative;
+  max-width: calc(100vw - 3rem);
+  width: 100%;
+  border: 1px solid light-dark(hsl(0 0 10 / 0.2), hsl(0 0 90 / 0.1));
+  border-radius: 1rem;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  position: relative;
+  background-color: light-dark(white, hsl(0 0 5%));
 }
 
 .code button {
-    position: absolute;
-    top: 0.5rem;
-    right: 1rem;
-    border: unset;
-    background: unset;
-    padding: 0.3rem;
-    border-radius: 0.5rem;
-    font-family: inherit;
-    font-size: 1.25rem;
-    transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
-    opacity: 0;
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  border: unset;
+  background: unset;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 1.25rem;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  opacity: 0;
 }
 
 .code:hover button {
-    opacity: 1;
+  opacity: 1;
 }
 
 .code button:active {
-    scale: 0.9;
+  scale: 0.9;
 }
 
 .code button:hover {
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.1);
-}
-
-.code:hover::after {
-    content: "copy";
-    font-size: 0.8rem;
-    position: absolute;
-    top: -1rem;
-    right: 0;
-    z-index: 10
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .code:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.078);
-    /* translate: 0px -2px; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.078);
+  /* translate: 0px -2px; */
 }
 
 .code p {
-    background-color: rgba(255, 200, 200, 0.2);
-    margin: 0;
-    padding: 1rem;
+  background-color: hsl(from var(--scheme-100) h s l / 0.5);
+  margin: 0;
+  padding: 1rem;
 }
 
 .code:has(p) {
-    padding: 0;
+  padding: 0;
 }
 
 .code pre {
-    padding: 1rem;
-    overflow: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  overflow: auto;
+
+  background-color: light-dark(white, hsl(0 0 5%));
 }

@@ -9,10 +9,12 @@ section .header {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem;
+  color: light-dark(hsl(0 0 5%), hsl(0 0 90%));
 }
 
 section p {
   line-height: 1.5rem;
+  color: light-dark(hsl(0 0 15%), hsl(0 0 80%));
 }
 
 section .header h2::target-text {

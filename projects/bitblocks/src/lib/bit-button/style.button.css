@@ -4,7 +4,7 @@ button.bit-btn {
   padding: 0.5rem 1rem;
   background: unset;
   border: unset;
-  color: rgb(161, 0, 0);
+  color: var(--scheme-700);
   font-family: inherit;
   border-radius: 0.6rem;
   font-size: 1.1rem;
@@ -21,7 +21,8 @@ button.bit-btn:active {
 button.bit-btn.bit-btn-disable {
   opacity: 0.7;
   pointer-events: none;
-  color: rgba(47, 47, 47, 0.5) !important;
+  color: rgba(35, 35, 35, 0.5) !important;
+  border-color: rgba(35, 35, 35, 0.5) !important;
   cursor: not-allowed !important;
 }
 
@@ -31,7 +32,7 @@ button.bit-btn-loading span {
   margin-right: 0.5rem;
   width: 1rem;
   height: 1rem;
-  border: 2px solid rgba(197, 0, 0, 0.7);
+  border: 2px solid var(--scheme-700);
   border-radius: 0.5rem;
   border-bottom-color: transparent;
   animation: 800ms cubic-bezier(0.32, 0.58, 0.61, 0.38) infinite rotate-loader;
@@ -40,31 +41,48 @@ button.bit-btn-loading span {
 /* Fill Button */
 
 button.bit-btn.bit-fill-btn {
-  color: rgb(161, 0, 0);
-  background-color: rgb(255, 233, 233);
+  color: hsl(from var(--scheme-500) h s 98%);
+  background-color: var(--scheme-500);
+}
+
+button.bit-btn.bit-fill-btn.bit-btn-disable {
+  background-color: var(--scheme-200);
+  color: rgba(35, 35, 35, 0.5) !important;
 }
 
 button.bit-btn.bit-fill-btn:active {
   translate: 0 2px;
 }
 
+button.bit-btn.bit-fill-btn.bit-btn-disable {
+  color: light-dark(rgba(35, 35, 35, 0.5), rgba(220, 220, 220, 0.5)) !important;
+}
+
 /* Text Button */
 
 button.bit-btn.bit-text-btn:active {
-  background-color: rgba(255, 233, 233, 0.7);
+  background-color: var(--scheme-100);
+  translate: 0 2px;
+}
+
+button.bit-btn.bit-text-btn.bit-btn-disable {
+  color: light-dark(rgba(35, 35, 35, 0.5), rgba(232, 232, 232, 0.5)) !important;
 }
 
 /* Outlined Button */
 
 button.bit-btn.bit-outlined-btn {
-  color: rgb(161, 0, 0);
-  border: 1px solid rgb(255, 188, 188);
+  color: var(--scheme-500);
+  border: 1px solid var(--scheme-500);
 }
 
 button.bit-btn.bit-outlined-btn:active {
-  background-color: rgb(255, 188, 188);
+  background-color: var(--scheme-100);
+  translate: 0 2px;
 }
-
+button.bit-btn.bit-outlined-btn.bit-btn-disable {
+  color: light-dark(rgba(35, 35, 35, 0.5), rgba(232, 232, 232, 0.5)) !important;
+}
 @keyframes rotate-loader {
   0% {
     rotate: 0deg;

@@ -15,6 +15,15 @@
             <!-- <li routerLinkActive="active" routerLink="breadcrumbs"> Breadcrumbs </li> -->
             <li routerLinkActive="active" routerLink="layout"> Layout </li>
             <li routerLinkActive="active" routerLink="buttons"> Buttons </li>
+            <li style="flex: 1;"></li>
+            <li (click)="setTheme('bit-light')">light</li>
+            <li (click)="setTheme('bit-dark')">dark</li>
+
+            <li (click)="setColor('bit-purple')">purple</li>
+            <li (click)="setColor('bit-green')">green</li>
+            <li (click)="setColor('bit-orange')">orange</li>
+            <li (click)="setColor('bit-blue')">blue</li>
+            <li (click)="setColor('bit-red')">red</li>
         </ul>
     </nav>
     <main>
@@ -22,7 +31,8 @@
     </main>
     <footer>
         <code>
-            handcrafted by <a href="https://github.com/Kushhu">Kushagra 🏹</a>
+            <span style="font-size: small;"> handcrafted by</span>
+            <br> <a [style.color]="'var(--scheme-500)'" href="https://github.com/Kushhu">Kushagra Gangwal 🏹</a>
         </code>
     </footer>
 </div>

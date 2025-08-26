@@ -31,9 +31,9 @@
 
 .bit-option-selected {
     opacity: 1;
-    background-color: rgba(57, 255, 50, 0.1) !important;
+    background-color: hsla(118, 100%, 60%, 0.1) !important;
 }
 
 input[type='checkbox'] {
-    accent-color: rgb(0, 101, 7);
+    accent-color: var(--scheme-500)
 }

@@ -33,30 +33,17 @@ export class FormsComponent {
     styleUrl: './forms.component.css'
  })`
 
-  dropdownCode = 
-  `<bit-dropdown 
-  formControlName="Person"
-  id="person" 
-  [minHeight]="2" 
-  [searchable]="true" 
-  placeholder="Select person">
+  dropdownCode =`<bit-dropdown formControlName="Person"
+    id="person" [minHeight]="2" [searchable]="true" 
+    placeholder="Select person">
 
-  // option template iteration
-  @for (user of users$ | async; track user.id;let i = $index) {
-    <bit-option [value]="user.name">
+    @for (user of users$ | async; track user.id;) {
 
-        <div class="flex middle">
-            <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
-            <div>
-                {{ user.name }}
-                <br />
-                <small style="opacity: 0.5">
-                    {{ user.email }}
-                </small>
-            </div>
-        </div>
+      // options custom view
+      <bit-option [value]="user.name">
+          <app-profile-card [user]="user"></app-profile-card>
+      </bit-option>
 
-    </bit-option>
-  }
+    }
 </bit-dropdown>`
 }

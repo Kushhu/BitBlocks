@@ -12,5 +12,5 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   title = 'BitBlocks';
 
-  constructor(viewport: ViewportScroller) { viewport.setOffset([0, 16 * 4]) }
+  constructor(viewport: ViewportScroller) {  viewport.setOffset([0, 16 * 4]) }
 }

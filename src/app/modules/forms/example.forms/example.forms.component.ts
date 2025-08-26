@@ -3,15 +3,13 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 // import { BitDropdownModule, BitFormService, BitFormsModule, BitSeparatorComponent } from 'bitblocks';
 import { Observable, of } from 'rxjs';
+import { BitButtonModule } from '../../../../../projects/bitblocks/src/lib/bit-button/bit-button.module';
 import {
     BitDropdownModule,
     BitFormService,
-    BitFormsModule,
-    BitSeparatorComponent,
+    BitFormsModule
 } from '../../../../../projects/bitblocks/src/public-api';
-import { CodeSnippetComponent } from '../../../core/shared/code-snippet/code-snippet.component';
 import { Form } from './form.model';
-import { BitButtonModule } from '../../../../../projects/bitblocks/src/lib/bit-button/bit-button.module';
 
 @Component({
     selector: 'app-example-forms',
@@ -21,10 +19,8 @@ import { BitButtonModule } from '../../../../../projects/bitblocks/src/lib/bit-b
         NgOptimizedImage,
         BitFormsModule,
         CommonModule,
-        CodeSnippetComponent,
         BitDropdownModule,
         BitButtonModule,
-        BitSeparatorComponent,
     ],
     templateUrl: './example.forms.component.html',
     styleUrl: './example.forms.component.css',

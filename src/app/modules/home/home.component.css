@@ -1,17 +1,20 @@
 .grid-center {
-    height: 60dvh;
-    display: grid;
-    align-items: center;
-    justify-items: center;
-    margin-bottom: 100dvh;
+  height: 90dvh;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 100dvh;
 }
 
-.form-item{
-    max-width: 50rem;
+.form-item {
+  background-color: hsl(from var(--scheme-100) h s l);
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  max-width: 25rem;box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
 }
 
-@media (width<400px){
-    .form-item{
-        max-width: 100%;
-    }
+@media (width<400px) {
+  .form-item {
+    max-width: 100%;
+  }
 }

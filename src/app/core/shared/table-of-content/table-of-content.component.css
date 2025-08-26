@@ -1,50 +1,51 @@
 /* === Table of Contents === */
 :host {
-    position: sticky;
-    top: 5rem;
-    z-index: 2;
+  position: sticky;
+  top: 5rem;
+  z-index: 0;
 }
 
 .table-of-content ul li {
-    list-style: none;
-    transition: opacity 0.2s ease;
+  list-style: none;
+  transition: opacity 0.2s ease;
 }
 
 .table-of-content ul li:hover,
 li:hover a {
-    opacity: 1;
-    cursor: pointer;
+  opacity: 1;
+  cursor: pointer;
 }
 
 .table-of-content h4 {
-    margin: 0;
-    color: hwb(0 0% 100% / 0.4);
-    font-weight: normal;
-    margin-bottom: var(--mb-m);
+  margin: 0;
+  color: light-dark(hwb(0 0% 90% / 0.4), hsl(0, 0%, 60%));
+  font-weight: normal;
+  margin-bottom: var(--mb-m);
 }
 
 ul {
-    margin-top: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    row-gap: .5rem;
+  margin-top: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
 }
 
 a {
-    text-decoration: none;
-    opacity: 0.5;
-    width: 100%;
-    color: black;
+  text-decoration: none;
+  opacity: 0.5;
+  width: 100%;
+  color: light-dark(hsl(0 0% 5%), hsl(0, 0%, 90%));
 }
 
 a.active {
-    opacity: 1;
-    /* border-color: black !important; */
+  opacity: 1;
+  /* border-color: black !important; */
 }
 
-@media (width < 400px) {
-    .table-of-content {
-        display: none
-    }
+@media (width < 1200px) {
+  :host {
+    margin-top: 1rem;
+    position: initial;
+  }
 }

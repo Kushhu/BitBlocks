@@ -1,13 +1,12 @@
-
-@import url('../projects/bitblocks/src/lib/bit-button/style.button.css');
-@import url('../projects/bitblocks/src/lib/bit-forms/style.textbox.css');
-
+@import url("../projects/bitblocks/src/lib/bit-button/style.button.css");
+@import url("../projects/bitblocks/src/lib/bit-forms/style.textbox.css");
+@import url("../projects/bitblocks/src/lib/bit-colors/style.color.css");
 
 /* You can add global styles to this file, and also import other style files */
 * {
   box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
 }
@@ -33,6 +32,7 @@
 body,
 pre {
   margin: 0;
+  background-color: light-dark(white, hsl(0 0 3%));
 }
 
 a {
@@ -41,7 +41,7 @@ a {
 }
 
 code.highlight {
-  background-color: rgba(0, 0, 0, 0.1);
+  background: linear-gradient(45deg, var(--scheme-100), transparent);
   border-radius: 4px;
   padding: 2px 4px;
 }

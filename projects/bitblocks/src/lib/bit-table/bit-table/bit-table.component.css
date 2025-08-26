@@ -21,7 +21,10 @@ th {
     text-transform: capitalize;
     padding: 1rem;
     border-bottom: 1px solid light-dark(rgb(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
-    background-color: #ffe4e161;
+    /* background-color: var(--scheme-100); */
+    background-color: hsl(from var(--scheme-100) h s l / 0.5);
+    background-blend-mode: multiply;
+    color: var(--scheme-800);
 }
 
 th.resizable {

@@ -9,8 +9,8 @@
 .bit-dropdown-option:hover,
 .bit-dropdown-option-focus
  {
-    background-color: rgba(200, 193, 193, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: hsla(0, 6%, 77%, 0.1);
+    border: 1px solid hsla(0, 0%, 0%, 0.1);
 }
 
 .bit-option-selected {
