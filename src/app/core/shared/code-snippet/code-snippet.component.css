@@ -1,7 +1,8 @@
 .code {
   max-width: calc(100vw - 3rem);
   width: 100%;
-  border: 1px solid light-dark(hsl(0 0 10 / 0.2), hsl(0 0 90 / 0.1));
+  border: 1px solid var(--border-color);
+  overflow: hidden;
   border-radius: 1rem;
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
@@ -41,7 +42,7 @@
 }
 
 .code p {
-  background-color: hsl(from var(--scheme-100) h s l / 0.5);
+  background-color: hsl(from var(--scheme-100) h s l);
   margin: 0;
   padding: 1rem;
 }

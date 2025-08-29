@@ -1,10 +1,9 @@
 :root {
   --primary-color: hsl(117.9, 65%, 37%);
 
-  --primary-font: var(--scheme-500);
-  --primary-background: var(--scheme-100);
+  --border-color: light-dark(hsl(0 0 10 / 0.2), hsl(0 0 90 / 0.2));
 
-  color: hsl(0, 0, 80%);
+  color: var(--primary-font-color);
 
   /* GREEN */
   --green-100: hsl(123, 100%, 96%);
@@ -73,6 +72,10 @@
   --scheme-700: hsl(from var(--primary-color) h 53% 60%);
   --scheme-800: hsl(from var(--primary-color) h 69% 70%);
   --scheme-900: hsl(from var(--primary-color) h 98% 80%);
+
+  --heading-font-color: hsl(0 0 95%);
+  --primary-font-color: hsl(0 0 90%);
+  --secondory-font-color: hsl(0 0 80%);
 }
 
 :root[data-theme="bit-light"] {
@@ -86,6 +89,10 @@
   --scheme-700: hsl(from var(--primary-color) h 65% 27.5%);
   --scheme-800: hsl(from var(--primary-color) h 65% 17.75%);
   --scheme-900: hsl(from var(--primary-color) h 100% 8%);
+
+  --heading-font-color: hsl(0 0 5%);
+  --primary-font-color: hsl(0 0 10%);
+  --secondory-font-color: hsl(0 0 20%);
 }
 
 :root[data-color="bit-purple"] {

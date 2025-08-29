@@ -10,18 +10,19 @@ import {
     BitFormsModule
 } from '../../../../../projects/bitblocks/src/public-api';
 import { Form } from './form.model';
+import { CodeSnippetComponent } from "@shared/code-snippet/code-snippet.component";
 
 @Component({
     selector: 'app-example-forms',
     standalone: true,
     imports: [
-        ReactiveFormsModule,
-        NgOptimizedImage,
-        BitFormsModule,
-        CommonModule,
-        BitDropdownModule,
-        BitButtonModule,
-    ],
+    ReactiveFormsModule,
+    NgOptimizedImage,
+    BitFormsModule,
+    CommonModule,
+    BitDropdownModule,
+    BitButtonModule,
+],
     templateUrl: './example.forms.component.html',
     styleUrl: './example.forms.component.css',
 })

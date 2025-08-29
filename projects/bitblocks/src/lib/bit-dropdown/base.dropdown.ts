@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   Host,
+  HostBinding,
   HostListener,
   inject,
   Input,
@@ -129,8 +130,10 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
    * @use isOpen to check state
    */
   public openDrop = () => {
+    if (this.isOpen) return;
     this.isOpen = true;
     this.disableBodyScroll();
+    setTimeout(() => this.searchEle.nativeElement.focus());
   };
 
   /**
@@ -141,6 +144,7 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
    */
   public closeDrop = () => {
     if (this.isOpen) this.enableBodyScroll();
+    this.onTouched();
     this.isOpen = false;
     this.optionFocusIndex = -1;
   };
@@ -205,13 +209,16 @@ export abstract class BitBaseDropdown<TOption extends BitBaseOption>
 
   //#region Host Listners
 
+  @HostBinding('style.minWidth')
+  @Input() width!: string;
+
+
   /** Outside DOM Click
    *  closes option list if clicked outside current element
    */
   @HostListener('document:click', ['$event.target'])
   private closeDropdown(target: HTMLElement) {
-    console.log(target);
-
+    if (!this.isOpen) return;
     const clickedInside = this._elementRef.nativeElement.contains(target);
     if (!clickedInside) this.closeDrop();
   }

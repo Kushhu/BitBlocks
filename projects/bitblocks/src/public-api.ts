@@ -9,4 +9,4 @@ export * from './lib/bit-dropdown/bit-dropdown.module'
 export * from './lib/bit-tab/bit-tab.module'
 export * from './lib/bit-button/bit-button.module'
 
-export * from './lib/bit-forms/helpers/bit.form.service'
+export * from './lib/bit-forms/services/bit.form.service'

@@ -28,7 +28,7 @@ form {
 .error {
   max-height: 0.5rem;
   font-size: 0.8rem;
-  color: light-dark(var(--red-500), var(--red-600));
+  color: var(--red-400);
   margin-left: 0.5rem;
   margin-top: 0.2rem;
   translate: 0 -10px;

@@ -40,7 +40,7 @@
             </label>
             <input bitPhone minlength="10" maxlength="10" placeholder="ex: 89XXXXX90 " id="Phone" autocomplete="mobile"
                 formControlName="Phone" />
-
+            
             <p class="error"
                 [hidden]="_bitHelper.control(formModel.form,'Phone').anyError">
                 please ensure your mobile is 10 digits
@@ -73,11 +73,11 @@
             </bit-dropdown>
 
             <div class="error"
-                [hidden]="_bitHelper.control(formModel.form,'Person').anyError">
+                [hidden]="!_bitHelper.error(formModel.form,'Person')?.required">
                 please select one team memeber
             </div>
         </div>
-
+        
         <div class="field">
             <label for="person">
                 Team members
@@ -87,7 +87,7 @@
             </label>
 
             <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="Select multiple memebers"
-                formControlName="Categories">
+                formControlName="Categories" [min]="2" [max]="3">
                 @for (user of users$ | async; track user.id;let i = $index) {
                 <bit-checked-option [value]="user.id">
                     <div class="flex middle" [attr.aria-label]="user.name">
@@ -101,10 +101,21 @@
                 }
             </bit-multi-dropdown>
             
-            <div class="error"
-                [hidden]="_bitHelper.control(formModel.form,'Person').anyError">
-                please select team memebers
-            </div>
+            @if(_bitHelper.error(formModel.form,'Categories')?.required){
+                <div class="error">
+                    please select team memebers
+                </div>
+            }
+            @else if (_bitHelper.error(formModel.form,'Categories')?.min) {
+                <div class="error">
+                    please select minimum of 2 memebrs
+                </div>
+            }
+            @else if (_bitHelper.error(formModel.form,'Categories')?.max) {
+                <div class="error">
+                    max 3 memebrs allowed
+                </div>
+            }
         </div>
 
         <div class="field">
@@ -115,17 +126,21 @@
                 }
             </label>
             <input bitTextbox id="date" type="date" formControlName="Date" />
+
+             <div class="error"
+                [hidden]="!_bitHelper.error(formModel.form,'Date')?.required">
+                please select a date
+            </div>
         </div>
 
         <div class="action-btn">
             <button bitTextButton>close</button>
-            <button tabindex="0" type="submit" bitFillButton [loading]="loading" (click)="submit()"
-                [disabled]="!formModel.form.valid">Submit</button>
+            <button bitFillButton [loading]="loading" (click)="submit()"
+            [disabled]="!formModel.form.valid">Submit</button>
         </div>
     </form>
 
     <!-- <bit-separator></bit-separator> -->
-
 
     <!-- <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet> -->
 </div>

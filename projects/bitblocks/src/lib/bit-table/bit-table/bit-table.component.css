@@ -2,7 +2,7 @@ table {
     width: 100%;
     font-family: inherit;
 
-    border: 1px solid light-dark(rgb(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    border: 1px solid var(--border-color);
     border-bottom: none;
     border-collapse: collapse;
 }
@@ -20,7 +20,7 @@ th {
     text-align: left;
     text-transform: capitalize;
     padding: 1rem;
-    border-bottom: 1px solid light-dark(rgb(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    border-bottom: 1px solid var(--border-color);
     /* background-color: var(--scheme-100); */
     background-color: hsl(from var(--scheme-100) h s l / 0.5);
     background-blend-mode: multiply;
@@ -35,7 +35,7 @@ th.resizable {
 td {
     color: light-dark(rgb(0, 0, 0, 0.8), rgba(255, 255, 255, 0.8));
     padding: 0.8em 1rem;
-    border-bottom: 1px solid light-dark(rgb(0, 0, 0, 0.1), rgba(255, 255, 255, 0.1));
+    border-bottom: 1px solid var(--border-color);
 }
 
 .bit-table-cell-overflow-3 {

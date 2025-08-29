@@ -46,8 +46,14 @@
         <h4>Loading Animation</h4>
 
         <div class="button-list">
-            <button bitFillButton width="10px" (click)="submit()" [loading]="loading">
-                Submit Application 🏹
+            <button bitFillButton width="100%" (click)="submit()" [loading]="loading">
+                Submit Application 
+            </button>
+            <button bitOutlinedButton (click)="submit()" [loading]="loading">
+                Submit
+            </button>
+            <button bitTextButton (click)="submit()" [loading]="loading">
+                Close
             </button>
 
         </div>

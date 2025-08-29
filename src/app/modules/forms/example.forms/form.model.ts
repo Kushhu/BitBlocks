@@ -6,11 +6,11 @@ export class Form {
     }
 
     static form = new FormGroup({
-        Name: new FormControl('', [Validators.required]),
-        Email: new FormControl(),
-        Phone: new FormControl('', [Validators.required]),
-        Date: new FormControl('', [Validators.required]),
-        Person: new FormControl(),
-        Categories: new FormControl(null, [Validators.required])
+        Name: new FormControl(null, [Validators.required]),
+        Email: new FormControl(null, []),
+        Phone: new FormControl(null, [Validators.required]),
+        Date: new FormControl(null, [Validators.required]),
+        Person: new FormControl('Noah Kim'),
+        Categories: new FormControl('', [Validators.required])
     })
 }

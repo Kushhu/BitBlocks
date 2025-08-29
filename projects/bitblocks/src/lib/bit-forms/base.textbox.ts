@@ -28,5 +28,14 @@ export abstract class BaseTextbox implements Validator {
     }
 
 
+    makeValid() {
+        this.remove.classList('bit-input-invalid');
+        this.add.classList('bit-input-valid');
+    }
+
+    makeInvalid() {
+        this.remove.classList('bit-input-valid');
+        this.add.classList('bit-input-invalid');
+    }
 
 }

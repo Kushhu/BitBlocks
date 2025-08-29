@@ -98,7 +98,7 @@ img {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-  background-color: light-dark(var(--scheme-100),var(--scheme-300));
+  background-color: light-dark(var(--scheme-100), var(--scheme-300));
   border-radius: 0.5rem;
   padding: 0 6px;
 }

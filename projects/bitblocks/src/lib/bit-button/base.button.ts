@@ -10,6 +10,9 @@ export abstract class BitBaseButton {
   @HostBinding(`class.${BTN_LOADING_CLASS}`)
   private isLoading!: boolean;
 
+  @HostBinding('attr.type')
+  @Input() public type = 'button';
+
   @Input() public set loading(state: boolean) {
     if (state) {
       this.disable()
@@ -28,16 +31,13 @@ export abstract class BitBaseButton {
   @Input() public disabled!: boolean;
 
   @HostBinding('style.minWidth')
-  @Input()
-  width!: string;
+  @Input() width!: string;
 
   @HostBinding('style.color')
-  @Input()
-  textColor!: string
+  @Input() textColor!: string
 
   @HostBinding('ariaLabel')
-  @Input()
-  label!: string;
+  @Input() label!: string;
 
   private button: ElementRef<HTMLButtonElement> = inject(ElementRef<HTMLButtonElement>);
   private renderer = inject(Renderer2);

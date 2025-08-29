@@ -12,13 +12,10 @@ section .header {
   color: light-dark(hsl(0 0 5%), hsl(0 0 90%));
 }
 
-section p {
+section p,
+ul {
   line-height: 1.5rem;
   color: light-dark(hsl(0 0 15%), hsl(0 0 80%));
-}
-
-section .header h2::target-text {
-  color: red;
 }
 
 .wrapper {

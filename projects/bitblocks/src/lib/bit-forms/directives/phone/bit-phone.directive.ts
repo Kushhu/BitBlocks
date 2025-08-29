@@ -1,7 +1,7 @@
-import { Directive, HostBinding, HostListener } from '@angular/core';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validators } from '@angular/forms';
-import { BitRegEx } from '../../../core/utility/bit.regex';
-import { BitTextboxDirective } from '../text/bit-textbox.directive';
+import { Directive, HostListener } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
+import { BaseTextbox } from '../../base.textbox';
+import { BitErrors, BitFieldRange, BitFieldRequired, BitFieldValidator } from '../../../bit-errors';
 
 @Directive({
   selector: '[bitPhone]',
@@ -14,7 +14,7 @@ import { BitTextboxDirective } from '../text/bit-textbox.directive';
     },
   ]
 })
-export class BitPhoneDirective extends BitTextboxDirective {
+export class BitPhoneDirective extends BaseTextbox {
 
   constructor() {
     super();
@@ -22,7 +22,6 @@ export class BitPhoneDirective extends BitTextboxDirective {
   }
 
   setup() {
-    this.regExp = BitRegEx.Phone;
     this.add.attribute('type', 'tel')
     this.add.attribute('autocomplete', 'mobile');
   }
@@ -35,47 +34,24 @@ export class BitPhoneDirective extends BitTextboxDirective {
     }
   }
 
-  @HostBinding('class.bit-input-invalid')
-  invalid = false;
-
-  @HostBinding('class.bit-input-valid')
-  valid = false;
-
   override validate(control: AbstractControl): ValidationErrors | null {
     const minLength = this.input.nativeElement.minLength;
     const maxLength = this.input.nativeElement.maxLength;
 
-    if (control.hasValidator(Validators.required) && !control.value && control.dirty) {
-      this.invalid = true;
-      this.valid = false;
-    }
+    const field = new BitFieldValidator([new BitFieldRequired(), new BitFieldRange(minLength, maxLength)]);
 
-    if (minLength > 0)
+    const errors = field.validate(control);
 
-      if (minLength <= control.value.length) {
-        this.valid = true;
-        this.invalid = false;
-      }
-      else {
-        if (!control.dirty) return null;
-        this.invalid = true;
-        this.valid = false;
-      }
+    if (control.pristine) return errors;
 
-    if (maxLength > 0)
+    if (this.hasErrors(errors)) this.makeInvalid();
 
-      if (control.value.length >= maxLength) {
-        this.valid = true;
-        this.invalid = false;
-      } else {
-        if (!control.dirty) return null;
-        this.invalid = true;
-        this.valid = false;
-      }
+    if (!this.hasErrors(errors)) this.makeValid();
 
-    return null;
+    return errors;
   }
 
-}
+  hasErrors = (errors: BitErrors) => Object.keys(errors).length
 
-// { "minlength": { "requiredLength": 10, "actualLength": 2 }, "minLength": 2 } 
+
+}

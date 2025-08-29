@@ -1,7 +1,7 @@
-import { Directive, OnChanges, SimpleChanges } from '@angular/core';
-import { BitTextboxDirective } from '../text/bit-textbox.directive';
-import { BitRegEx } from '../../../core/utility/bit.regex';
-import { NG_VALIDATORS } from '@angular/forms';
+import { Directive } from '@angular/core';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors } from '@angular/forms';
+import { BaseTextbox } from '../../base.textbox';
+import { BitFieldValidator, BitFieldRequired, BitFieldEmail, BitErrors } from '../../../bit-errors';
 
 @Directive({
   selector: '[bitEmail]',
@@ -14,23 +14,34 @@ import { NG_VALIDATORS } from '@angular/forms';
     },
   ]
 })
-export class BitEmailboxDirective extends BitTextboxDirective implements OnChanges {
+export class BitEmailboxDirective extends BaseTextbox {
 
   constructor() {
     super();
-    this.setup();
   }
 
   setup() {
-    this.regExp = BitRegEx.Email;
     this.add.attribute('type', 'email');
     this.add.attribute('autocomplete', 'email');
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['regExp'].firstChange) {
-      console.warn('Default Email Validation Overriden! : bitEmail.regEx externaly provided')
-    }
+  validate(control: AbstractControl): ValidationErrors | null {
+
+    const field = new BitFieldValidator([new BitFieldRequired(), new BitFieldEmail()]);
+
+    const errors = field.validate(control);
+
+    if (control.pristine) return errors;
+
+    if (this.hasErrors(errors)) this.makeInvalid();
+
+    if (!this.hasErrors(errors)) this.makeValid();
+
+    // if (!control.value && !errors.required) this.makeValid();
+
+    return errors;
   }
+
+  hasErrors = (errors: BitErrors) => Object.keys(errors).length;
 
 }

@@ -12,10 +12,10 @@ import {
   FormsModule,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
-  ValidationErrors,
-  Validators,
+  ValidationErrors
 } from '@angular/forms';
 import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
+import { BitErrors, BitFieldRange, BitFieldRequired, BitFieldValidator } from '../../bit-errors';
 
 @Component({
   selector: 'bit-multi-dropdown',
@@ -46,10 +46,13 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitBaseOption> {
 
   public selectedOption: ElementRef<HTMLDivElement>[] | null = []
   public override value!: any[] | null;
-  protected setOfValues = new Set();
+  protected setOfValues = new Set<any>();
+
+  readonly min = input<number>();
+  readonly max = input<number>();
 
   @ContentChildren(BitBaseOption)
-  protected options!: QueryList<BitBaseOption>;
+  protected readonly options!: QueryList<BitBaseOption>;
 
   public select(option: BitBaseOption | null): void {
 
@@ -58,12 +61,12 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitBaseOption> {
 
     if (option.selected) {
       const index = this.value.findIndex(o => o == option.value())
-      this.value.splice(index, 1)
+      this.value.splice(index, 1);
     }
 
     if (!option.selected) {
       this.selectedOption?.push(option.content)
-      this.value.push(option?.value())
+      this.value.push(option?.value());
     }
 
     this.setTemplateOptionList();
@@ -87,18 +90,24 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitBaseOption> {
   }
 
   protected remove(text: string) {
-    const optionToBeRemoved = this.options.find(o => o.content.nativeElement.innerText.toLowerCase() == text.toLowerCase())
+    const optionToBeRemoved = this.options.find(o => o.content.nativeElement.innerText.toLowerCase() == text.toLowerCase());
     if (optionToBeRemoved) this.select(optionToBeRemoved);
   }
 
-  public validate(control: AbstractControl): ValidationErrors | null {
-    if (control.hasValidator(Validators.required) && !this.selectedOption) {
-      if (control.dirty) this.valid = false;
-      return { required: true };
-    }
+  private hasErrors = (errors: BitErrors) => Object.keys(errors).length
 
-    if (control.dirty) this.valid = true;
-    return null;
+  public validate(control: AbstractControl<any[], any[]>): ValidationErrors | null {
+    const field = new BitFieldValidator([new BitFieldRequired(), new BitFieldRange(this.min(), this.max())]);
+
+    const errors = field.validate(control);
+
+    if (control.pristine) return errors;
+
+    if (this.hasErrors(errors)) this.valid = false;
+
+    if (!this.hasErrors(errors)) this.valid = true;
+
+    return errors;
   }
 
   protected override postWriteValue = () => {

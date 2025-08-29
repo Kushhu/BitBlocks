@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BitErrors } from '../../bit-errors/interfaces/error.type';
 
 type BitFormGroup<T> = FormGroup<{ [K in keyof T]: FormControl<T[K]> }>;
 
@@ -18,7 +19,7 @@ export class BitFormService {
     };
   }
 
-  error<T, K extends keyof T>(form: BitFormGroup<T>, key: K) {
-    return form.controls[key].errors
+  error<T, K extends keyof T>(form: BitFormGroup<T>, key: K): BitErrors | null {
+    return form.controls[key].touched ? form.controls[key].errors : null
   }
 }

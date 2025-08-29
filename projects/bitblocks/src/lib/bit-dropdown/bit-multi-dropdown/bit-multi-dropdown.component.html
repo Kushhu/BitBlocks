@@ -8,7 +8,7 @@
 
         @if (isLoading()) { <span class="bit-dropdown-placeholder"> Loading...  </span> }
 
-        @else if (valid === false && value != null) {
+        @else if (valid === false && !value?.length && setOfOptions.size) {
             <span class="bit-dropdown-placeholder">
                 Invalid Option : 
                 @for (item of setOfValues.values(); track $index) { 
