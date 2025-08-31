@@ -80,13 +80,13 @@
                     <bit-table [data]="products">
 
                         <ng-template #bitHeader>
-                            <th>Id</th>
+                            <th class="fit"><input type="checkbox"></th>
                             <th class="resizable">Product</th>
                             <th class="text-right">Price</th>
                         </ng-template>
 
                         <ng-template #bitRow let-row>
-                            <td> {{row.id}} </td>
+                            <td class="fit"> <input type="checkbox"> </td>
                             <td> {{row.title}} </td>
                             <td class="text-right"> {{row.price | currency : row.currency}} </td>
                         </ng-template>

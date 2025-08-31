@@ -81,3 +81,11 @@ p:last-of-type {
 .middle {
   align-items: center;
 }
+
+input[type="checkbox"] {
+  accent-color: var(--scheme-500);
+  cursor: pointer;
+}
+input[type="checkbox"]:hover {
+  box-shadow: 0 1px 1px 4px hsl(from var(--scheme-500) h s l / 0.1);
+}

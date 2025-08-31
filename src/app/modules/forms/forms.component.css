@@ -23,7 +23,7 @@ ul {
   display: grid;
   position: relative;
   align-items: start;
-  gap: 2rem;
+  gap: 4rem;
   grid-template-columns: 15rem 1fr 20rem;
 }
 

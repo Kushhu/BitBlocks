@@ -3,7 +3,7 @@
   display: grid;
   align-items: start;
   grid-template-columns: 15rem 0.8fr;
-  column-gap: 2rem;
+  column-gap: 4rem;
   margin: 1rem 0;
 }
 
@@ -22,7 +22,7 @@ section .header {
 
 section p,
 ul {
-  line-height: 1.5rem;
+  line-height: 2rem;
   color: light-dark(hsl(0 0 15%), hsl(0 0 80%));
 }
 
@@ -36,7 +36,7 @@ section ul {
 }
 
 section ul li {
-  line-height: 1.5;
+  line-height: 2rem;
   font-weight: normal;
 }
 

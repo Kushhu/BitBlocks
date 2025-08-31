@@ -1,5 +1,5 @@
 import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, ContentChildren, EventEmitter, input, Input, Output, QueryList, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ContentChildren, EventEmitter, input, Input, InputSignal, model, Output, QueryList, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { BitTableRowComponent } from '../bit-table-row/bit-table-row.component';
 import { BitTableCellComponent } from '../bit-table-cell/bit-table-cell.component';
 
@@ -11,35 +11,35 @@ import { BitTableCellComponent } from '../bit-table-cell/bit-table-cell.componen
   styleUrl: './bit-table.component.css',
   encapsulation: ViewEncapsulation.None
 })
-export class BitTableComponent<TList> implements AfterContentInit {
+export class BitTableComponent<TList extends { [key: string]: any }> implements AfterContentInit {
 
   /**
    * A root level data wrapper which includes all records 
    * 
    */
-  data = input<TList[]>();
+  @Input()
+  data?: TList[];
   contentRows: any[] = [];
+
+  sortDirection: 'aes' | 'des' | null = null;
 
   @Input() showTotalRecords?: boolean;
   @Input() resizableColumns?: boolean;
 
   @Input() columns?: (keyof TList)[];
 
-  @Input() view: 'default' | 'table' | 'cards' | 'both' = 'default';
-  @Output() viewChange = new EventEmitter();
+  view = model<'table' | 'cards' | 'both'>('table');
 
-  @ContentChild('bitHeader') headers!: TemplateRef<any>;
-  @ContentChild('bitRow') rows!: TemplateRef<any>;
-  @ContentChild("bitCard") cards!: TemplateRef<any>;
+  @ContentChild('bitHeader') headers?: TemplateRef<any>;
+  @ContentChild('bitRow') rows?: TemplateRef<any>;
+  @ContentChild("bitCard") cards?: TemplateRef<any>;
 
   @ContentChildren(BitTableRowComponent)
   contentRowsRef!: QueryList<BitTableRowComponent>;
 
   ngAfterContentInit(): void {
     this.catchContext();
-    setTimeout(() => {
-      this.initRowContent(this.contentRowsRef);
-    });
+    setTimeout(() => this.initRowContent(this.contentRowsRef));
     this.trackRowContent();
   }
 
@@ -67,8 +67,31 @@ export class BitTableComponent<TList> implements AfterContentInit {
 
   }
 
-  public originalOrder = (a: KeyValue<number, string>, b: KeyValue<number, string>): number => {
-    return 0;
+  filter(key: keyof TList) {
+
   }
 
+  activeSort!: keyof TList;
+
+  sort(key: keyof TList) {
+    if (this.sortDirection == null)
+      this.sortDirection = 'aes';
+
+    this.activeSort = key;
+
+    if (this.sortDirection == 'aes') {
+      this.data?.sort((a: any, b: any) => a[key] < b[key] ? -1 : 1)
+      this.sortDirection = 'des';
+      return;
+    }
+
+    if (this.sortDirection == 'des') {
+      this.data?.sort((a: any, b: any) => a[key] > b[key] ? -1 : 1)
+      this.sortDirection = 'aes'
+      return;
+    }
+
+  }
+
+  public originalOrder = (a: KeyValue<any, any>, b: KeyValue<any, any>): number => 0
 }
