@@ -1,12 +1,13 @@
 import { CommonModule, KeyValue, KeyValuePipe } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, ContentChildren, EventEmitter, input, Input, InputSignal, model, Output, QueryList, TemplateRef, ViewEncapsulation } from '@angular/core';
-import { BitTableRowComponent } from '../bit-table-row/bit-table-row.component';
+import { AfterContentInit, Component, computed, ContentChild, ContentChildren, ElementRef, inject, input, Input, model, QueryList, Renderer2, signal, TemplateRef, ViewChild, ViewChildren, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { BitTableCellComponent } from '../bit-table-cell/bit-table-cell.component';
+import { BitTableRowComponent } from '../bit-table-row/bit-table-row.component';
+import { CamelToSpacePipe } from '../../core/pipes/camelToSapce.pipe';
 
 @Component({
   selector: 'bit-table',
   standalone: true,
-  imports: [KeyValuePipe, CommonModule,],
+  imports: [KeyValuePipe, CommonModule, CamelToSpacePipe],
   templateUrl: './bit-table.component.html',
   styleUrl: './bit-table.component.css',
   encapsulation: ViewEncapsulation.None
@@ -17,18 +18,17 @@ export class BitTableComponent<TList extends { [key: string]: any }> implements 
    * A root level data wrapper which includes all records 
    * 
    */
-  @Input()
-  data?: TList[];
-  contentRows: any[] = [];
+  readonly data = input<TList[] | null>();
+  readonly columns = input<(keyof TList)[] | null>();
+  readonly columnsToBeDisplayed = computed(() => Object.keys(this.data()?.at(0) ?? {}));
 
-  sortDirection: 'aes' | 'des' | null = null;
+  readonly sortable = input<boolean>(false);
+  readonly view = model<'table' | 'cards' | 'both'>('table');
+
+  protected contentRows: any[] = [];
 
   @Input() showTotalRecords?: boolean;
   @Input() resizableColumns?: boolean;
-
-  @Input() columns?: (keyof TList)[];
-
-  view = model<'table' | 'cards' | 'both'>('table');
 
   @ContentChild('bitHeader') headers?: TemplateRef<any>;
   @ContentChild('bitRow') rows?: TemplateRef<any>;
@@ -59,8 +59,8 @@ export class BitTableComponent<TList extends { [key: string]: any }> implements 
     content.forEach((row) => {
       const cells = new Map();
       row.cells.forEach((cell: BitTableCellComponent, index: number) => {
-        if (!this.columns) return;
-        cells.set(this.columns[index], cell.value?.nativeElement.innerText);
+        if (!this.columns()) return;
+        cells.set(this.columns()?.at(index), cell.value?.nativeElement.innerText);
       })
       this.contentRows.push(cells);
     });
@@ -71,23 +71,33 @@ export class BitTableComponent<TList extends { [key: string]: any }> implements 
 
   }
 
-  activeSort!: keyof TList;
+  sortDirection = signal<'ascending' | 'descending' | null>(null);
+
+  activeSortColumn = signal<keyof TList | null>(null);
 
   sort(key: keyof TList) {
-    if (this.sortDirection == null)
-      this.sortDirection = 'aes';
+    if (!this.sortable()) return;
 
-    this.activeSort = key;
+    if (key != this.activeSortColumn()) this.sortDirection.set(null);
 
-    if (this.sortDirection == 'aes') {
-      this.data?.sort((a: any, b: any) => a[key] < b[key] ? -1 : 1)
-      this.sortDirection = 'des';
+    if (this.sortDirection() == null)
+      this.sortDirection.set('ascending');
+
+    this.activeSortColumn.set(key);
+
+    if (this.sortDirection() == 'ascending') {
+      this.data()?.sort((a: any, b: any) => a[key] < b[key] ? -1 : 1)
+      this.contentRows?.sort((a: any, b: any) => a.get(key) < b.get(key) ? -1 : 1)
+
+      this.sortDirection.set('descending');
       return;
     }
 
-    if (this.sortDirection == 'des') {
-      this.data?.sort((a: any, b: any) => a[key] > b[key] ? -1 : 1)
-      this.sortDirection = 'aes'
+    if (this.sortDirection() == 'descending') {
+      this.data()?.sort((a: any, b: any) => a[key] > b[key] ? -1 : 1)
+      this.contentRows?.sort((a: any, b: any) => a.get(key) > b.get(key) ? -1 : 1)
+
+      this.sortDirection.set('ascending')
       return;
     }
 

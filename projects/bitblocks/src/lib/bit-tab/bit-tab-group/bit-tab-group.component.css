@@ -23,7 +23,7 @@
 
 .bit-tab-nav button::after {
   content: "";
-  border-bottom: 3px solid var(--scheme-500);
+  /* border-bottom: 3px solid var(--scheme-500); */
   position: absolute;
   bottom: 0;
   left: 0;
@@ -46,10 +46,4 @@
 
 .bit-active-nav {
   opacity: 1 !important;
-}
-
-.bit-tab-content {
-  /* padding: 1rem 0; */
-  /* height: 30rem;
-  overflow-x: auto; */
 }

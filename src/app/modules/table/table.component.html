@@ -60,9 +60,9 @@
             </ul>
 
             <div class="m-2">
-                <app-code-snippet> {{"\<bit-table [data]=\"products\"> \</bit-table\>"}}</app-code-snippet>
+                <app-code-snippet> {{"\<bit-table [data]=\"subscriptions\"  [sortable]=\"true\"\> \</bit-table\>"}}</app-code-snippet>
             </div>
-            <bit-table [data]="products"> </bit-table>
+            <bit-table [data]="subscriptions"  [sortable]="true"> </bit-table>
 
         </section>
 
@@ -80,15 +80,19 @@
                     <bit-table [data]="products">
 
                         <ng-template #bitHeader>
-                            <th class="fit"><input type="checkbox"></th>
-                            <th class="resizable">Product</th>
-                            <th class="text-right">Price</th>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th class="resizable">Product</th>
+                                <th class="text-right">Price</th>
+                            </tr>
                         </ng-template>
 
                         <ng-template #bitRow let-row>
-                            <td class="fit"> <input type="checkbox"> </td>
-                            <td> {{row.title}} </td>
-                            <td class="text-right"> {{row.price | currency : row.currency}} </td>
+                            <tr>
+                                <td class="fit"> <input type="checkbox"> </td>
+                                <td> {{row.title}} </td>
+                                <td class="text-right"> {{row.price | currency : row.currency}} </td>
+                            </tr>
                         </ng-template>
 
                     </bit-table>
@@ -155,5 +159,7 @@
 
         </section>
     </div>
+
+
 
 </div>

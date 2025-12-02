@@ -14,7 +14,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { SafePipe } from '../../core/utility/safe.pipe';
+import { SafePipe } from '../../core/pipes/safe.pipe';
 import { BitBaseDropdown, BitBaseOption } from '../base.dropdown';
 
 @Component({

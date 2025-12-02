@@ -1,34 +1,30 @@
 @if (view() == 'table' || view() == 'both') {
-<div class="table-wrapper">
-    <table>
-        <thead>
-            <tr>
+    <div class="table-wrapper">
+        <table>
+            <thead>
                 <ng-container
                     *ngTemplateOutlet="headers || defaultHeaders; context: { $implicit: data }"></ng-container>
-            </tr>
-        </thead>
-
-        <tbody>
-            @for (row of data; track row) {
-                <tr>
+            </thead>
+    
+            <tbody>
+                @for (row of data(); track row) {
                     <ng-container *ngTemplateOutlet="rows || defaultRow; context: { $implicit: row }"></ng-container>
-                </tr>
-            }
-            @for (row of contentRows; track $index) {
-                <tr>
-                    @for (cell of row | keyvalue : originalOrder; track $index) {
-                        <td> {{ cell.value }} </td>
-                    }
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+                }
+                @for (row of contentRows; track $index) {
+                    <tr>
+                        @for (cell of row | keyvalue : originalOrder; track $index) {
+                            <td> {{ cell.value }} </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
 
 @if (view() == 'cards' || view() == 'both' ) {
     <div class="card-wrapper">
-        @for (row of data; track row) {
+        @for (row of data(); track row) {
             <ng-container *ngTemplateOutlet="cards || defaultCard; context: { $implicit: row }"></ng-container>
         }
     </div>
@@ -36,48 +32,97 @@
 
 @if (showTotalRecords) {
     <div class="table-footer">
-        {{ data?.length }} Records
+        {{ data()?.length }} Records
     </div>
 }
 
 
 
 <ng-template #defaultHeaders let-data>
-    @if (columns?.length) {
-        @for (column of columns; track columns) {
-            <th [class.resizable]="resizableColumns">{{column}}</th>
+    <tr>
+        @if (columns()?.length) {
+            @for (column of columns(); track column) {
+                <th #tableHeader 
+                    [class.resizable]="resizableColumns" 
+                    [class.bit-active-sort]="activeSortColumn() == column" 
+                    (click)="sort(column)">
+                    {{column.toString() | camelToSpace}}
+                    @if(sortable()){
+                        <ng-container *ngTemplateOutlet="sortTemplate; context: { $implicit: column }"></ng-container>
+                    }
+                </th>
+            }
         }
-    }
-    @else {
-        @for (header of data[0] | keyvalue : originalOrder; track header;) {
-            <th [class.resizable]="resizableColumns" (click)="sort(header.key)">{{ header.key}}</th>
+        @else {
+            @for (header of columnsToBeDisplayed(); track header;) {
+                <th #tableHeader 
+                    [class.resizable]="resizableColumns" 
+                    [class.bit-active-sort]="activeSortColumn() == header" 
+                    (click)="sort(header)"> 
+                    {{ header | camelToSpace}}
+                    @if(sortable()){
+                        <ng-container *ngTemplateOutlet="sortTemplate; context: { $implicit: header }"></ng-container>
+                    }
+                </th>
+            }
         }
-    }
+    </tr>
 </ng-template>
 
 <ng-template #defaultRow let-row>
-    @if (columns?.length) {
-        @for (column of columns; track columns) {
-            <td>
-                <div class="bit-table-cell-overflow-3">{{ row[column] ?? "" }}</div>
-            </td>
+    <tr>
+        @if (columns()?.length) {
+            @for (column of columns(); track column) {
+                <td>
+                    <div class="bit-table-cell-overflow-3">{{ row[column] ?? "" }}</div>
+                </td>
+            }
         }
-    }
-    @else {
-        @for (item of row | keyvalue : originalOrder; track item;) {
-            <td>
-                <div class="bit-table-cell-overflow-3">{{ item.value }}</div>
-            </td>
+        @else {
+            @for (item of row | keyvalue : originalOrder; track item;) {
+                <td>
+                    <div class="bit-table-cell-overflow-3">{{ item.value }}</div>
+                </td>
+            }
         }
-    }
+    </tr>
 </ng-template>
 
 <ng-template #defaultCard let-row>
     <div class="bit-table-card">
-        @for (item of row | keyvalue; track item;) {
+        @for (item of row | keyvalue : originalOrder; track item;) {
             <p>
                 <label>{{item.key}} </label> <br> {{ item.value }}
             </p>
         }
     </div>
+</ng-template>
+
+<!--  add core functionality for sort header to unite all type of header
+
+ Usage:
+    - if provided by TList[]
+    - input of `columns` array
+    - if user declared row template is provided
+-->
+
+<ng-template #sortTemplate let-header>
+    <span class="bit-table-header-sort">
+        @if(sortDirection() == null || header != activeSortColumn()) {
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5.70711 16.1359C5.31659 16.5264 5.31659 17.1596 5.70711 17.5501L10.5993 22.4375C11.3805 23.2179 12.6463 23.2176 13.4271 22.4369L18.3174 17.5465C18.708 17.156 18.708 16.5228 18.3174 16.1323C17.9269 15.7418 17.2937 15.7418 16.9032 16.1323L12.7176 20.3179C12.3271 20.7085 11.6939 20.7085 11.3034 20.3179L7.12132 16.1359C6.7308 15.7454 6.09763 15.7454 5.70711 16.1359Z" />
+                <path d="M18.3174 7.88675C18.708 7.49623 18.708 6.86307 18.3174 6.47254L13.4252 1.58509C12.644 0.804698 11.3783 0.805008 10.5975 1.58579L5.70711 6.47615C5.31658 6.86667 5.31658 7.49984 5.70711 7.89036C6.09763 8.28089 6.7308 8.28089 7.12132 7.89036L11.307 3.70472C11.6975 3.31419 12.3307 3.31419 12.7212 3.70472L16.9032 7.88675C17.2937 8.27728 17.9269 8.27728 18.3174 7.88675Z"/>
+            </svg>
+        }
+        @if(sortDirection() == 'ascending' && header == activeSortColumn()) {
+            <svg title="low to high" fill="#000000" viewBox="0 0 16 16" id="sort-up-16px" xmlns="http://www.w3.org/2000/svg">
+                <path id="Path_34" data-name="Path 34" d="M-14.146,3.146a.5.5,0,0,1,0,.708A.5.5,0,0,1-14.5,4a.5.5,0,0,1-.354-.146L-17,1.707V15.5a.5.5,0,0,1-.5.5.5.5,0,0,1-.5-.5V1.707l-2.146,2.147a.5.5,0,0,1-.708,0,.5.5,0,0,1,0-.708l3-3a.518.518,0,0,1,.163-.109.505.505,0,0,1,.382,0,.518.518,0,0,1,.163.109ZM-12.5,3h1a.5.5,0,0,0,.5-.5.5.5,0,0,0-.5-.5h-1a.5.5,0,0,0-.5.5A.5.5,0,0,0-12.5,3Zm0,4h3A.5.5,0,0,0-9,6.5.5.5,0,0,0-9.5,6h-3a.5.5,0,0,0-.5.5A.5.5,0,0,0-12.5,7Zm0,4h5a.5.5,0,0,0,.5-.5.5.5,0,0,0-.5-.5h-5a.5.5,0,0,0-.5.5A.5.5,0,0,0-12.5,11Zm7,3h-7a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h7a.5.5,0,0,0,.5-.5A.5.5,0,0,0-5.5,14Z" transform="translate(21 0)"/>
+            </svg>
+        }
+        @if (sortDirection() == 'descending' && header == activeSortColumn()) {
+            <svg title="high to low" fill="#000000" viewBox="0 0 16 16" id="sort-down-16px" xmlns="http://www.w3.org/2000/svg">
+                <path id="Path_35" data-name="Path 35" d="M-16.146,12.146a.5.5,0,0,1,0,.708l-3,3a.518.518,0,0,1-.163.109A.5.5,0,0,1-19.5,16a.5.5,0,0,1-.191-.038.518.518,0,0,1-.163-.109l-3-3a.5.5,0,0,1,0-.708.5.5,0,0,1,.708,0L-20,14.293V.5a.5.5,0,0,1,.5-.5.5.5,0,0,1,.5.5V14.293l2.146-2.147A.5.5,0,0,1-16.146,12.146ZM-14.5,3h1a.5.5,0,0,0,.5-.5.5.5,0,0,0-.5-.5h-1a.5.5,0,0,0-.5.5A.5.5,0,0,0-14.5,3Zm0,4h3a.5.5,0,0,0,.5-.5.5.5,0,0,0-.5-.5h-3a.5.5,0,0,0-.5.5A.5.5,0,0,0-14.5,7Zm0,4h5a.5.5,0,0,0,.5-.5.5.5,0,0,0-.5-.5h-5a.5.5,0,0,0-.5.5A.5.5,0,0,0-14.5,11Zm7,3h-7a.5.5,0,0,0-.5.5.5.5,0,0,0,.5.5h7a.5.5,0,0,0,.5-.5A.5.5,0,0,0-7.5,14Z" transform="translate(23)"/>
+            </svg>
+        }
+    </span>
 </ng-template>

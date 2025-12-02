@@ -1,7 +1,7 @@
 :root {
   --primary-color: hsl(117.9, 65%, 37%);
 
-  --border-color: light-dark(hsl(0 0 10 / 0.2), hsl(0 0 90 / 0.2));
+  --border-color: light-dark(hsl(0 0 10 / 0.1), hsl(0 0 90 / 0.1));
 
   color: var(--primary-font-color);
 
