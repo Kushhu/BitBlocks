@@ -25,15 +25,16 @@
   width: 1.5rem;
 }
 
-img {
+svg {
   transition: all 250ms ease-in;
+  fill: var(--secondory-font-color);
 }
 
-.bit-dropdown-wrapper:has(.bit-option-list) .bit-dropdown-icon img {
+.bit-dropdown-wrapper:has(.bit-option-list) .bit-dropdown-icon svg {
   rotate: 180deg;
 }
 
-.bit-dropdown-wrapper .bit-dropdown-icon img {
+.bit-dropdown-wrapper .bit-dropdown-icon svg {
   height: 100%;
   width: 100%;
 }
