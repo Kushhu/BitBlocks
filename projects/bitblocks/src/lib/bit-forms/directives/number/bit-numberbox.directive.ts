@@ -27,15 +27,17 @@ export class BitNumberboxDirective extends BaseTextbox {
 
   override validate(control: AbstractControl): ValidationErrors | null {
 
-    // const validator = new BitFieldValidator([new BitFieldRequired()])
+    const validator = new BitFieldValidator([new BitFieldRequired()])
 
-    // const errors = validator.validate(control);
+    const errors = validator.validate(control);
 
-    if (control.errors) this.makeInvalid();
+    if (control.pristine) return errors;
 
-    if (!control.errors) this.makeValid();
+    if (this.hasErrors(errors)) this.makeInvalid();
 
-    return control.errors;
+    if (!this.hasErrors(errors)) this.makeValid();
+
+    return errors;
   }
 
   hasErrors = (errors: BitErrors) => Object.keys(errors).length

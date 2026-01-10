@@ -35,20 +35,20 @@ export class BitPhoneDirective extends BaseTextbox {
   }
 
   override validate(control: AbstractControl): ValidationErrors | null {
-    // const minLength = this.input.nativeElement.minLength;
-    // const maxLength = this.input.nativeElement.maxLength;
+    const minLength = this.input.nativeElement.minLength;
+    const maxLength = this.input.nativeElement.maxLength;
 
-    // const field = new BitFieldValidator([new BitFieldRequired()]);
+    const field = new BitFieldValidator([new BitFieldRequired()]);
 
-    // const errors = field.validate(control);
+    const errors = field.validate(control);
+    
+    if (control.pristine) return errors;
 
-    // if (control.pristine) return errors;
+    if (this.hasErrors(errors)) this.makeInvalid();
 
-    if (control.errors) this.makeInvalid();
+    if (!this.hasErrors(errors)) this.makeValid();
 
-    if (!control.errors) this.makeValid();
-
-    return control.errors;
+    return errors;
   }
 
   hasErrors = (errors: BitErrors) => Object.keys(errors).length
