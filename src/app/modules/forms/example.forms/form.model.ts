@@ -10,7 +10,7 @@ export class Form {
         Email: new FormControl(null, []),
         Phone: new FormControl(null, [Validators.required]),
         Date: new FormControl(null, [Validators.required]),
-        Person: new FormControl('Noah Kim'),
-        Categories: new FormControl('', [Validators.required])
+        Person: new FormControl(null),
+        TeamMembers: new FormControl(null, [Validators.required])
     })
 }

@@ -1,11 +1,13 @@
 .form-wrapper {
   width: 100%;
-  view-transition-name: reactive-form;
 }
 
 :host {
   width: 100%;
+  view-transition-name: reactive-form;
 }
+
+::view-transition-group(root) { animation: none; }
 
 form {
   display: flex;

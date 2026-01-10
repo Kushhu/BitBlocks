@@ -6,11 +6,55 @@
     </app-table-of-content>
 
     <div class="section-wrapper">
+        
         <section>
             <div class="header">
-                <h2 class="title" id="button">Basic Button</h2> • <code class="highlight"> bitButton </code>
+                <h2 class="title" id="fill-button">Fill Button</h2> • <code class="highlight"> bitFillButton </code>
             </div>
+            <p>A filled button variant ideal for primary actions, providing strong visual prominence.</p>
+            <app-code-snippet>
+                {{"\<button bitFillButton\>Fill Button\</button\>"}}
+            </app-code-snippet>
+        </section>
 
+        <section>
+            <div class="header">
+                <h2 class="title" id="outlined-button">Outlined Button</h2> • <code class="highlight"> bitOutlinedButton </code>
+            </div>
+            <p>An outlined button variant suitable for secondary actions with a subtle border style.</p>
+            <app-code-snippet>
+                {{"\<button bitOutlinedButton\>Outlined Button\</button\>"}}
+            </app-code-snippet>
+        </section>
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="text-button">Text Button</h2> • <code class="highlight"> bitTextButton </code>
+            </div>
+            <p>A text-only button variant for minimal, subtle interactions without background or border.</p>
+            <app-code-snippet>
+                {{"\<button bitTextButton\>Text Button\</button\>"}}
+            </app-code-snippet>
+        </section>
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="loading-button">Loading State</h2> • <code class="highlight"> [loading] </code>
+            </div>
+            <p>Apply loading animation to buttons during asynchronous operations to indicate processing.</p>
+            <app-code-snippet>
+                {{"\<button bitFillButton [loading]=\"isLoading\"\>Submit\</button\>"}}
+            </app-code-snippet>
+        </section>
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="disabled-button">Disabled State</h2> • <code class="highlight"> [disabled] </code>
+            </div>
+            <p>Disable buttons to prevent user interaction when actions are unavailable.</p>
+            <app-code-snippet>
+                {{"\<button bitFillButton [disabled]=\"true\"\>Disabled\</button\>"}}
+            </app-code-snippet>
         </section>
     </div>
 
@@ -20,25 +64,23 @@
 
         <div class="button-list">
 
-            <button bitOutlinedButton>
-                Add
-            </button>
-
-            <button bitFillButton width="70%">
-                Dynamic width
-            </button>
-
+            
             <button bitFillButton>
                 Fill Button
             </button>
 
-            <button bitTextButton textColor="green">
+            <button bitOutlinedButton>
+                Outlined
+            </button>
+            
+            <button bitTextButton>
                 Text Button
             </button>
-
-            <button bitOutlinedButton>
-                Outlined Button
+            
+            <button bitFillButton>
+                Dynamic width
             </button>
+
 
         </div>
 

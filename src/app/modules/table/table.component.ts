@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { CodeSnippetComponent } from '@shared/code-snippet/code-snippet.component';
 import { TableOfContentComponent } from '@shared/table-of-content/table-of-content.component';
 import { BitSeparatorComponent, BitTableModule, BitTabsModule } from 'bitblocks';
-// import { BitSeparatorComponent, BitTableModule } from 'bitblocks';
 
 type IProduct = {
   id: number,
@@ -115,47 +114,47 @@ export class TableComponent {
   ];
 
   subscriptions = [
-  {
-    Id: 'SUB001',
-    customerName: 'John Doe',
-    plan: 'Pro',
-    status: 'Active',
-    renewalDate: '2024-02-15',
-    amount: '$49.99',
-  },
-  {
-    Id: 'SUB002',
-    customerName: 'Jane Smith',
-    plan: 'Basic',
-    status: 'Cancelled',
-    renewalDate: '2024-01-10',
-    amount: '$19.99',
-  },
-  {
-    Id: 'SUB003',
-    customerName: 'Michael Brown',
-    plan: 'Enterprise',
-    status: 'Pending',
-    renewalDate: '2024-03-01',
-    amount: '$99.99',
-  },
-  {
-    Id: 'SUB004',
-    customerName: 'Emily Johnson',
-    plan: 'Pro',
-    status: 'Active',
-    renewalDate: '2024-02-20',
-    amount: '$49.99',
-  },
-  {
-    Id: 'SUB005',
-    customerName: 'David Wilson',
-    plan: 'Basic',
-    status: 'Active',
-    renewalDate: '2024-02-05',
-    amount: '$19.99',
-  },
-];
+    {
+      Id: 'SUB001',
+      customerName: 'John Doe',
+      plan: 'Pro',
+      status: 'Active',
+      renewalDate: '2024-02-15',
+      amount: '$49.99',
+    },
+    {
+      Id: 'SUB002',
+      customerName: 'Jane Smith',
+      plan: 'Basic',
+      status: 'Cancelled',
+      renewalDate: '2024-01-10',
+      amount: '$19.99',
+    },
+    {
+      Id: 'SUB003',
+      customerName: 'Michael Brown',
+      plan: 'Enterprise',
+      status: 'Pending',
+      renewalDate: '2024-03-01',
+      amount: '$99.99',
+    },
+    {
+      Id: 'SUB004',
+      customerName: 'Emily Johnson',
+      plan: 'Pro',
+      status: 'Active',
+      renewalDate: '2024-02-20',
+      amount: '$49.99',
+    },
+    {
+      Id: 'SUB005',
+      customerName: 'David Wilson',
+      plan: 'Basic',
+      status: 'Active',
+      renewalDate: '2024-02-05',
+      amount: '$19.99',
+    },
+  ];
 
   // constructor() {
   //   setTimeout(() => {

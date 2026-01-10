@@ -1,19 +1,39 @@
-<bit-tab-group [(active)]="val">
-    <bit-tab title="Active">
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing </h3>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam dolores labore placeat? Sapiente,
-            tenetur. Exercitationem hic provident consectetur ea dolores? Commodi officia vitae deleniti omnis
-            aspernatur cupiditate ea reiciendis!</p>
+<div class="wrapper">
 
-    </bit-tab>
-    <bit-tab title="Inactive">
-        @defer (on viewport()) {
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam dolores labore placeat? Sapiente,
-            tenetur. Exercitationem hic provident consectetur ea dolores? Commodi officia vitae deleniti omnis
-            aspernatur cupiditate ea reiciendis!</p>
-        }
-        @placeholder {
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing </h3>
-        }
-    </bit-tab>
-</bit-tab-group>
+    <app-table-of-content>
+        <li>Components</li>
+    </app-table-of-content>
+
+    <div class="section-wrapper">
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="tab-group">Tab Group</h2> • <code class="highlight"> &lt;bit-tab-group&gt; </code>
+            </div>
+            <p>A container component for organizing content into tabbed interfaces with navigation.</p>
+            <app-code-snippet>{{"\<bit-tab-group [(active)]=\"activeTab\"\>\n &nbsp; \<bit-tab title=\"Tab 1\"\>Content\</bit-tab\>\n\</bit-tab-group\>"}}</app-code-snippet>
+        </section>
+
+    </div>
+
+    <bit-tab-group [(active)]="val">
+        <bit-tab title="Active">
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing </h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam dolores labore placeat? Sapiente,
+                tenetur. Exercitationem hic provident consectetur ea dolores? Commodi officia vitae deleniti omnis
+                aspernatur cupiditate ea reiciendis!</p>
+
+        </bit-tab>
+        <bit-tab title="Inactive">
+            @defer (on viewport()) {
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore quisquam dolores labore placeat? Sapiente,
+                tenetur. Exercitationem hic provident consectetur ea dolores? Commodi officia vitae deleniti omnis
+                aspernatur cupiditate ea reiciendis!</p>
+            }
+            @placeholder {
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing </h3>
+            }
+        </bit-tab>
+    </bit-tab-group>
+
+</div>

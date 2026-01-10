@@ -6,17 +6,26 @@
     </app-table-of-content>
 
     <div class="section-wrapper">
+
         <section>
             <div class="header">
-                <h2 class="title" id="module">Module Init</h2> • <code class="highlight"> bitFormsModule </code>
+                <h2 class="title" id="installation">Getting Started</h2>
             </div>
 
-            <p> Covers dynamic range of form functionalities from
-                bottom to top.
-            </p>
-            <p>
-                It provides exported members for
-                input elements and creates a unifying module that can be accomodated by only importing one whole module.
+            <p>Set up your Angular application and install the bitblocks library via npm to get started with form components.</p>
+            <app-code-snippet title="bash terminal">
+                {{"npm i bitblocks"}}
+            </app-code-snippet>
+        </section>
+
+
+        <section>
+            <div class="header">
+                <h2 class="title" id="module">Importing Module</h2> • <code class="highlight"> bitFormsModule </code>
+            </div>
+
+            <p>Provides a comprehensive suite of form functionalities, everything from basic inputs to advanced validation.
+                Exports all necessary members for input elements and consolidates them into a single module for streamlined imports.
             </p>
 
             <app-code-snippet>
@@ -24,13 +33,18 @@
             </app-code-snippet>
         </section>
 
-
+        <section>
+            <div class="header">
+                <h2 class="title" id=""></h2>
+            </div>
+        </section>
+            
         <section>
             <div class="header">
                 <h2 class="title" id="textbox">Textbox</h2> • <code class="highlight"> bitTextbox</code>
             </div>
             <p>
-                A universal input field that keeps design elements organized with user interaction.
+                A versatile input field directive that ensures consistent styling and user interaction across your forms.
             </p>
 
             <app-code-snippet>
@@ -45,7 +59,7 @@
                 <h2 class="title" id="email">Email </h2> • <code class="highlight"> bitEmail </code>
             </div>
             <p>
-                Independent directive conviniently used for email input field.
+                A specialized directive for email input fields, offering built-in validation and proper autocomplete handling.
             </p>
             <app-code-snippet>
                 {{"\<input bitEmail id=\"Email\" autocomplete=\"email\" formControlName=\"Email\" />"}}
@@ -58,11 +72,11 @@
                 <h2 class="title" id="phone">Phone </h2> • <code class="highlight"> bitPhone </code>
             </div>
             <p>
-                Independent directive can be placed for validating the phone number.
+                A directive for phone number inputs with automatic validation and formatting.
             </p>
             <ul>
-                <li><code>user can only enter numerics.</code></li>
-                <li><code>validates max 10 digits for phone number.</code></li>
+                <li><code>Restricts input to numeric characters only.</code></li>
+                <li><code>Enforces a maximum length of 10 digits.</code></li>
             </ul>
             <app-code-snippet>
                 &lt;input bitPhone maxlength="10" formControlName="Phone" /&gt;
@@ -74,7 +88,11 @@
                 <h2 class="title" id="dropdown">Dropdown</h2> • <code class="highlight"> &lt;bit-dropdown&gt; </code>
             </div>
 
-            <app-code-snippet>{{dropdownCode}}</app-code-snippet>
+            <p>
+                A flexible dropdown component supporting both single and multi-selection modes, with optional search functionality for filtering options.
+            </p>
+
+            <app-code-snippet title="Single Selection">{{dropdownCode}}</app-code-snippet>
         </section>
 
         <!-- <section>
@@ -107,5 +125,5 @@
         </section> -->
     </div>
 
-    <app-example-forms class="sticky-form"></app-example-forms>
+    <app-example-forms [showBinding]="true" class="sticky-form"></app-example-forms>
 </div>

@@ -1,0 +1,91 @@
+/* === Layout & Structure === */
+section {
+  min-height: 8rem;
+  margin-bottom: 5rem;
+}
+
+section .header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  color: var(--primary-font-color);
+}
+
+section p,
+ul {
+  line-height: 1.5rem;
+  color: var(--secondory-font-color);
+}
+
+.wrapper {
+  margin: 1rem 0;
+  display: grid;
+  position: relative;
+  align-items: start;
+  gap: 4rem;
+  grid-template-columns: 15rem 1fr 20rem;
+}
+
+.section-wrapper{
+  margin-top: 2rem;
+}
+
+.sticky-form {
+  position: sticky;
+  top: 5rem;
+  z-index: 0;
+}
+
+/* === Lists === */
+ul {
+  margin-top: 0;
+  padding-left: 1.5rem;
+}
+
+/* === Responsive === */
+@media (width < 400px) {
+  .wrapper {
+    margin-top: 0;
+    grid-template-columns: 1fr;
+  }
+
+  .wrapper > .toc {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .wrapper > .sticky-form {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    position: inherit;
+    top: 0;
+  }
+
+  .wrapper > .section-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+}
+
+@media (400px < width < 1200px) {
+  .wrapper {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto 1fr;
+  }
+
+  .wrapper > .toc {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
+
+  .wrapper > .section-wrapper {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .wrapper > .sticky-form {
+    grid-column: 2 / 3;
+    grid-row: 1 / 3;
+  }
+}

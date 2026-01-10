@@ -1,6 +1,9 @@
-@import url("../projects/bitblocks/src/lib/bit-button/style.button.css");
-@import url("../projects/bitblocks/src/lib/bit-forms/styles/style.textbox.css");
-@import url("../projects/bitblocks/src/lib/bit-colors/style.color.css");
+/* @import url("../dist/bitblocks/src/lib/bit-button/style.button.css");
+@import url("../dist/bitblocks/src/lib/bit-forms/styles/style.textbox.css");
+@import url("../dist/bitblocks/src/lib/bit-colors/style.color.css"); */
+@import url("../node_modules/bitblocks/src/lib/bit-colors/style.color.css"); 
+@import url("../node_modules/bitblocks/src/lib/bit-forms/styles/style.textbox.css"); 
+@import url("../node_modules/bitblocks/src/lib/bit-button/style.button.css"); 
 
 /* You can add global styles to this file, and also import other style files */
 * {
@@ -28,6 +31,8 @@
   --mb-xl: 3rem;
   --mb-xxl: 5rem;
 }
+
+::view-transition-group(root) { animation: none; }
 
 body,
 pre {

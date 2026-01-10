@@ -46,11 +46,12 @@ section ul li {
   border: 1px solid var(--border-color);
   border-radius: 1em;
   transition: transform 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-property: transform, border;
 }
 
 .bit-card:hover {
-  transform: translateX(-5px);
-  /* Fixed non-standard 'translate' usage */
+  transform: translateY(-5px);
+  border: 1px solid var(--scheme-500);
 }
 
 .m-2 {

@@ -6,9 +6,6 @@
     "paths": {
       "@module/*": ["./app/modules/*"],
       "@shared/*": ["./app/core/shared/*"],
-      "bitblocks": [
-        "./dist/bitblocks"
-      ]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

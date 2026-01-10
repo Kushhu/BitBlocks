@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { Form } from './form.model';
@@ -16,11 +16,15 @@ import { BitButtonModule, BitDropdownModule, BitFormService, BitFormsModule } fr
         CommonModule,
         BitDropdownModule,
         BitButtonModule,
+        CodeSnippetComponent
     ],
     templateUrl: './example.forms.component.html',
     styleUrl: './example.forms.component.css',
 })
 export class ExampleFormsComponent {
+
+    showBinding = input(false);
+
     _bitHelper = inject(BitFormService);
 
     formModel = Form;

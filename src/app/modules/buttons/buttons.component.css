@@ -21,6 +21,10 @@ section .header h2::target-text {
   color: red;
 }
 
+.section-wrapper{
+  margin-top: 2rem;
+}
+
 .wrapper {
   margin: 1rem 0;
   display: grid;
@@ -32,6 +36,10 @@ section .header h2::target-text {
 
 .section-wrapper {
   padding-bottom: 30vh;
+}
+
+h4{
+  margin-top: 1.5rem;
 }
 
 .button-list {

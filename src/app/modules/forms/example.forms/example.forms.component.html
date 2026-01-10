@@ -5,9 +5,6 @@
         <div class="field">
             <label for="Name">
                 Name
-                @if (_bitHelper.control(formModel.form,'Name').required) {
-                    <span style="color: red">*</span>
-                }
             </label>
             <input bitTextbox [regExp]="BitRegExpression.AlphabetsOnly" placeholder="ex: Alex Bezoz" type="text"
                 id="Name" autocomplete="given-name" formControlName="Name" />
@@ -22,6 +19,10 @@
         <div class="field">
             <label for="Email">
                 Email
+                
+                @if (!_bitHelper.control(formModel.form,'Email').required) {
+                    <span style="color: hsl(0, 0%, 70%)">(optional)</span>
+                }
             </label>
             <input bitEmail placeholder="ex: alex@gmail.com " id="Email" autocomplete="email" formControlName="Email" />
 
@@ -51,15 +52,15 @@
             <label for="person">
                 Assignee
                 @if (!_bitHelper.control(formModel.form,'Person').required) {
-                    <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span>
+                    <span style="color: hsl(0, 0%, 70%)">(optional)</span>
                 }
             </label>
             <bit-dropdown id="person" [minHeight]="2" [searchable]="true" formControlName="Person"
                 placeholder="Select person">
                 @for (user of users$ | async; track user.id;let i = $index) {
-                <bit-option [value]="user.name">
+                <bit-option [value]="user.email">
                     <div class="flex middle">
-                        <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
+                        <img [ngSrc]="'https://raw.githubusercontent.com/mhshariatipour1378/Avatars-Placeholder/refs/heads/master/back-end/images/id/AV2'+i+'.png'" height="36" width="36" />
                         <div>
                             {{ user.name }}
                             <br />
@@ -79,19 +80,19 @@
         </div>
         
         <div class="field">
-            <label for="person">
+            <label for="team-member">
                 Team members
-                @if (!_bitHelper.control(formModel.form,'Categories').required) {
+                @if (!_bitHelper.control(formModel.form,'TeamMembers').required) {
                     <span style="color: rgba(0, 0, 0, 0.6)">(optional)</span>
                 }
             </label>
 
-            <bit-multi-dropdown [minHeight]="2" [searchable]="true" placeholder="Select multiple memebers"
-                formControlName="Categories" [min]="2" [max]="3">
+            <bit-multi-dropdown [minHeight]="1" [searchable]="true" placeholder="Select multiple memebers"
+                formControlName="TeamMembers" [min]="2" [max]="3">
                 @for (user of users$ | async; track user.id;let i = $index) {
                 <bit-checked-option [value]="user.id">
                     <div class="flex middle" [attr.aria-label]="user.name">
-                        <img [ngSrc]="'https://avatar.iran.liara.run/public/' + user.id" height="36" width="36" />
+                        <img [ngSrc]="'https://raw.githubusercontent.com/mhshariatipour1378/Avatars-Placeholder/refs/heads/master/back-end/images/id/AV1'+i+'.png'" height="36" width="36" />
                         <div>
                             {{ user.name }} <br />
                             <small style="opacity: 0.5"> {{ user.email }} </small>
@@ -101,17 +102,17 @@
                 }
             </bit-multi-dropdown>
             
-            @if(_bitHelper.error(formModel.form,'Categories')?.required){
+            @if(_bitHelper.error(formModel.form,'TeamMembers')?.required){
                 <div class="error">
                     please select team memebers
                 </div>
             }
-            @else if (_bitHelper.error(formModel.form,'Categories')?.min) {
+            @else if (_bitHelper.error(formModel.form,'TeamMembers')?.min) {
                 <div class="error">
                     please select minimum of 2 memebrs
                 </div>
             }
-            @else if (_bitHelper.error(formModel.form,'Categories')?.max) {
+            @else if (_bitHelper.error(formModel.form,'TeamMembers')?.max) {
                 <div class="error">
                     max 3 memebrs allowed
                 </div>
@@ -142,5 +143,7 @@
 
     <!-- <bit-separator></bit-separator> -->
 
-    <!-- <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet> -->
+    @if (showBinding()) {
+        <app-code-snippet title="Binding">{{ formModel.form.value | json }}</app-code-snippet>
+    }
 </div>

@@ -9,13 +9,13 @@ section .header {
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.5rem;
-  color: light-dark(hsl(0 0 5%), hsl(0 0 90%));
+  color: var(--primary-font-color);
 }
 
 section p,
 ul {
   line-height: 1.5rem;
-  color: light-dark(hsl(0 0 15%), hsl(0 0 80%));
+  color: var(--secondory-font-color);
 }
 
 .wrapper {
@@ -25,6 +25,10 @@ ul {
   align-items: start;
   gap: 4rem;
   grid-template-columns: 15rem 1fr 20rem;
+}
+
+.section-wrapper{
+  margin-top: 2rem;
 }
 
 .sticky-form {

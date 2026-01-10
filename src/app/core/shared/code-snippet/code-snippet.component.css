@@ -6,7 +6,7 @@
   border-radius: 1rem;
   transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
-  background-color: light-dark(white, hsl(0 0 5%));
+  margin: 1.5rem 0;
 }
 
 .code button {
@@ -54,7 +54,9 @@
 .code pre {
   padding: 1rem;
   border-radius: 1rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   overflow: auto;
 
-  background-color: light-dark(white, hsl(0 0 5%));
+  background-color: light-dark(hsl(0 0 99%), hsl(0 0 8%));
 }

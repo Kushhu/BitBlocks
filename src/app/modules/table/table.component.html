@@ -72,7 +72,13 @@
                 <code class="highlight"> bitHeader </code> •
                 <code class="highlight"> bitRow </code>
             </div>
-            <p>You can specify each columns inside component and create a distinct order or customize view. </p>
+
+            
+            <p>Customize table headers and rows using templates for precise control over column definitions and row layouts.</p>
+            <ul>
+                <li>Use <code class="highlight">#bitHeader</code> to define custom table headers.</li>
+                <li>Use <code class="highlight">#bitRow</code> with <code class="highlight">let-row</code> to customize row rendering.</li>
+            </ul>
 
             <bit-tab-group>
 
@@ -81,7 +87,7 @@
 
                         <ng-template #bitHeader>
                             <tr>
-                                <th><input type="checkbox"></th>
+                                <th class="fit text-center">Id</th>
                                 <th class="resizable">Product</th>
                                 <th class="text-right">Price</th>
                             </tr>
@@ -89,7 +95,7 @@
 
                         <ng-template #bitRow let-row>
                             <tr>
-                                <td class="fit"> <input type="checkbox"> </td>
+                                <td>{{row.id}} </td>
                                 <td> {{row.title}} </td>
                                 <td class="text-right"> {{row.price | currency : row.currency}} </td>
                             </tr>
