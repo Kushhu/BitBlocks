@@ -1,28 +1,22 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { BitDropdownModule, BitFormService, BitFormsModule, BitSeparatorComponent } from 'bitblocks';
 import { Observable, of } from 'rxjs';
-import { BitButtonModule } from '../../../../../projects/bitblocks/src/lib/bit-button/bit-button.module';
-import {
-    BitDropdownModule,
-    BitFormService,
-    BitFormsModule
-} from '../../../../../projects/bitblocks/src/public-api';
 import { Form } from './form.model';
 import { CodeSnippetComponent } from "@shared/code-snippet/code-snippet.component";
+import { BitButtonModule, BitDropdownModule, BitFormService, BitFormsModule } from 'bitblocks';
 
 @Component({
     selector: 'app-example-forms',
     standalone: true,
     imports: [
-    ReactiveFormsModule,
-    NgOptimizedImage,
-    BitFormsModule,
-    CommonModule,
-    BitDropdownModule,
-    BitButtonModule,
-],
+        ReactiveFormsModule,
+        NgOptimizedImage,
+        BitFormsModule,
+        CommonModule,
+        BitDropdownModule,
+        BitButtonModule,
+    ],
     templateUrl: './example.forms.component.html',
     styleUrl: './example.forms.component.css',
 })

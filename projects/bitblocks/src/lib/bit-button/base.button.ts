@@ -56,10 +56,12 @@ export abstract class BitBaseButton {
 
   enable() {
     this.remove.classList(BTN_DISABLE_CLASS);
+    this.remove.attribute('tabindex');
   }
 
   disable() {
     this.add.classList(BTN_DISABLE_CLASS);
+    this.add.attribute('tabindex', "-1");
   }
 
   get add() {

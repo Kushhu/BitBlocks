@@ -67,7 +67,8 @@ tr {
 }
 
 tbody tr:hover {
-    background-color: var(--border-color);
+    --light-bg-color: hsl(from var(--scheme-100) h s l / 0.3);
+    background-color: light-dark(var(--light-bg-color), var(--scheme-100));
 }
 
 th:first-child,

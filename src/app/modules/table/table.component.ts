@@ -2,7 +2,7 @@ import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { CodeSnippetComponent } from '@shared/code-snippet/code-snippet.component';
 import { TableOfContentComponent } from '@shared/table-of-content/table-of-content.component';
-import { BitSeparatorComponent, BitTableModule, BitTabsModule } from '../../../../projects/bitblocks/src/public-api';
+import { BitSeparatorComponent, BitTableModule, BitTabsModule } from 'bitblocks';
 // import { BitSeparatorComponent, BitTableModule } from 'bitblocks';
 
 type IProduct = {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BitButtonModule } from '../../../../projects/bitblocks/src/lib/bit-button/bit-button.module';
 import { TableOfContentComponent } from '@shared/table-of-content/table-of-content.component'
+import { BitButtonModule } from 'bitblocks';
 
 @Component({
   selector: 'app-buttons',

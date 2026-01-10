@@ -22,20 +22,20 @@ export class BitNumberboxDirective extends BaseTextbox {
   }
 
   setup() {
-    this.add.attribute('type', 'tel');
+    this.add.attribute('type', 'number');
   }
 
   override validate(control: AbstractControl): ValidationErrors | null {
 
-    const validator = new BitFieldValidator([new BitFieldRequired(), new BitFieldRange(null, 10)])
+    // const validator = new BitFieldValidator([new BitFieldRequired()])
 
-    const errors = validator.validate(control);
+    // const errors = validator.validate(control);
 
-    if (this.hasErrors(errors)) this.makeInvalid();
+    if (control.errors) this.makeInvalid();
 
-    if (!this.hasErrors(errors)) this.makeValid();
+    if (!control.errors) this.makeValid();
 
-    return errors;
+    return control.errors;
   }
 
   hasErrors = (errors: BitErrors) => Object.keys(errors).length

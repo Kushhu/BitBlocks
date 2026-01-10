@@ -59,6 +59,10 @@ button.bit-btn.bit-fill-btn.bit-btn-disable {
 
 /* Text Button */
 
+button.bit-btn.bit-fill-btn {
+  color: var(--scheme-500);
+}
+
 button.bit-btn.bit-text-btn:active {
   background-color: var(--scheme-100);
   translate: 0 2px;

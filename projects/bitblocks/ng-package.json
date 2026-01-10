@@ -3,5 +3,10 @@
   "dest": "../../dist/bitblocks",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "src/lib/bit-colors/style.color.css",
+    "src/lib/bit-button/style.button.css",
+    "src/lib/bit-forms/styles/style.textbox.css"
+  ]
 }

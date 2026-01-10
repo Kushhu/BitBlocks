@@ -1,11 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { BitSeparatorComponent } from '../../../../../projects/bitblocks/src/public-api';
+import { BitLayoutModule } from 'bitblocks';
 
 @Component({
   selector: 'app-table-of-content',
   standalone: true,
-  imports: [BitSeparatorComponent, RouterLink],
+  imports: [BitLayoutModule, RouterLink],
   templateUrl: './table-of-content.component.html',
   styleUrl: './table-of-content.component.css',
 })

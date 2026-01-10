@@ -112,7 +112,7 @@ export class BitMultiDropdownComponent extends BitBaseDropdown<BitBaseOption> {
 
   protected override postWriteValue = () => {
 
-    this.value?.map(v => this.setOfValues.add(v));
+    if(this.value) this.value.map(v => this.setOfValues.add(v));
 
     this.checkValuesExistInOptions();
 

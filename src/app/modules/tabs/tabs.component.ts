@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BitTabsModule } from '../../../../projects/bitblocks/src/public-api';
+import { BitTabsModule } from 'bitblocks';
 
 @Component({
   selector: 'app-tabs',
